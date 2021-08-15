@@ -59,4 +59,34 @@ public class HomeController {
     public String changePassword(Model model) {
         return "changePasswordLayout";
     }
+    
+    @RequestMapping("/about")
+    public String about(Model model) {
+        return "aboutLayout";
+    }
+    
+    @RequestMapping("/blog")
+    public String blog(Model model) {
+        return "blogLayout";
+    }
+    
+    @RequestMapping("/blog-details")
+    public String blogDetails(Model model) {
+        return "blogDetailsLayout";
+    }
+    
+    @RequestMapping("/contact")
+    public String contact(Model model) {
+        return "contactLayout";
+    }
+    
+    @RequestMapping("/membership")
+    public String membership(Model model) {
+        return "membershipLayout";
+    }
+    
+    @RequestMapping("/terms")
+    public String terms(Model model) {
+        return "termsLayout";
+    }
 }

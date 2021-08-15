@@ -1,5 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 
+:root {
+    --primary-color: #fff;
+    --text-color: #232d39;
+    --card-color: #fff;
+    --border-color: #ddd;
+    --input-color: #fff;
+    --inputtext-color: #232d39;
+}
+
+.dark-theme {
+    --primary-color: #1A233A;
+    --text-color: #fff;
+    --card-color: #272E48;
+    --border-color: #596280;
+    --input-color: #1A233A;
+    --inputtext-color: #bcd0f7;
+}
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
@@ -81,7 +99,7 @@ global styles
 */
 html,
 body {
-  background: #fff;
+  background: var(--primary-color);
   font-family: 'Poppins', sans-serif;
 }
 
@@ -120,7 +138,7 @@ body {
 .section-heading h2 {
   font-size: 28px;
   font-weight: 800;
-  color: #232d39;
+  color: var(--text-color);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 0px;
@@ -169,7 +187,7 @@ header
 */
 
 .background-header {
-  background: rgba(250,250,250,0.99) !important;
+  background: var(--primary-color)!important;
   height: 80px!important;
   position: fixed!important;
   top: 0px;
@@ -180,11 +198,11 @@ header
 
 .background-header .logo,
 .background-header .main-nav .nav li a {
-  color: #232d39!important;
+  color: var(--text-color)!important;
 }
 
 .background-header .main-nav .nav li:hover > a {
-  color: #ed563b!important;
+  color: var(--text-color)!important;
 }
 
 .background-header .nav li a.active {
@@ -616,7 +634,7 @@ features
   margin-top: 0px;
   margin-bottom:  7px;
   letter-spacing: 0.25px;
-  color: #232d39;
+  color: var(--text-color);
   font-size: 19px;
   font-weight: 600;
   text-transform: capitalize;
@@ -694,11 +712,11 @@ Our Classes
   width: 100%;
   padding: 30px 30px;
   display: inline-block;
-  background-color: #fff;
+  background-color: var(--card-color);
   box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
   border-radius: 5px;
   font-size: 19px;
-  color: #232d39;
+  color: var(--text-color);
   letter-spacing: 0.5px;
   font-weight: 600;
   transition: all 0.3s;
@@ -752,7 +770,7 @@ Our Classes
 .tabs-content h4 {
   font-size: 23px;
   font-weight: 700;
-  color: #232d39;
+  color: var(--text-color);
   letter-spacing: 0.5px;
   margin-bottom: 20px;
   margin-top: 30px;
@@ -898,7 +916,7 @@ trainers
 }
 
 #trainers .trainer-item {
-  background-color: #fff;
+  background-color: var(--card-color);
   border-radius: 5px;
   box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
   padding: 15px;
@@ -922,7 +940,7 @@ trainers
 #trainers .trainer-item h4 {
   font-size: 19px;
   font-weight: 600;
-  color: #232d39;
+  color: var(--text-color);
   letter-spacing: 0.5px;
   margin-bottom: 18px;
 }
@@ -941,7 +959,7 @@ ul.social-icons li:last-child {
 }
 
 ul.social-icons li a {
-  color: #232d39;
+  color: var(--text-color);
   transition: all .3s;
 }
 
@@ -973,7 +991,7 @@ contact
 }
 
 #contact-us .contact-form #contact {
-  background-color: #fff;
+  background-color: var(--card-color);
   padding: 40px;
   border-radius: 5px;
 }
@@ -981,10 +999,10 @@ contact
 .contact-form select,
 .contact-form input,
 .contact-form textarea {
-  color: #7a7a7a;
+  color: var(--inputtext-color);
   font-size: 13px;
-  border: 1px solid #ddd;
-  background-color: #fff;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-color);
   width: 100%;
   height: 40px;
   outline: none;
@@ -1002,11 +1020,11 @@ contact
 }
 
 .contact-form ::-webkit-input-placeholder { /* Edge */
-  color: #7a7a7a;
+  color: var(--inputtext-color);
 }
 
 .contact-form :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #7a7a7a;
+  color: var(--inputtext-color);
 }
 
 .contact-form ::placeholder {
@@ -1046,7 +1064,7 @@ footer {
 }
 
 footer p {
-  color: #232d39;
+  color: var(--text-color);
   font-size: 13px;
 }
 
@@ -1212,14 +1230,13 @@ responsive
 }
 
 .background-header .dropdown-menu {
-  background: rgba(250,250,250,0.9);
+  background: rgba(0,0,0,0.2);
 }
 
 .dropdown-menu a {
   line-height: 1.3;
   color: #fff;
 }
-
 
 .background-header .main-nav .nav li a:hover,
 .background-header .main-nav .nav li a.active,
@@ -1233,6 +1250,16 @@ responsive
   color: #ed563b;
 }
 
+.page-link {
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+}
+
+.page-link:hover {
+    background-color: var(--card-color);
+    color: var(--text-color);
+}
+
 .btn-primary {
   border-color: #ed563b;
   background-color: #ed563b;
@@ -1240,7 +1267,7 @@ responsive
 
 .btn-primary:not(:disabled):not(.disabled).active, 
 .btn-primary:not(:disabled):not(.disabled):active, 
-.show>.btn-primary.dropdown-toggle,
+.show.btn-primary.dropdown-toggle,
 .btn-primary:active,
 .btn-primary:active:focus,
 .btn-primary:focus,
@@ -1270,4 +1297,29 @@ a {
 a:focus,
 a:hover {
   color: #f9735b;
+}
+
+.modal-header {
+    background-color: var(--card-color);
+    border: 1px solid var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-body {
+    background-color: var(--card-color);
+    border: 1px solid var(--primary-color);
+}
+
+.modal-footer {
+    background-color: var(--card-color);
+    border: 1px solid var(--primary-color);
+    border-top: 1px solid var(--border-color);
+}
+
+.modal-title {
+    color: var(--text-color);
+}
+
+.list-group-item {
+    background-color: var(--card-color);
 }

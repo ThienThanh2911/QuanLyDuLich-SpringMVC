@@ -14,8 +14,8 @@
                     <div class="cta-content">
                         <br>
                         <br>
-                        <h2><em>€300 - €4000</em></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                        <h2><em>300.000đ - 400.000đ</em></h2>
+                        <p>Giá tiền của chuyến đi</p>
 
                         <div class="main-button">
                           <a href="#" data-toggle="modal" data-target="#exampleModal">Enquiry</a>
@@ -79,25 +79,25 @@
 
                     <div class="row">
                        <div class="col-sm-6">
-                            <label>Available</label>
+                            <label style="color: var(--text-color)">Available</label>
                        
                             <p>Spring</p>
                        </div>
 
                        <div class="col-sm-6">
-                            <label>For</label>
+                            <label style="color: var(--text-color)">For</label>
                        
                             <p> 20 nights</p>
                        </div>
 
                        <div class="col-sm-6">
-                            <label>Flight included</label>
+                            <label style="color: var(--text-color)">Flight included</label>
                        
                             <p>Yes</p>
                        </div>
 
                        <div class="col-sm-6">
-                            <label>Address</label>
+                            <label style="color: var(--text-color)">Address</label>
                        
                             <p>6 Regeneration Road, SE16 2NX, London</p>
                        </div>
@@ -106,11 +106,11 @@
                   <article id='tabs-2'>
                     <h4>Package Description</h4>
                     
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia doloremque sit, enim sint odio corporis illum perferendis, unde repellendus aut dolore doloribus minima qui ullam vel possimus magnam ipsa deleniti.</p> 
+                    <p>Nội dung 1</p>
                     
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ducimus ab numquam magnam aliquid, odit provident consectetur corporis eius blanditiis alias nulla commodi qui voluptatibus laudantium quaerat tempore possimus esse nam sed accusantium inventore? Sapiente minima dicta sed quia sunt?</p>
+                    <p>Nội dung 2</p>
                     
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum qui, corrupti consequuntur. Officia consectetur error amet debitis esse minus quasi, dicta suscipit tempora, natus, vitae voluptatem quae libero. Sunt nulla culpa impedit! Aliquid cupiditate, impedit reiciendis dolores, illo adipisci, omnis dolor distinctio voluptas expedita maxime officiis maiores cumque sequi quaerat culpa blanditiis. Quia tenetur distinctio rem, quibusdam officiis voluptatum neque!</p>
+                    <p>Nội dung 3</p>
                    </article>
                   <article id='tabs-3'>
                     <h4>Availability &amp; Prices</h4>
@@ -119,39 +119,39 @@
                       <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
                          <thead>
                               <tr>
-                                   <th>Package</th>
-                                   <th>From</th>
-                                   <th>To</th>
-                                   <th>Price</th>
+                                  <th style="color: var(--text-color)">Package</th>
+                                   <th style="color: var(--text-color)">From</th>
+                                   <th style="color: var(--text-color)">To</th>
+                                   <th style="color: var(--text-color)">Price</th>
                               </tr>
                          </thead>
                          
                          <tbody>
                               <tr>
                                    <td></td>
-                                   <td>01-06-2020</td>
-                                   <td>31-12-2020</td>
-                                   <td>€ 300 per night</td>
+                                   <td style="color: #7a7a7a">15-08-2021</td>
+                                   <td style="color: #7a7a7a">15-08-2021</td>
+                                   <td style="color: #7a7a7a">300.000đ per night</td>
                               </tr>
 
                               <tr>
                                    <td></td>
-                                   <td>01-06-2020</td>
-                                   <td>31-12-2020</td>
-                                   <td>€ 300 per night</td>
+                                   <td style="color: #7a7a7a">15-08-2021</td>
+                                   <td style="color: #7a7a7a">15-08-2021</td>
+                                   <td style="color: #7a7a7a">300.000đ per night</td>
                               </tr>
 
                               <tr>
                                    <td></td>
-                                   <td>01-06-2020</td>
-                                   <td>31-12-2020</td>
-                                   <td>€ 300 per night</td>
+                                   <td style="color: #7a7a7a">15-08-2021</td>
+                                   <td style="color: #7a7a7a">15-08-2021</td>
+                                   <td style="color: #7a7a7a">300.000đ per night</td>
                               </tr>
                               <tr>
                                    <td></td>
-                                   <td>01-06-2020</td>
-                                   <td>31-12-2020</td>
-                                   <td>€ 4000 total price</td>
+                                   <td style="color: #7a7a7a">15-08-2021</td>
+                                   <td style="color: #7a7a7a">15-08-2021</td>
+                                   <td style="color: #7a7a7a">400.000đ total price</td>
                               </tr>
                          </tbody>
                       </table>
@@ -170,7 +170,7 @@
                               </div>
                               <div class="col-md-10 col-sm-9">
                                    <p>
-                                        Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan dignissim rutrum.
+                                        Nội dung
                                    </p>
                               </div>
                          </div>
@@ -186,7 +186,7 @@
 
                                 <div class="col-md-10 col-sm-9">
                                      <p>
-                                          Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan dignissim rutrum.
+                                          Nội dung
                                      </p>
                                 </div>
                            </div>
@@ -217,8 +217,8 @@
                                 <div class="col-md-10 col-sm-9">
                                      <div>
                                           <p>
-                                               Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan dignissim rutrum. <br>
-                                                Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan dignissim rutrum. <br>
+                                               Nội dung 1<br>
+                                               Nội dung 2<br>
                                           </p>
                                      </div>
                                 </div>
@@ -236,8 +236,8 @@
                                 <div class="col-md-10 col-sm-9">
                                      <div>
                                           <p>
-                                               Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan dignissim rutrum. <br>
-                                                Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan dignissim rutrum. <br>
+                                               Nội dung 1<br>
+                                               Nội dung 2<br>
                                           </p>
                                      </div>
                                 </div>
@@ -262,7 +262,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Enquiry</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" style="color: var(--text-color)" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -311,7 +311,7 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <div>Người lớn</div>
+                                <div style="color: var(--text-color)">Người lớn</div>
                             </div>
                             <div class="col-md-6">
                             <div class="input-group">
@@ -333,7 +333,7 @@
                       <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <div>Trẻ em</div>
+                                <div style="color: var(--text-color)">Trẻ em</div>
                             </div>
                             <div class="col-md-6">
                             <div class="input-group">
@@ -359,7 +359,7 @@
           </div>
           <div class="modal-footer">
               <div class="inline mr-auto">
-                  <span><b style="font-size: 20px">Total Price</b> - 1.000.000 VND</span>
+                  <span style="color: var(--text-color)"><b style="font-size: 20px">Total Price</b> - 1.000.000 VND</span>
               </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button type="button" class="btn btn-primary">Send Request</button>

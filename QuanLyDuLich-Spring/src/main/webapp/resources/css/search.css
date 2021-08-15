@@ -1,3 +1,21 @@
+:root {
+    --primary-color: #fff;
+    --text-color: #232d39;
+    --card-color: #fff;
+    --border-color: #ddd;
+    --input-color: #fff;
+    --inputtext-color: #232d39;
+}
+
+.dark-theme {
+    --primary-color: #1A233A;
+    --text-color: #fff;
+    --card-color: #272E48;
+    --border-color: #596280;
+    --input-color: #1A233A;
+    --inputtext-color: #bcd0f7;
+}
+
 html {
   line-height: 1.15;
   /* 1 */
@@ -814,7 +832,7 @@ legend {
       justify-content: center;
   -ms-flex-align: center;
       align-items: center;
-  background: #FFFFFF;
+  background: var(--primary-color);
   padding: 15px;
   font-family: 'Roboto', sans-serif;
 }
@@ -836,7 +854,7 @@ legend {
 .s007 form .inner-form .input-field input {
   height: 100%;
   border: 0;
-  background: #fff;
+  background: var(--card-color);
   display: block;
   width: 100%;
   padding: 10px 32px 10px 70px;
@@ -844,7 +862,7 @@ legend {
   color: #666;
   border-radius: 3px;
   height: 70px;
-  color: #555;
+  color: var(--inputtext-color);
 }
 
 .s007 form .inner-form .input-field input.placeholder {
@@ -884,7 +902,8 @@ legend {
 }
 
 .s007 form .inner-form .input-field .btn-search:hover {
-  background: #4ea63f;
+  background-color: #f9735b;
+  color: #fff;
 }
 
 .s007 form .inner-form .input-field .btn-delete {
@@ -895,7 +914,7 @@ legend {
   white-space: nowrap;
   border-radius: 3px;
   font-size: 14px;
-  color: #555;
+  color: var(--text-color);
   transition: all .2s ease-out, color .2s ease-out;
   border: 0;
   cursor: pointer;
@@ -903,7 +922,7 @@ legend {
 }
 
 .s007 form .inner-form .input-field .btn-delete:hover {
-  color: #000;
+  color: #ed563b;
 }
 
 .s007 form .inner-form .basic-search {
@@ -951,7 +970,7 @@ legend {
   right: 0;
   position: absolute;
   font-weight: bold;
-  color: #555;
+  color: var(--text-color);
   height: 100%;
   font-size: 14px;
 }
@@ -962,7 +981,7 @@ legend {
 }
 
 .s007 form .inner-form .advance-search {
-  background: #fff;
+  background: var(--card-color);
   padding: 40px;
   border-radius: 3px;
   box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
@@ -970,7 +989,7 @@ legend {
 
 .s007 form .inner-form .advance-search .desc {
   font-size: 15px;
-  color: #999;
+  color: var(--text-color);
   display: block;
   margin-bottom: 26px;
 }
@@ -1043,7 +1062,7 @@ legend {
   -ms-flex-align: center;
       align-items: center;
   height: 100%;
-  color: #555;
+  color: var(--inputtext-color);
 }
 
 .s007 form .inner-form .advance-search .choices__list.choices__list--dropdown {

@@ -28,7 +28,7 @@
                               
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="about">About Us</a>
-                                    <a class="dropdown-item" href="testimonials">Testimonials</a>
+                                    <a class="dropdown-item" href="membership">Membership</a>
                                     <a class="dropdown-item" href="terms">Terms</a>
                                 </div>
                             </li>
@@ -41,6 +41,94 @@
                                     <a class="dropdown-item" href="change-password">Change password</a>
                                     <a class="dropdown-item" href="terms">Log out</a>
                                 </div>
+                            </li>
+                            <li>
+                                <label style="margin-top:10px">
+                                    <input type="checkbox" id="icon" />
+                                    <span class="check"></span>
+                                </label>
+                                <style>
+                                    input[type="checkbox"] {
+                                        -webkit-appearance: none;
+                                        visibility: hidden;
+                                        display: none;
+                                    }
+
+                                    .check {
+                                        position: relative;
+                                        display: block;
+                                        width: 40px;
+                                        height: 20px;
+                                        background: #092c3e;
+                                        cursor: pointer;
+                                        border-radius: 20px;
+                                        overflow: hidden;
+                                        transition: ease-in 0.5s;
+                                    }
+                                    
+                                    input[type="checkbox"]:checked ~ .check {
+                                        background: #fff;
+                                    }
+                                    
+                                    .check:before {
+                                        content: '';
+                                        position: absolute;
+                                        top: 2px;
+                                        left: 2px;
+                                        background: #fff;
+                                        width: 16px;
+                                        height: 16px;
+                                        border-radius: 50%;
+                                        transition: 0.5s;
+                                    }
+                                    
+                                    input[type="checkbox"]:checked ~ .check:before {
+                                        transform: translateX(-50px);
+                                    }
+                                    
+                                    .check:after {
+                                        content: '';
+                                        position: absolute;
+                                        top: 2px;
+                                        right: 2px;
+                                        background: #FFCC33;
+                                        width: 16px;
+                                        height: 16px;
+                                        border-radius: 50%;
+                                        transition: 0.5s;
+                                        transform: translateX(50px);
+                                    }
+                                    
+                                    input[type="checkbox"]:checked ~ .check:after {
+                                        transform: translateX(0px);
+                                    }
+                                </style>
+                                <script>
+                                    var icon = document.getElementById("icon");
+                                    
+                                    if(localStorage.getItem("theme") == null) {
+                                        localStorage.setItem("theme", "light");
+                                    }
+                                    
+                                    let localData = localStorage.getItem("theme");
+                                    
+                                    if(localData == "light") {
+                                        document.body.classList.remove("dark-theme");
+                                    }
+                                    else if(localData == "dark") {
+                                        document.body.classList.add("dark-theme");
+                                        icon.checked = true;
+                                    }
+                                    
+                                    icon.onclick = function() {
+                                        document.body.classList.toggle("dark-theme");
+                                        if(document.body.classList.contains("dark-theme")){
+                                            localStorage.setItem("theme", "dark");
+                                        }else{
+                                            localStorage.setItem("theme", "light");
+                                        }
+                                    }
+                                </script>
                             </li>
                         </ul>        
                         <a class='menu-trigger'>

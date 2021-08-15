@@ -55,15 +55,15 @@
 					</div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
-							<label for="website">Date Of Birth</label>
-							<input type="text" class="form-control" id="birth" placeholder="Enter">
+							<label for="birth">Date Of Birth</label>
+							<input type="text" class="form-control" id="birth" placeholder="Enter your birth day">
 						</div>
 					</div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
-							<label for="phone">Gender</label>
+							<label for="gender">Gender</label>
 							<form>
-                                                            <select name="cars" class="custom-select" style="background: #1A233A; border: 1px solid #596280; font-size: .825rem; color: #596280;">
+                                                            <select name="cars" class="custom-select" style="background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
                                                               <option selected>What is your gender?</option>
                                                               <option value="male">Male</option>
                                                               <option value="female">Female</option>
@@ -80,6 +80,10 @@
 						</div>
 					</div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="abour">About</label>
+                                    <input type="text" class="form-control" id="about" placeholder="Enter">
+				</div>
 				<div class="row gutters">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<h6 class="mb-3 text-primary">Address</h6>
@@ -110,11 +114,11 @@
 	</div>
 </div>
 </div>
-<footer style="margin-top: 12%;">
+<footer style="margin-top: 8%;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p style="color: white;">
+                    <p style="color: var(--text-color);">
                         Copyright © 2021 TWIN TOUR
                         - Developed by <a href="#">Thành Tựu</a>
                     </p>

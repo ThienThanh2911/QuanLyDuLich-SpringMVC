@@ -46,7 +46,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p style="color: white;">
+                    <p style="color: var(--text-color);">
                         Copyright © 2021 TWIN TOUR
                         - Developed by <a href="#">Thành Tựu</a>
                     </p>

@@ -47,4 +47,28 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content" value="/WEB-INF/jsp/change-password.jsp" />
         <put-attribute name="footer" value="" />
     </definition>
+    <definition name="aboutLayout" extends="baseLayout">
+        <put-attribute name="title" value="About" />
+        <put-attribute name="content" value="/WEB-INF/jsp/about.jsp" />
+    </definition>
+    <definition name="blogLayout" extends="baseLayout">
+        <put-attribute name="title" value="Blog" />
+        <put-attribute name="content" value="/WEB-INF/jsp/blog.jsp" />
+    </definition>
+    <definition name="blogDetailsLayout" extends="baseLayout">
+        <put-attribute name="title" value="Blog Details" />
+        <put-attribute name="content" value="/WEB-INF/jsp/blog-details.jsp" />
+    </definition>
+    <definition name="contactLayout" extends="baseLayout">
+        <put-attribute name="title" value="Contact Us" />
+        <put-attribute name="content" value="/WEB-INF/jsp/contact.jsp" />
+    </definition>
+    <definition name="membershipLayout" extends="baseLayout">
+        <put-attribute name="title" value="membership" />
+        <put-attribute name="content" value="/WEB-INF/jsp/membership.jsp" />
+    </definition>
+    <definition name="termsLayout" extends="baseLayout">
+        <put-attribute name="title" value="Terms" />
+        <put-attribute name="content" value="/WEB-INF/jsp/terms.jsp" />
+    </definition>
 </tiles-definitions>

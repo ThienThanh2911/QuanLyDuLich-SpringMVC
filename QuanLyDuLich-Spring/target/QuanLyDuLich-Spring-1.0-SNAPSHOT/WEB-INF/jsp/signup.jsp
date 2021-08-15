@@ -39,10 +39,10 @@
                                         </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
+                                        <div class="form-group" >
                                                 <label for="phone">Gender</label>
                                                 <form>
-                                                    <select name="cars" class="custom-select" style="background: #1A233A; border: 1px solid #596280; font-size: .825rem; color: #596280;">
+                                                    <select name="cars" class="custom-select" style="background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
                                                       <option selected>What is your gender?</option>
                                                       <option value="male">Male</option>
                                                       <option value="female">Female</option>
@@ -89,7 +89,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p style="color: white;">
+                    <p style="color: var(--text-color)">
                         Copyright © 2021 TWIN TOUR
                         - Developed by <a href="#">Thành Tựu</a>
                     </p>
