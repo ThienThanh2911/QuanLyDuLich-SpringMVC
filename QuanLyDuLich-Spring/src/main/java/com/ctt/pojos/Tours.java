@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -28,21 +35,29 @@ public class Tours implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Size(min = 5, max = 30, message = "{tour.name.lenError}")
     private String name;
     private String description;
     @Column(name = "start_date")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date startDate;
     @Column(name = "finish_date")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date finishDate;
+    @NotNull(message = "{tour.destination.nullError}")
     private String destination;
     private String photos;
+    @NotNull(message = "{tour.price.nullError}")
+    @Min(value = 100000, message = "{tour.price.minError}")
+    @Max(value = 10000000, message = "{tour.price.maxError}")
     private BigDecimal price;
     private boolean active;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
+    //@NotNull(message = "{tour.category.nullError}")
     private Category category;
+    @Transient
+    private MultipartFile file;
 
     /**
      * @return the id
@@ -182,5 +197,19 @@ public class Tours implements Serializable{
      */
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 }

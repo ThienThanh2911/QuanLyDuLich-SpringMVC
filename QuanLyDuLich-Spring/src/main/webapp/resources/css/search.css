@@ -1154,3 +1154,9 @@ legend {
     margin-bottom: 20px;
   }
 }
+.input-price {
+    border-bottom: 1px solid #888888!important;
+    padding:0!important;
+    font-size: 14px!important;
+    height: 44px!important;
+}

@@ -17,6 +17,7 @@
                         <br>
                         <h2>Our <em>Packages</em></h2>
                         <p>Danh sách các Tours sắp diễn ra và hiện vẫn còn cho phép đặt vé</p>
+                        <p>${counter}</p>
                     </div>
                 </div>
             </div>
@@ -25,7 +26,8 @@
     <!-- ***** Call to Action End ***** -->
     
     <div class="s007">
-    <form>
+        <c:url value="/packages" var="action"/>
+        <form method="post" action="${action}" >
         <div class="inner-form">
           <div class="basic-search">
             <div class="input-field">
@@ -34,9 +36,9 @@
                   <path d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"></path>
                 </svg>
               </div>
-              <input id="search" type="text" placeholder="Search..." />
+                <input id="search" type="text" name="kw" placeholder="Search..." />
               <div class="result-count">
-                <span>108 </span>results</div>
+                <span>${count} </span>results</div>
             </div>
           </div>
           <div class="advance-search">
@@ -44,44 +46,25 @@
             <div class="row">
                 <div class="input-field">
                   <div class="input-select">
-                    <select data-trigger="" name="choices-single-defaul">
-                      <option placeholder="" value="">CATEGORY</option>
-                      <option>SUBJECT B</option>
-                      <option>SUBJECT C</option>
+                    <select name="choices-single-defaul" id="cate" class="form-control">
+                        <option placeholder="" value="">CATEGORY</option>
+                        <c:forEach items="${categories}" var="cat">
+                            <option value="${cat.id}">${cat.name}</option>
+                        </c:forEach>
                     </select>
                   </div>
                 </div>
               <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">START DATE</option>
-                    <option>SUBJECT B</option>
-                    <option>SUBJECT C</option>
-                  </select>
-                </div>
+                  <input type="number" placeholder="MIN - 0" class="input-price" min="0" />
               </div>
             </div>
             <div class="row second">
               <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">MIN PRICE</option>
-                    <option>SALE</option>
-                    <option>SUBJECT B</option>
-                    <option>SUBJECT C</option>
-                  </select>
-                </div>
+                  <input type="date" placeholder="DATE - dd/mm/yy" class="input-price" />
               </div>
-              <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">MAX PRICE</option>
-                    <option>THIS WEEK</option>
-                    <option>SUBJECT B</option>
-                    <option>SUBJECT C</option>
-                  </select>
+                <div class="input-field">
+                    <input type="number" placeholder="MAX - 100.000.000" max="10000000" min="0" class="input-price" />
                 </div>
-              </div>
             </div>
             <div class="row third">
               <div class="input-field">
@@ -130,7 +113,6 @@
           deleteAll[i].click();
         }
       });
-
     </script>
 
     <!-- ***** Fleet Starts ***** -->
@@ -174,21 +156,21 @@
                 
             <nav>
               <ul class="pagination pagination-lg justify-content-center">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
+                <%--<li class="page-item">
+                        <a class="page-link" href="<c:url value="/packages" />?page=${pageLink}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
                   </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
+                </li>--%>
+                    <c:forEach begin="1" end="${Math.ceil(counter/9)}" var="i">
+                        <li class="page-item"><a class="page-link" href="<c:url value="/packages" />?page=${i}">${i}</a></li>
+                    </c:forEach>
+                <%--<li class="page-item">
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                   </a>
-                </li>
+                </li>--%>
               </ul>
             </nav>
 

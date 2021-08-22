@@ -31,6 +31,8 @@
 	<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
 		<div class="card h-100">
 			<div class="card-body">
+                            <c:url value="/your-profile" var="action"/>
+                            <form method="post" action="${action}" modelAttribute="user" enctype="multipart/form-data">
 				<div class="row gutters">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<h6 class="mb-3 text-primary">Personal Details</h6>
@@ -62,20 +64,18 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
 							<label for="gender">Gender</label>
-							<form>
                                                             <select name="cars" class="custom-select" style="background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
                                                               <option selected>What is your gender?</option>
                                                               <option value="male">Male</option>
                                                               <option value="female">Female</option>
                                                             </select>
-                                                        </form>
 						</div>
 					</div>
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
-							<label for="avatar">Avatar</label>
+                                                    <label for="avatar">Avatar</label>
                                                         <div class="form-control">
-                                                            <input type="file" id="avatar" style="color: #596280">
+                                                            <input type="file" id="avatar" path="file" style="color: #596280" />
                                                         </div>
 						</div>
 					</div>
@@ -105,10 +105,11 @@
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="text-right">
 							<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-							<button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+							<input value="Update" type="submit" id="submit" name="submit" class="btn btn-primary"/>
 						</div>
 					</div>
 				</div>
+                            </form>
 			</div>
 		</div>
 	</div>

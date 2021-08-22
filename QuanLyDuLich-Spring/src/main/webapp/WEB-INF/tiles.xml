@@ -71,4 +71,8 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Terms" />
         <put-attribute name="content" value="/WEB-INF/jsp/terms.jsp" />
     </definition>
+    <definition name="adminPackagesLayout" extends="baseLayout">
+        <put-attribute name="title" value="admin packages" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin-tours.jsp" />
+    </definition>
 </tiles-definitions>

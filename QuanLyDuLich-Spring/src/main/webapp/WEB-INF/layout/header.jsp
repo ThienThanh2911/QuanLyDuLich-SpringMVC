@@ -23,6 +23,7 @@
                             <li><a href="${home}" class="active">Home</a></li>
                             <li><a href="packages">Packages</a></li>
                             <li><a href="blog">Blog</a></li>
+                            <li><a href="contact">Contact</a></li> 
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
                               
@@ -32,15 +33,24 @@
                                     <a class="dropdown-item" href="terms">Terms</a>
                                 </div>
                             </li>
-                            <li><a href="contact">Contact</a></li> 
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
-                              
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="your-profile">Your profile</a>
-                                    <a class="dropdown-item" href="change-password">Change password</a>
-                                    <a class="dropdown-item" href="terms">Log out</a>
-                                </div>
+                                <c:choose>
+                                    <c:when test="${pageContext.request.userPrincipal.name == null}">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="<c:url value="/signup" />">Sign Up</a>
+                                            <a class="dropdown-item" href="<c:url value="/signin" />">Sign In</a>
+                                        </div>
+                                    </c:when>
+                                    <c:when test="${pageContext.request.userPrincipal.name != null}">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="<c:url value="/your-profile" />">Your profile</a>
+                                            <a class="dropdown-item" href="<c:url value="/change-password" />">Change password</a>
+                                            <a class="dropdown-item" href="<c:url value="/logout" />">Log out</a>
+                                        </div>
+                                    </c:when>
+                                </c:choose>
                             </li>
                             <li>
                                 <label style="margin-top:10px">

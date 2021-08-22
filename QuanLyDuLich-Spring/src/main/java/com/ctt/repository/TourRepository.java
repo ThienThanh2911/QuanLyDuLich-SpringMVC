@@ -13,5 +13,7 @@ import java.util.List;
  * @author Windows-1909
  */
 public interface TourRepository {
-    List<Tours> getTours(String kw);
+    List<Tours> getTours(String kw, int page);
+    long countTours();
+    boolean addOrUpdate(Tours tours);
 }
