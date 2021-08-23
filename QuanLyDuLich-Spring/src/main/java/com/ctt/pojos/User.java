@@ -7,11 +7,13 @@ package com.ctt.pojos;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
@@ -55,12 +57,21 @@ public class User implements Serializable {
     private String gender;
     private String about;
     @Column(name = "role")
-    private String role;
+    private String userRole;
     private Boolean active;
     @Transient
     private MultipartFile file;
     @Transient
     private String confirmPassword;
+    
+    @OneToMany(mappedBy = "user")
+    private Set<Payments> payments;
+    @OneToMany(mappedBy = "user")
+    private Set<TourBooking> tourbooking;
+    @OneToMany(mappedBy = "user")
+    private Set<RateTour> ratetour;
+    @OneToMany(mappedBy = "user")
+    private Set<CommentTour> commenttour;
 
     /**
      * @return the file
@@ -233,14 +244,14 @@ public class User implements Serializable {
      * @return the role
      */
     public String getRole() {
-        return role;
+        return userRole;
     }
 
     /**
      * @param role the role to set
      */
     public void setRole(String role) {
-        this.role = role;
+        this.userRole = role;
     }
 
     /**
@@ -283,6 +294,62 @@ public class User implements Serializable {
      */
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    /**
+     * @return the payments
+     */
+    public Set<Payments> getPayments() {
+        return payments;
+    }
+
+    /**
+     * @param payments the payments to set
+     */
+    public void setPayments(Set<Payments> payments) {
+        this.payments = payments;
+    }
+
+    /**
+     * @return the tourbooking
+     */
+    public Set<TourBooking> getTourbooking() {
+        return tourbooking;
+    }
+
+    /**
+     * @param tourbooking the tourbooking to set
+     */
+    public void setTourbooking(Set<TourBooking> tourbooking) {
+        this.tourbooking = tourbooking;
+    }
+
+    /**
+     * @return the ratetour
+     */
+    public Set<RateTour> getRatetour() {
+        return ratetour;
+    }
+
+    /**
+     * @param ratetour the ratetour to set
+     */
+    public void setRatetour(Set<RateTour> ratetour) {
+        this.ratetour = ratetour;
+    }
+
+    /**
+     * @return the commenttour
+     */
+    public Set<CommentTour> getCommenttour() {
+        return commenttour;
+    }
+
+    /**
+     * @param commenttour the commenttour to set
+     */
+    public void setCommenttour(Set<CommentTour> commenttour) {
+        this.commenttour = commenttour;
     }
 
     /**

@@ -8,6 +8,7 @@ package com.ctt.pojos;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +16,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
@@ -23,6 +27,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -40,9 +45,11 @@ public class Tours implements Serializable{
     private String description;
     @Column(name = "start_date")
     @Temporal(javax.persistence.TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "finish_date")
     @Temporal(javax.persistence.TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date finishDate;
     @NotNull(message = "{tour.destination.nullError}")
     private String destination;
@@ -56,8 +63,25 @@ public class Tours implements Serializable{
     @JoinColumn(name = "category_id")
     //@NotNull(message = "{tour.category.nullError}")
     private Category category;
+    @ManyToMany
+    @JoinTable(
+        name = "tour_tag",
+        joinColumns = {
+            @JoinColumn(name = "tour_id")
+        },
+        inverseJoinColumns = {
+            @JoinColumn(name = "tag_id")
+        }
+    )
+    private Set<Tags> tags;
     @Transient
     private MultipartFile file;
+    @OneToMany(mappedBy = "tour")
+    private Set<Payments> payments;
+    @OneToMany(mappedBy = "tour")
+    private Set<TourBooking> tourbooking;
+    @OneToMany(mappedBy = "tour")
+    private Set<CommentTour> commenttour;
 
     /**
      * @return the id
@@ -211,5 +235,61 @@ public class Tours implements Serializable{
      */
     public void setFile(MultipartFile file) {
         this.file = file;
+    }
+
+    /**
+     * @return the tags
+     */
+    public Set<Tags> getTags() {
+        return tags;
+    }
+
+    /**
+     * @param tags the tags to set
+     */
+    public void setTags(Set<Tags> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * @return the payments
+     */
+    public Set<Payments> getPayments() {
+        return payments;
+    }
+
+    /**
+     * @param payments the payments to set
+     */
+    public void setPayments(Set<Payments> payments) {
+        this.payments = payments;
+    }
+
+    /**
+     * @return the tourbooking
+     */
+    public Set<TourBooking> getTourbooking() {
+        return tourbooking;
+    }
+
+    /**
+     * @param tourbooking the tourbooking to set
+     */
+    public void setTourbooking(Set<TourBooking> tourbooking) {
+        this.tourbooking = tourbooking;
+    }
+
+    /**
+     * @return the commenttour
+     */
+    public Set<CommentTour> getCommenttour() {
+        return commenttour;
+    }
+
+    /**
+     * @param commenttour the commenttour to set
+     */
+    public void setCommenttour(Set<CommentTour> commenttour) {
+        this.commenttour = commenttour;
     }
 }
