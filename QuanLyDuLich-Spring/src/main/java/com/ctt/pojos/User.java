@@ -19,6 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -35,9 +36,13 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotEmpty(message = "{user.message.emptyError}")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
     @NotEmpty(message = "{user.message.emptyError}")
-    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@ou.edu.vn$", message = "{user.email.invalid}")
+    @Column(name = "last_name")
+    private String lastName;
+    @NotEmpty(message = "{user.message.emptyError}")
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@gmail.com$", message = "{user.email.invalid}")
     private String email;
     @NotEmpty(message = "{user.message.emptyError}")
     private String username;
@@ -48,6 +53,7 @@ public class User implements Serializable {
     @NotEmpty(message = "{user.message.emptyError}")
     private String city;
     @Temporal(javax.persistence.TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date birth;
     private String avatar;
     @NotEmpty(message = "{user.message.emptyError}")
@@ -56,9 +62,8 @@ public class User implements Serializable {
     //@NotEmpty(message = "{user.message.emptyError}")
     private String gender;
     private String about;
-    @Column(name = "role")
+    @Column(name = "user_role")
     private String userRole;
-    private Boolean active;
     @Transient
     private MultipartFile file;
     @Transient
@@ -98,20 +103,6 @@ public class User implements Serializable {
      */
     public void setId(int id) {
         this.id = id;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**
@@ -244,14 +235,14 @@ public class User implements Serializable {
      * @return the role
      */
     public String getRole() {
-        return userRole;
+        return getUserRole();
     }
 
     /**
      * @param role the role to set
      */
     public void setRole(String role) {
-        this.userRole = role;
+        this.setUserRole(role);
     }
 
     /**
@@ -267,21 +258,7 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    /**
-     * @return the active
-     */
-    public Boolean getActive() {
-        return active;
-    }
-
-    /**
-     * @param active the active to set
-     */
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
+    
     /**
      * @return the confirmPassword
      */
@@ -350,6 +327,48 @@ public class User implements Serializable {
      */
     public void setCommenttour(Set<CommentTour> commenttour) {
         this.commenttour = commenttour;
+    }
+
+    /**
+     * @return the firstName
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * @param firstName the firstName to set
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * @return the lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * @param lastName the lastName to set
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * @return the userRole
+     */
+    public String getUserRole() {
+        return userRole;
+    }
+
+    /**
+     * @param userRole the userRole to set
+     */
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     /**
