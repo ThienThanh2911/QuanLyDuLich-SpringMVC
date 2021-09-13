@@ -5,15 +5,13 @@
  */
 package com.ctt.repository;
 
-import com.ctt.pojos.User;
+import com.ctt.pojos.Province;
 import java.util.List;
 
 /**
  *
  * @author ADMIN
  */
-public interface UserRepository {
-    boolean addOrUpdateUser(User user);
-    List<User> getUsers(String username);
-    List<User> getUsersByEmail(String email);
+public interface ProvinceRepository {
+    List<Province> getProvinces();
 }

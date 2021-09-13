@@ -27,7 +27,7 @@
     
     <div class="s007">
         <c:url value="/packages" var="action"/>
-        <form method="post" action="${action}" >
+        <form method="post" action="${action}" enctype="multipart/form-data" >
         <div class="inner-form">
           <div class="basic-search">
             <div class="input-field">
@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="input-field">
                   <div class="input-select">
-                    <select name="choices-single-defaul" id="cate" class="form-control">
+                    <select name="cate" class="form-control">
                         <option placeholder="" value="">CATEGORY</option>
                         <c:forEach items="${categories}" var="cat">
                             <option value="${cat.id}">${cat.name}</option>
@@ -55,15 +55,15 @@
                   </div>
                 </div>
               <div class="input-field">
-                  <input type="number" placeholder="MIN - 0" class="input-price" min="0" />
+                  <input name="priceMin" type="number" placeholder="MIN - 0" class="input-price" min="0" />
               </div>
             </div>
             <div class="row second">
               <div class="input-field">
-                  <input type="date" placeholder="DATE - dd/mm/yy" class="input-price" />
+                  <input name="date" type="date" placeholder="DATE - dd/mm/yy" class="input-price" />
               </div>
                 <div class="input-field">
-                    <input type="number" placeholder="MAX - 100.000.000" max="10000000" min="0" class="input-price" />
+                    <input name="priceMax" type="number" placeholder="MAX - 100.000.000" max="100000000" min="0" class="input-price" />
                 </div>
             </div>
             <div class="row third">
@@ -140,7 +140,7 @@
 
                                 <i class="fa fa-cube"></i> 20 nights &nbsp;&nbsp;&nbsp;
 
-                                <i class="fa fa-plane"></i> Flight included &nbsp;&nbsp;&nbsp;
+                                <i class="fa fa-plane"></i> ${t.vehicle.toString()} &nbsp;&nbsp;&nbsp;
                             </p>
 
                             <ul class="social-icons">
@@ -162,7 +162,7 @@
                         <span class="sr-only">Previous</span>
                   </a>
                 </li>--%>
-                    <c:forEach begin="1" end="${Math.ceil(counter/9)}" var="i">
+                    <c:forEach begin="1" end="${countPage}" var="i">
                         <li class="page-item"><a class="page-link" href="<c:url value="/packages" />?page=${i}">${i}</a></li>
                     </c:forEach>
                 <%--<li class="page-item">

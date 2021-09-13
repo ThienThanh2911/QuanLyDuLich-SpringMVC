@@ -31,10 +31,10 @@ public class UserRepositoryImpl implements UserRepository{
     private LocalSessionFactoryBean sessionFactory;
     
     @Override
-    public boolean addUser(User user) {
+    public boolean addOrUpdateUser(User user) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try{
-            session.save(user);
+            session.saveOrUpdate(user);
             return true;
         }catch(HibernateException ex){
             System.err.println(ex.getMessage());
@@ -59,4 +59,20 @@ public class UserRepositoryImpl implements UserRepository{
         return q.getResultList();
     }
 
+    @Override
+    public List<User> getUsersByEmail(String email) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root root = query.from(User.class);
+        
+        if(email.isEmpty()){
+            Predicate p = builder.equal(root.get("email").as(String.class), email.trim());
+            query = query.where(p);
+        }
+        
+        query = query.select(root);  
+        Query q = session.createQuery(query);
+        return q.getResultList();
+    }
 }

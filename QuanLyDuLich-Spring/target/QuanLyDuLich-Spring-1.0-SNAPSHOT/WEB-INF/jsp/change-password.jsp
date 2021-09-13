@@ -10,35 +10,48 @@
 <div class="container">
     <div class="card h-100">
         <div class="card-body">
-            <div>
-                    <h6 class="mb-3 text-primary">Change Password</h6>
-            </div>
-            <div>
-                <div class="form-group">
-                        <label for="oldPassword">Old Password</label>
-                        <input type="password" class="form-control" id="oldPassword" placeholder="Enter your old password">
+            <c:if test="${not empty msgSuccess}">
+                <div class="alert alert-success">
+                    ${msgSuccess}
                 </div>
-            </div>
-            <div>
-                <div class="form-group">
-                        <label for="newPassword">New Password</label>
-                        <input type="password" class="form-control" id="newPassword" placeholder="Enter your new password">
+            </c:if>
+            <c:if test="${not empty msgError}">
+                <div class="alert alert-danger">
+                    ${msgError}
                 </div>
-            </div>
-            <div>
-                <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Enter your new password again">
+            </c:if>
+            <c:url value="/change-password" var="action"/>
+            <form method="post" action="${action}">
+                <div>
+                        <h6 class="mb-3 text-primary">Change Password</h6>
                 </div>
-            </div><br>
-            <div class="row gutters">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="text-right">
-                                <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                                <button type="button" id="submit" name="submit" class="btn btn-primary">Change Password</button>
-                        </div>
+                <div>
+                    <div class="form-group">
+                            <label for="oldPassword">Old Password</label>
+                            <input type="password" class="form-control" name="oldPassword" id="oldPassword" placeholder="Enter your old password">
+                    </div>
                 </div>
-            </div>
+                <div>
+                    <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="Enter your new password">
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                            <label for="confirmNewPassword">Confirm Password</label>
+                            <input type="password" class="form-control" name="confirmNewPassword" id="confirmNewPassword" placeholder="Enter your new password again">
+                    </div>
+                </div><br>
+                <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                    <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
+                                    <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Change Password"/>
+                            </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

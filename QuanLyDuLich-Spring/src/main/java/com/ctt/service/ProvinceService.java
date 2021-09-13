@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ctt.repository;
+package com.ctt.service;
 
-import com.ctt.pojos.User;
+import com.ctt.pojos.Province;
 import java.util.List;
 
 /**
  *
  * @author ADMIN
  */
-public interface UserRepository {
-    boolean addOrUpdateUser(User user);
-    List<User> getUsers(String username);
-    List<User> getUsersByEmail(String email);
+public interface ProvinceService {
+    List<Province> getProvinces();
 }

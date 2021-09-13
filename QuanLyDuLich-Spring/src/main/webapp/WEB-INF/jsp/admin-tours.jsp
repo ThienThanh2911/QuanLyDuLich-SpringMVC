@@ -76,6 +76,18 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
+                                <label for="vehicle">Phuong tien</label>
+                                <form:select path="vehicle" name="vehicle" class="custom-select" style="background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
+                                    <form:option value="">What is your vehicle?</form:option>
+                                    <form:option value="OTO">Oto</form:option>
+                                    <form:option value="PLANE">Plane</form:option>
+                                    <form:option value="YACHT">Yacht</form:option>
+                                </form:select>
+                                <%--<form:input type="text" id="price" path="price" cssClass="form-control"/>--%>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
                                 <label for="file">Anh tour</label>
                                 <form:input type="file" id="file" path="file" cssClass="form-control"/>
                             </div>

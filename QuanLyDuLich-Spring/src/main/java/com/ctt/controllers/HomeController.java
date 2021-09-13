@@ -6,6 +6,7 @@
 package com.ctt.controllers;
 
 import com.ctt.service.CategoryService;
+import com.ctt.service.ProvinceService;
 import com.ctt.service.TourService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,45 +28,19 @@ public class HomeController {
     @Autowired
     private CategoryService categoryService;
     @Autowired
+    private ProvinceService provinceService;
+    @Autowired
     private TourService tourService;
     
     @ModelAttribute
     public void commonAttr(Model model) {
         model.addAttribute("categories", this.categoryService.getCategories());
+        model.addAttribute("provinces", this.provinceService.getProvinces());
     }
     
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("categories", this.categoryService.getCategories());
         return "homeLayout";
-    }
-    
-    @RequestMapping("/packages")
-    @Transactional
-    public String packages(Model model,
-            @RequestParam(required = false) Map<String, String> params) {
-        int page = Integer.parseInt(params.getOrDefault("page", "1"));
-        model.addAttribute("categories", this.categoryService.getCategories());
-        model.addAttribute("tours", this.tourService.getTours(params.get("kw"), page));
-        model.addAttribute("count", this.tourService.getTours(params.get("kw"), page).size());
-        /*if(!params.isEmpty()){
-            if(params.get("page").equals("1"))
-                model.addAttribute("pageLink", "1");
-            else
-                model.addAttribute("pageLink", Integer.parseInt(params.get("page"))-1);
-        }else
-            model.addAttribute("pageLink", "1");*/
-        return "packagesLayout";
-    }
-    
-    @RequestMapping("/package-details")
-    public String packageDetails(Model model) {
-        return "packageDetailsLayout";
-    }
-    
-    @RequestMapping("/change-password")
-    public String changePassword(Model model) {
-        return "changePasswordLayout";
     }
     
     @RequestMapping("/about")

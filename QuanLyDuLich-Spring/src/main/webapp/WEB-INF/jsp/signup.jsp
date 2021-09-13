@@ -11,6 +11,11 @@
 
 <div class="container">
         <div class="card h-100">
+            <c:if test="${errMsg != null}">
+                <div class="alert alert-danger">
+                    ${errMsg}
+                </div>
+            </c:if>
             <c:url value="/signup" var="action"/>
             <form:form method="post" action="${action}" modelAttribute="user">
                 <div class="card-body">
@@ -30,20 +35,6 @@
                                                 <label for="lastName">Last Name</label>
                                                 <form:input path="lastName" class="form-control" id="lastName" placeholder="Enter your last name"/>
                                                 <form:errors path="lastName" element="div" cssClass="alert alert-danger" />
-                                        </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                                <label for="username">Username</label>
-                                                <form:input path="username" class="form-control" id="username" placeholder="Enter your username"/>
-                                                <form:errors path="username" element="div" cssClass="alert alert-danger" />
-                                        </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <form:input path="email" class="form-control" id="email" placeholder="Enter your email"/>
-                                                <form:errors path="email" element="div" cssClass="alert alert-danger" />
                                         </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -84,11 +75,15 @@
                                         </div>  
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                                <label for="city">City</label>
-                                                <form:input path="city" class="form-control" id="city" placeholder="Enter your city"/>
-                                                <form:errors path="city" element="div" cssClass="alert alert-danger" />
-                                        </div>  
+                                        <div class="form-group" >
+                                                <label for="province">Province</label>
+                                                <form:select path="province" name="province" class="custom-select" style="background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
+                                                    <form:option value="">What is your province?</form:option>
+                                                    <c:forEach items="${provinces}" var="p">
+                                                        <form:option value="${p.id}">${p.name}</form:option>
+                                                    </c:forEach>
+                                                </form:select>
+                                        </div>
                                 </div>
                         </div>
                         <div class="row gutters">

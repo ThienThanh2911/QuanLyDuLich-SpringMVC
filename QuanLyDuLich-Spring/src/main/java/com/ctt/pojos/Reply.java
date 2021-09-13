@@ -24,8 +24,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author ADMIN
  */
 @Entity
-@Table(name = "commenttour")
-public class CommentTour implements Serializable{
+@Table(name = "reply")
+public class Reply implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -42,8 +42,23 @@ public class CommentTour implements Serializable{
     @JoinColumn(name = "tour_id")
     private Tours tour;
     
-    @OneToMany(mappedBy = "commenttour")
-    private Set<Reply> reply;
+    @ManyToOne
+    @JoinColumn(name = "comment_id", nullable = true)
+    private CommentTour commenttour;
+
+    /**
+     * @return the commenttour
+     */
+    public CommentTour getCommenttour() {
+        return commenttour;
+    }
+
+    /**
+     * @param commenttour the commenttour to set
+     */
+    public void setCommenttour(CommentTour commenttour) {
+        this.commenttour = commenttour;
+    }
 
     /**
      * @return the id
@@ -127,19 +142,5 @@ public class CommentTour implements Serializable{
      */
     public void setCreated_date(Date created_date) {
         this.created_date = created_date;
-    }
-
-    /**
-     * @return the reply
-     */
-    public Set<Reply> getReply() {
-        return reply;
-    }
-
-    /**
-     * @param reply the reply to set
-     */
-    public void setReply(Set<Reply> reply) {
-        this.reply = reply;
     }
 }

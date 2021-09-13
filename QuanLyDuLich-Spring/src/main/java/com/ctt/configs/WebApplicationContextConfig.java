@@ -8,7 +8,11 @@ package com.ctt.configs;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.ctt.formatter.CategoryFormatter;
+import com.ctt.formatter.ProvinceFormatter;
+import com.ctt.formatter.TourFormatter;
+import com.ctt.formatter.UserFormatter;
 import com.ctt.validator.TourNameValidator;
+import com.ctt.validator.PassUserValidator;
 import com.ctt.validator.WebAppValidator;
 import java.util.HashSet;
 import java.util.Set;
@@ -65,6 +69,9 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry){
         registry.addFormatter(new CategoryFormatter());
+        registry.addFormatter(new UserFormatter());
+        registry.addFormatter(new ProvinceFormatter());
+        registry.addFormatter(new TourFormatter());
     }
     
     @Bean
@@ -78,16 +85,16 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         return v;
     }
     
-    /*@Bean
+    @Bean
     public WebAppValidator userValidator() {
         Set<Validator> springValidators = new HashSet<>();
-        springValidators.add(new PassValidator());
+        springValidators.add(new PassUserValidator());
         
         WebAppValidator v = new WebAppValidator();
         v.setSpringValidators(springValidators);
         
         return v;
-    }*/
+    }
     
     @Bean
     public LocalValidatorFactoryBean validator() {

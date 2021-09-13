@@ -5,14 +5,19 @@
  */
 package com.ctt.pojos;
 
+import com.ctt.validator.UserEmail;
+import com.ctt.validator.UserName;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,8 +35,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Table(name = "users")
 public class User implements Serializable {
 
-    public static final String USER = "ROLE_USER";
-    public static final String ADMIN = "ROLE_ADMIN";
+    public static final String ADMIN = "Admin";
+    public static final String BUSINESS = "Nhân viên kinh doanh";
+    public static final String SALESMAN = "Nhân viên bán hàng";
+    public static final String EMPLOYEE_MANAGER = "Admin";
+    public static final String MANAGER = "Quản lý";
+    public static final String USER = "Khách hàng";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -43,15 +52,15 @@ public class User implements Serializable {
     private String lastName;
     @NotEmpty(message = "{user.message.emptyError}")
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@gmail.com$", message = "{user.email.invalid}")
+    @UserEmail(message = "{user.useremail.uniqueError}")
     private String email;
     @NotEmpty(message = "{user.message.emptyError}")
+    @UserName(message = "{user.username.uniqueError}")
     private String username;
     @NotEmpty(message = "{user.message.emptyError}")
     private String password;
     @NotEmpty(message = "{user.message.emptyError}")
     private String street;
-    @NotEmpty(message = "{user.message.emptyError}")
-    private String city;
     @Temporal(javax.persistence.TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date birth;
@@ -62,6 +71,10 @@ public class User implements Serializable {
     //@NotEmpty(message = "{user.message.emptyError}")
     private String gender;
     private String about;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "province_id")
+    //@NotNull(message = "{tour.category.nullError}")
+    private Province province;
     @Column(name = "user_role")
     private String userRole;
     @Transient
@@ -145,20 +158,6 @@ public class User implements Serializable {
      */
     public void setStreet(String street) {
         this.street = street;
-    }
-
-    /**
-     * @return the city
-     */
-    public String getCity() {
-        return city;
-    }
-
-    /**
-     * @param city the city to set
-     */
-    public void setCity(String city) {
-        this.city = city;
     }
 
     /**
@@ -369,6 +368,20 @@ public class User implements Serializable {
      */
     public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+
+    /**
+     * @return the provine
+     */
+    public Province getProvince() {
+        return province;
+    }
+
+    /**
+     * @param provine the provine to set
+     */
+    public void setProvince(Province province) {
+        this.province = province;
     }
 
     /**

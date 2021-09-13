@@ -14,7 +14,7 @@
                     <div class="cta-content">
                         <br>
                         <br>
-                        <h2><em>300.000đ - 400.000đ</em></h2>
+                        <h2><em>${tour.price}</em></h2>
                         <p>Giá tiền của chuyến đi</p>
 
                         <div class="main-button">
@@ -99,18 +99,15 @@
                        <div class="col-sm-6">
                             <label style="color: var(--text-color)">Address</label>
                        
-                            <p>6 Regeneration Road, SE16 2NX, London</p>
+                            <p>${tour.destination}</p>
                        </div>
                     </div>
                   </article>
                   <article id='tabs-2'>
                     <h4>Package Description</h4>
                     
-                    <p>Nội dung 1</p>
+                    <p>${tour.description}</p>
                     
-                    <p>Nội dung 2</p>
-                    
-                    <p>Nội dung 3</p>
                    </article>
                   <article id='tabs-3'>
                     <h4>Availability &amp; Prices</h4>
@@ -129,29 +126,9 @@
                          <tbody>
                               <tr>
                                    <td></td>
-                                   <td style="color: #7a7a7a">15-08-2021</td>
-                                   <td style="color: #7a7a7a">15-08-2021</td>
-                                   <td style="color: #7a7a7a">300.000đ per night</td>
-                              </tr>
-
-                              <tr>
-                                   <td></td>
-                                   <td style="color: #7a7a7a">15-08-2021</td>
-                                   <td style="color: #7a7a7a">15-08-2021</td>
-                                   <td style="color: #7a7a7a">300.000đ per night</td>
-                              </tr>
-
-                              <tr>
-                                   <td></td>
-                                   <td style="color: #7a7a7a">15-08-2021</td>
-                                   <td style="color: #7a7a7a">15-08-2021</td>
-                                   <td style="color: #7a7a7a">300.000đ per night</td>
-                              </tr>
-                              <tr>
-                                   <td></td>
-                                   <td style="color: #7a7a7a">15-08-2021</td>
-                                   <td style="color: #7a7a7a">15-08-2021</td>
-                                   <td style="color: #7a7a7a">400.000đ total price</td>
+                                   <td style="color: #7a7a7a">${tour.startDate}</td>
+                                   <td style="color: #7a7a7a">${tour.finishDate}</td>
+                                   <td style="color: #7a7a7a">${tour.price}</td>
                               </tr>
                          </tbody>
                       </table>

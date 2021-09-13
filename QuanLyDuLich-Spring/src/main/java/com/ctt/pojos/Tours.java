@@ -53,6 +53,7 @@ public class Tours implements Serializable{
     private Date finishDate;
     @NotNull(message = "{tour.destination.nullError}")
     private String destination;
+    private Vehicle vehicle;
     private String photos;
     @NotNull(message = "{tour.price.nullError}")
     @Min(value = 100000, message = "{tour.price.minError}")
@@ -292,4 +293,19 @@ public class Tours implements Serializable{
     public void setCommenttour(Set<CommentTour> commenttour) {
         this.commenttour = commenttour;
     }
+
+    /**
+     * @return the vehicle
+     */
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    /**
+     * @param vehicle the vehicle to set
+     */
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
 }
