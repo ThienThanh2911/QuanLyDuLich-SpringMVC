@@ -31,7 +31,7 @@ public class TourServiceImpl implements TourService {
     private Cloudinary cloudinary;
 
     @Override
-    public List<Tours> getTourById(String id) {
+    public Tours getTourById(int id) {
         return this.tourRepository.getTourById(id);
     }
     
@@ -40,6 +40,11 @@ public class TourServiceImpl implements TourService {
         return this.tourRepository.getTours(kw, cate, date, priceMin, priceMax, page);
     }
 
+    @Override
+    public List<Tours> getToursNew() {
+        return this.tourRepository.getToursNew();
+    }
+    
     @Override
     @Transactional
     public boolean addOrUpdate(Tours tours) {

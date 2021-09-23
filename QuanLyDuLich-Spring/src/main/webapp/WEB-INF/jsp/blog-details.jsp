@@ -5,8 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<section class="section section-bg" id="call-to-action" style="background-image: url(images/banner-image-1-1920x500.jpg)">
+<section class="section section-bg" id="call-to-action" style="background-image: url(${pageContext.request.contextPath}/images/banner-image-1-1920x500.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
@@ -28,21 +29,15 @@
             <br>
             <section class='tabs-content'>
               <article>
-                <h4>Bài viết số 1</h4>
+                <h4>${blog.title}</h4>
 
-                <p><i class="fa fa-user"></i> Thành &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 15.08.2021 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
+                <p><i class="fa fa-user"></i> ${blog.user.username} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> ${blog.createdDate} &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
 
                 <div><img src="images/blog-image-fullscren-1-1920x700.jpg" alt=""></div>
 
                 <br>
 
-                <p>Nội dung 1</p>
-
-                <p>Nội dung 2</p>
-        
-                <p>Nội dung 3</p>
-                
-                <p>Nội dung 4</p>
+                <p>${blog.description}</p>
                 
                 <ul class="social-icons">
                     <li style="color: var(--text-color)">Share this:</li>
@@ -57,76 +52,105 @@
             <br>
             <br>
             <br>
-            
+                <c:if test="${rate != 0}">
+                    <div class="rating"> 
+                        <c:set value="${5}" var="a"/>
+                        <c:forEach begin="1" end="5" var="i">
+                            <c:if test="${rate == a}">
+                                <input type="radio" name="rating" value="${a}" id="${a}" checked="true">
+                            </c:if>
+                            <c:if test="${rate != a}">
+                                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                    <input type="radio" name="rating"  onClick="setRatingBlog(${a}, ${user.id}, ${blog.id})" value="${a}" id="${a}">
+                                </c:if>
+                                <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                    <input type="radio" name="rating"  onClick="setRatingBlog(${a}, null, ${blog.id})" value="${a}" id="${a}">
+                                </c:if>
+                            </c:if>
+                            <label for="${a}">☆</label>
+                            <c:set value="${a-1}" var="a"/>
+                        </c:forEach>
+                    </div>
+                </c:if>
+                <c:if test="${rate == 0}">
+                    <div class="rating">
+                        <input type="radio" name="rating" onClick="setRatingBlog(5, ${user.id}, ${blog.id})" value="5" id="5">
+                        <label for="5">☆</label>
+                        <input type="radio" name="rating" onClick="setRatingBlog(4, ${user.id}, ${blog.id})" value="4" id="4">
+                        <label for="4">☆</label>
+                        <input type="radio" name="rating" onClick="setRatingBlog(3, ${user.id}, ${blog.id})" value="3" id="3">
+                        <label for="3">☆</label>
+                        <input type="radio" name="rating" onClick="setRatingBlog(2, ${user.id}, ${blog.id})" value="2" id="2">
+                        <label for="2">☆</label>
+                        <input type="radio" name="rating" onClick="setRatingBlog(1, ${user.id}, ${blog.id})" value="1" id="1">
+                        <label for="1">☆</label>
+                    </div>
+                </c:if>
+                <c:set var="total" value="${0}" />
+              <c:forEach var="r" items="${blog.rateblog}">
+                <c:set var="total" value="${total + r.rate}" />
+              </c:forEach>
+              <c:if test="${total != 0}">
+                  <div class="text-center" style="color: var(--text-color)">${total/blog.rateblog.size()} / ${blog.rateblog.size()} lượt đánh giá</div>
+              </c:if>            
             <section class='tabs-content'>
-                <div class="row">
-                    <div class="col-md-8">
+                <div class="row" style="width:1200px">
+                    <div class="col-lg-6" style="width:600px">
                         <h4>Comments</h4>
-                        <ul class="features-items">
-                            <li>
-                                <div class="feature-item" style="margin-bottom:15px;">
-                                    <div class="left-icon">
-                                        <img src="images/features-first-icon.png" alt="First One">
-                                    </div>
-                                    <div class="right-content">
-                                        <h4>Thành <small>15.08.2021 10:10</small></h4>
-                                        <p><em>"Bình luận 1 -------------------------------------------------------------------------------------------------------------------------------------------------------"</em></p>
-                                    </div>
-                                </div>
-
-                                <div class="tabs-content">
+                        <ul id="commentArea" class="features-items">
+                            <c:forEach items="${blog.commentblog}" var="comment">
+                                <li id="comment${comment.id}">
                                     <div class="feature-item" style="margin-bottom:15px;">
-                                        <div class="left-icon">
-                                            <img src="images/features-first-icon.png" alt="First One">
+                                        <div class="left-icon user-avatar">
+                                            <img src="${comment.user.avatar}" alt="First One" style="width:100px">
                                         </div>
                                         <div class="right-content">
-                                            <h4>Thành <small>15.08.2021 11:10</small></h4>
-                                            <p><em>"Bình luận 2 - Reply --------------------------------------------------------------------------------------------------------------------------------------------------"</em></p>
+                                            <h4>${comment.user.username}</h4>
+                                            <p><em style="color: var(--text-color)">${comment.comment}</em></p>
+                                            <p><a href="#"><i class="fa fa-thumbs-up"></i> Thích</a> | <a href="#"><i class="fa fa-comment"></i> Trả lời </a><c:if test="${pageContext.request.userPrincipal.name == comment.user.username}"> | <a href="javascript:void(0);" onClick="removeCommentBlog(${comment.id})"><i class="fa fa-remove"></i> Xóa </a></c:if>. <em class="date-comment-blog">${comment.created_date}</em></p>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li class="feature-item" style="margin-bottom:15px;">
-                                <div class="left-icon">
-                                    <img src="images/features-first-icon.png" alt="second one">
-                                </div>
-                                <div class="right-content">
-                                    <h4>John Doe <small>15.08.2021 12:10</small></h4>
-                                    <p><em>"Bình luận 3 -------------------------------------------------------------------------------------------------------------------------------------------------------"</em></p>
-                                </div>
-                            </li>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
-
-                    <div class="col-md-4">
+                    <script>
+                        window.onload = function(){
+                            let dates = document.getElementsByClassName("date-comment-blog")
+                            for(let i = 0; i < dates.length; i++){
+                                let d = dates[i]
+                                moment.locale('vi')
+                                d.innerText = moment(d.innerText).fromNow();
+                            }
+                        }
+                    </script>
+                    <div class="col-lg-6">
                         <h4>Leave a comment</h4>
-                        
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
                         <div class="contact-form">
-                            <form action="" method="post">
                               <div class="row">
                                 <div class="col-lg-12">
                                   <fieldset>
-                                    <input name="name" type="text" id="name" placeholder="Your Name*" required="">
+                                    <textarea id="content" name="content" rows="6" id="content" placeholder="Message" required=""></textarea>
                                   </fieldset>
                                 </div>
                                 <div class="col-lg-12">
                                   <fieldset>
-                                    <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email*" required="">
-                                  </fieldset>
-                                </div>
-                                <div class="col-lg-12">
-                                  <fieldset>
-                                    <textarea name="message" rows="6" id="message" placeholder="Message" required=""></textarea>
-                                  </fieldset>
-                                </div>
-                                <div class="col-lg-12">
-                                  <fieldset>
-                                    <button type="submit" id="form-submit" class="main-button">Submit</button>
+                                      <input type="hidden" id="userName" value="${user.username}">
+                                      <input type="hidden" id="userAvatar" value="${user.avatar}">
+                                      <button type="submit" id="form-submit" onClick="addCommentBlog(${user.id}, ${blog.id})" class="main-button">Submit</button>
                                   </fieldset>
                                 </div>
                               </div>
-                            </form>
                         </div>
+                        </c:if>
+                        <c:if test="${pageContext.request.userPrincipal.name == null}">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div>Bạn cần phải đăng nhập để bình luận về Blog này</div>
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </section>

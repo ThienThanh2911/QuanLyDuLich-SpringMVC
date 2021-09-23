@@ -5,6 +5,7 @@
  */
 package com.ctt.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -34,10 +35,11 @@ public class CommentTour implements Serializable{
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private Date created_date;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tour_id")
     private Tours tour;

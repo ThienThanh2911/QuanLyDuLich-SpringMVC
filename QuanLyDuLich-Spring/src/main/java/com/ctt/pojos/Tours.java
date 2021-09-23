@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -60,11 +61,11 @@ public class Tours implements Serializable{
     @Max(value = 10000000, message = "{tour.price.maxError}")
     private BigDecimal price;
     private boolean active;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     //@NotNull(message = "{tour.category.nullError}")
     private Category category;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "tour_tag",
         joinColumns = {
@@ -77,11 +78,13 @@ public class Tours implements Serializable{
     private Set<Tags> tags;
     @Transient
     private MultipartFile file;
-    @OneToMany(mappedBy = "tour")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<Payments> payments;
-    @OneToMany(mappedBy = "tour")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<TourBooking> tourbooking;
-    @OneToMany(mappedBy = "tour")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
+    private Set<RateTour> ratetour;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<CommentTour> commenttour;
 
     /**
@@ -306,6 +309,20 @@ public class Tours implements Serializable{
      */
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    /**
+     * @return the ratetour
+     */
+    public Set<RateTour> getRatetour() {
+        return ratetour;
+    }
+
+    /**
+     * @param ratetour the ratetour to set
+     */
+    public void setRatetour(Set<RateTour> ratetour) {
+        this.ratetour = ratetour;
     }
 
 }

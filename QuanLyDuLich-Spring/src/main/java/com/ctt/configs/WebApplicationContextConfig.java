@@ -42,6 +42,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
     "com.ctt.controllers",
+    "com.ctt.controllers.admin",
     "com.ctt.repository",
     "com.ctt.service",
     "com.ctt.validator"

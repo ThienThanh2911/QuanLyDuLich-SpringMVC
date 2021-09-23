@@ -4,6 +4,7 @@
     Author     : Windows-1909
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <section class="section section-bg" id="call-to-action" style="background-image: url(images/banner-image-1-1920x500.jpg)">
@@ -29,43 +30,21 @@
             <div class="row">
                 <div class="col-lg-8">
                     <section class='tabs-content'>
-                      <article>
-                        <img src="images/blog-image-1-940x460.jpg" alt="">
-                        <h4>Blog số 1</h4>
+                        <c:forEach var="blog" items="${blogs}">
+                            <article>
+                            <img src="images/blog-image-1-940x460.jpg" alt="">
+                            <h4>${blog.title}</h4>
 
-                        <p><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
+                            <p><i class="fa fa-user"></i> ${blog.user.username} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> ${blog.createdDate} &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
 
-                        <p>Nội dung Blog</p>
-                        <div class="main-button">
-                            <a href="blog-details">Continue Reading</a>
-                        </div>
-                      </article>
+                            <div class="main-button">
+                                <a href="blog-details/${blog.id}">Continue Reading</a>
+                            </div>
+                          </article>
 
-                      <br>
-                      <br>
-
-                      <article>
-                        <img src="images/blog-image-2-940x460.jpg" alt="">
-                        <h4>Blog số 2 </h4>
-                        <p><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
-                        <p>Nội dung Blog</p>
-                        <div class="main-button">
-                            <a href="blog-details">Continue Reading</a>
-                        </div>
-                      </article>
-
-                      <br>
-                      <br>
-
-                      <article>
-                        <img src="images/blog-image-3-940x460.jpg" alt="">
-                        <h4>Blog số 3</h4>
-                        <p><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
-                        <p>Nội dung Blog</p>
-                        <div class="main-button">
-                            <a href="blog-details">Continue Reading</a>
-                        </div>
-                      </article>
+                          <br>
+                          <br>
+                        </c:forEach>
                     </section>
                 </div>
 

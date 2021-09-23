@@ -37,7 +37,7 @@ public class TourRepositoryImpl implements TourRepository {
     private LocalSessionFactoryBean sessionFactory;
 
     @Override
-    public List<Tours> getTourById(String id) {
+    public Tours getTourById(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Tours> query = builder.createQuery(Tours.class);
@@ -48,7 +48,7 @@ public class TourRepositoryImpl implements TourRepository {
         
         Query q = session.createQuery(query);
 
-        return q.getResultList();
+        return (Tours) q.getSingleResult();
     }
     
     @Override
@@ -61,7 +61,6 @@ public class TourRepositoryImpl implements TourRepository {
         List<Predicate> ps = new ArrayList<>();
         if(kw != null)
             ps.add(builder.like(root.get("name").as(String.class), String.format("%%%s%%", kw)));
-        System.out.println("kw: "+kw+" cate: "+cate+" date: "+date+" priceMin: "+priceMin+" priceMax: "+priceMax);
         if(cate != null && !cate.equals(""))
             ps.add(builder.equal(root.get("category"), Integer.parseInt(cate)));
         if(date != null)
@@ -77,11 +76,25 @@ public class TourRepositoryImpl implements TourRepository {
         query = query.where(builder.and(ps.toArray(new Predicate[ps.size()])));
 
         Query q = session.createQuery(query);
-        if(ps.isEmpty()){
+        if(ps.size() <= 1){
             int max = 9;
             q.setMaxResults(max);
             q.setFirstResult((page - 1) * max);
         }
+        return q.getResultList();
+    }
+    
+    @Override
+    public List<Tours> getToursNew() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Tours> query = builder.createQuery(Tours.class);
+        Root root = query.from(Tours.class);
+        query = query.select(root).orderBy(builder.desc(root.get("id")));
+
+        Query q = session.createQuery(query);
+        q.setMaxResults(3);
+ 
         return q.getResultList();
     }
 
@@ -89,10 +102,9 @@ public class TourRepositoryImpl implements TourRepository {
     public boolean addOrUpdate(Tours tours) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try{
-            session.saveOrUpdate(tours);
+            session.merge(tours);
             return true;
         } catch (Exception ex) {
-            System.err.println("ADD TOUR ==>" + ex.getMessage());
             ex.printStackTrace();
         }
         return false;

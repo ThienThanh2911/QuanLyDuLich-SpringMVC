@@ -38,84 +38,43 @@
                 </div>
             </div>
             <div class="row">
+                <c:forEach var="t" items="${toursNew}">
                 <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="images/product-1-720x480.jpg" alt="">
+                            <img src="<c:url value="${t.photos}" />" alt="${t.name}">
                         </div>
                         <div class="down-content">
-                            <span>
-                                300.000<sup>đ</sup>
-                            </span>
-
-                            <h4>Tour Miền Nam</h4>
-
+                            <div>
+                                <span>${t.price}<sup>đ</sup></span>
+                                
+                                <span style="float:right">Lượt xem: 100</span>
+                            </div>
+                            <h4>${t.name}</h4>
+                                
                             <p>
-                                <i class="fa fa-calendar"></i> Spring &nbsp;&nbsp;&nbsp;
-
                                 <i class="fa fa-cube"></i> 20 nights &nbsp;&nbsp;&nbsp;
 
-                                <i class="fa fa-plane"></i> Flight included &nbsp;&nbsp;&nbsp;
+                                <i class="fa fa-plane"></i> ${t.vehicle.toString()} &nbsp;&nbsp;&nbsp;
+                                <c:set var="total" value="${0}" />
+                                <c:forEach var="r" items="${t.ratetour}">
+                                  <c:set var="total" value="${total + r.rate}" />
+                                </c:forEach>
+                                <c:if test="${total != 0}">
+                                    <i class="fa fa-star"></i> ${total/t.ratetour.size()} &nbsp;&nbsp;&nbsp;
+                                </c:if>
+                                <c:forEach var="tag" items="${t.tags}">
+                                    <div class="badge badge-pill badge-secondary" style="color:white; margin-right: 5px;">${tag.name}</div>
+                                </c:forEach>
                             </p>
 
                             <ul class="social-icons">
-                                <li><a href="package-details">+ View Package</a></li>
+                                <li><a href="package-details/${t.id}">+ View Package</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="images/product-2-720x480.jpg" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>
-                                300.000<sup>đ</sup>
-                            </span>
-
-                            <h4>Tour Miền Bắc</h4>
-
-                            <p>
-                                <i class="fa fa-calendar"></i> Spring &nbsp;&nbsp;&nbsp;
-
-                                <i class="fa fa-cube"></i> 20 nights &nbsp;&nbsp;&nbsp;
-
-                                <i class="fa fa-plane"></i> Flight included &nbsp;&nbsp;&nbsp;
-                            </p>
-
-                            <ul class="social-icons">
-                                <li><a href="package-details">+ View Package</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="images/product-3-720x480.jpg" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>
-                                300.000<sup>đ</sup>
-                            </span>
-
-                            <h4>Tour Miền Trung</h4>
-
-                            <p>
-                                <i class="fa fa-calendar"></i> Spring &nbsp;&nbsp;&nbsp;
-
-                                <i class="fa fa-cube"></i> 20 nights &nbsp;&nbsp;&nbsp;
-
-                                <i class="fa fa-plane"></i> Flight included &nbsp;&nbsp;&nbsp;
-                            </p>
-
-                            <ul class="social-icons">
-                                <li><a href="package-details">+ View Package</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
 
             <br>

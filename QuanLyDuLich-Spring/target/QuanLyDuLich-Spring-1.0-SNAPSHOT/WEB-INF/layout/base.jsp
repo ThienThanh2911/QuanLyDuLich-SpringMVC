@@ -17,7 +17,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+
         <title><tiles:insertAttribute name="title" /></title>
         
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
@@ -28,6 +30,7 @@
        
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
         <link href="${pageContext.request.contextPath}/resources/css/search.css" rel="stylesheet" />
+        <link href="${pageContext.request.contextPath}/resources/css/star-rating.css" rel="stylesheet" />
     </head>
     <body>
         
@@ -181,7 +184,8 @@
         <!-- Bootstrap -->
         <script src="${pageContext.request.contextPath}/resources/js/popper.js"></script>
         <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/commenttour.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/commentblog.js"></script>
         <!-- Plugins -->
         <script src="${pageContext.request.contextPath}/resources/js/scrollreveal.min.js"></script>
         <script src="${pageContext.request.contextPath}/resources/js/waypoints.min.js"></script>

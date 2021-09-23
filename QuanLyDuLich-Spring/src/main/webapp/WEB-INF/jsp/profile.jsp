@@ -54,9 +54,16 @@
                                                 </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <form:input path="email" class="form-control" id="email" placeholder="Enter your email"/>
+                                                    <form:errors path="email" element="div" cssClass="alert alert-danger" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                 <div class="form-group">
                                                         <label for="phone">Phone</label>
-                                                        <form:input path="phone" class="form-control" id="phone" placeholder="Enter your phone number"/>
+                                                        <form:input path="phone" class="form-control" id="phone" placeholder="Enter your phone"/>
                                                         <form:errors path="phone" element="div" cssClass="alert alert-danger" />
                                                 </div>
                                         </div>
@@ -77,13 +84,15 @@
                                                         </form:select>
                                                 </div>
                                         </div>
-					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
                                                     <label for="file">Avatar</label>
-                                                    <form:input type="file" id="file" path="file" cssClass="form-control"/>
+                                                    <div class="form-control">
+                                                        <form:input type="file" id="file" path="file"/>
+                                                    </div>
 						</div>
 					</div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 col-6">
                                             <div class="form-group">
                                                 <label for="about">About You</label>
                                                 <form:input path="about" class="form-control" id="about" placeholder="Enter your infomation"/>

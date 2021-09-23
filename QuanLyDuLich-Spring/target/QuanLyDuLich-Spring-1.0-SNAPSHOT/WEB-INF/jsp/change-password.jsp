@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="resources/css/change-password.css">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container">
     <div class="card h-100">
         <div class="card-body">

@@ -13,8 +13,9 @@ import java.util.List;
  * @author Windows-1909
  */
 public interface TourRepository {
-    List<Tours> getTourById(String id);
+    Tours getTourById(int id);
     List<Tours> getTours(String kw, String cate, String date, String priceMin, String priceMax, int page);
     long countTours();
     boolean addOrUpdate(Tours tours);
+    List<Tours> getToursNew();
 }

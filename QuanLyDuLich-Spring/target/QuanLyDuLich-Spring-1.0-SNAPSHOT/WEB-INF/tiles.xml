@@ -15,11 +15,11 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content" value="" />
         <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
     </definition>
-    <definition name="baseAdminLayout" template="/WEB-INF/layout/base-admin.jsp">
+    <definition name="baseAdminLayout" template="/WEB-INF/layout/admin/base.jsp">
         <put-attribute name="title" value="" />
-        <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+        <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp" />
         <put-attribute name="content" value="" />
-        <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/layout/admin/footer.jsp" />
     </definition>
     <definition name="homeLayout" extends="baseLayout">
         <put-attribute name="title" value="Home" />
@@ -77,9 +77,19 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Terms" />
         <put-attribute name="content" value="/WEB-INF/jsp/terms.jsp" />
     </definition>
+    <definition name="adminHomeLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="admin home" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-home.jsp" />
+        <put-attribute name="footer" value="" />
+    </definition>
+    <definition name="adminSignInLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="admin sign in" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-signin.jsp" />
+        <put-attribute name="footer" value="" />
+    </definition>
     <definition name="adminPackagesLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="admin packages" />
-        <put-attribute name="content" value="/WEB-INF/jsp/admin-tours.jsp" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-packages.jsp" />
         <put-attribute name="footer" value="" />
     </definition>
 </tiles-definitions>

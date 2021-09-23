@@ -34,7 +34,7 @@ public class UserRepositoryImpl implements UserRepository{
     public boolean addOrUpdateUser(User user) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try{
-            session.saveOrUpdate(user);
+            session.merge(user);
             return true;
         }catch(HibernateException ex){
             System.err.println(ex.getMessage());
@@ -49,8 +49,8 @@ public class UserRepositoryImpl implements UserRepository{
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root root = query.from(User.class);
         
-        if(username.isEmpty()){
-            Predicate p = builder.equal(root.get("username").as(String.class), username.trim());
+        if(username != null && !username.equals("")){
+            Predicate p = builder.equal(root.get("username"), username.trim());
             query = query.where(p);
         }
         
@@ -58,21 +58,48 @@ public class UserRepositoryImpl implements UserRepository{
         Query q = session.createQuery(query);
         return q.getResultList();
     }
-
+    
     @Override
-    public List<User> getUsersByEmail(String email) {
+    public User getUserByEmail(String email) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root root = query.from(User.class);
         
-        if(email.isEmpty()){
-            Predicate p = builder.equal(root.get("email").as(String.class), email.trim());
+        Predicate p = builder.equal(root.get("email"), email.trim());
+        query = query.where(p);
+        
+        query = query.select(root);  
+        Query q = session.createQuery(query);
+        if(!q.getResultList().isEmpty()) {
+            User u = (User)q.getResultList().get(0);
+            return u;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public User getUserById(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root root = query.from(User.class);
+        
+        if(id != 0){
+            Predicate p = builder.equal(root.get("id").as(String.class), id);
             query = query.where(p);
         }
         
         query = query.select(root);  
         Query q = session.createQuery(query);
-        return q.getResultList();
+        if(!q.getResultList().isEmpty()) {
+            User u = (User)q.getResultList().get(0);
+            return u;
+        } else {
+            return null;
+        }
     }
+    
+    
 }

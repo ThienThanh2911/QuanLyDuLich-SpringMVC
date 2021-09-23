@@ -20,34 +20,34 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <c:url value="/" var="home" />
-                            <li><a href="${home}" class="active">Home</a></li>
-                            <li><a href="packages">Packages</a></li>
-                            <li><a href="blog">Blog</a></li>
-                            <li><a href="contact">Contact</a></li> 
+                            <li><a href="${home}" class="active">Trang chủ</a></li>
+                            <li><a href="packages">Danh sách tours</a></li>
+                            <li><a href="blog">Tin tức</a></li>
+                            <li><a href="contact">Liên hệ</a></li> 
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Giới thiệu</a>
                               
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="about">About Us</a>
-                                    <a class="dropdown-item" href="membership">Membership</a>
-                                    <a class="dropdown-item" href="terms">Terms</a>
+                                    <a class="dropdown-item" href="about">Về chúng tôi</a>
+                                    <a class="dropdown-item" href="membership">Thành viên</a>
+                                    <a class="dropdown-item" href="terms">Điều khoản</a>
                                 </div>
                             </li>
                             <li class="dropdown">
                                 <c:choose>
                                     <c:when test="${pageContext.request.userPrincipal.name == null}">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="<c:url value="/signup" />">Sign Up</a>
-                                            <a class="dropdown-item" href="<c:url value="/signin" />">Sign In</a>
+                                            <a class="dropdown-item" href="<c:url value="/signup" />">Đăng ký</a>
+                                            <a class="dropdown-item" href="<c:url value="/signin" />">Đăng nhập</a>
                                         </div>
                                     </c:when>
                                     <c:when test="${pageContext.request.userPrincipal.name != null}">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Chào, ${pageContext.request.userPrincipal.name}</a>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="<c:url value="/your-profile" />">Your profile</a>
-                                            <a class="dropdown-item" href="<c:url value="/change-password" />">Change password</a>
-                                            <a class="dropdown-item" href="<c:url value="/logout" />">Log out</a>
+                                            <a class="dropdown-item" href="<c:url value="/your-profile" />">Thông tin cá nhân</a>
+                                            <a class="dropdown-item" href="<c:url value="/change-password" />">Đổi mật khẩu</a>
+                                            <a class="dropdown-item" href="<c:url value="/logout" />">Đăng xuất</a>
                                         </div>
                                     </c:when>
                                 </c:choose>

@@ -40,22 +40,13 @@ public class HomeController {
     
     @RequestMapping("/")
     public String index(Model model) {
+        model.addAttribute("toursNew", this.tourService.getToursNew());
         return "homeLayout";
     }
     
     @RequestMapping("/about")
     public String about(Model model) {
         return "aboutLayout";
-    }
-    
-    @RequestMapping("/blog")
-    public String blog(Model model) {
-        return "blogLayout";
-    }
-    
-    @RequestMapping("/blog-details")
-    public String blogDetails(Model model) {
-        return "blogDetailsLayout";
     }
     
     @RequestMapping("/contact")

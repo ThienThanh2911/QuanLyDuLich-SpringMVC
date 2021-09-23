@@ -17,17 +17,19 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+
         <title><tiles:insertAttribute name="title" /></title>
         
-        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 
-        <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
 
-        <link rel="stylesheet" href="../resources/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
        
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
-        <link href="../resources/css/search.css" rel="stylesheet" />
+        <link href="${pageContext.request.contextPath}/resources/css/search.css" rel="stylesheet" />
     </head>
     <body>
         
@@ -176,22 +178,22 @@
         </style>
         
         <!-- jQuery -->
-        <script src="../resources/js/jquery-2.1.0.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.0.min.js"></script>
 
         <!-- Bootstrap -->
-        <script src="../resources/js/popper.js"></script>
-        <script src="../resources/js/bootstrap.min.js"></script>
-
+        <script src="${pageContext.request.contextPath}/resources/js/popper.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/commenttour.js"></script>
         <!-- Plugins -->
-        <script src="../resources/js/scrollreveal.min.js"></script>
-        <script src="../resources/js/waypoints.min.js"></script>
-        <script src="../resources/js/jquery.counterup.min.js"></script>
-        <script src="../resources/js/imgfix.min.js"></script> 
-        <script src="../resources/js/mixitup.js"></script> 
-        <script src="../resources/js/accordions.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/scrollreveal.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/waypoints.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/jquery.counterup.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/imgfix.min.js"></script> 
+        <script src="${pageContext.request.contextPath}/resources/js/mixitup.js"></script> 
+        <script src="${pageContext.request.contextPath}/resources/js/accordions.js"></script>
 
         <!-- Global Init -->
-        <script src="../resources/js/custom.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
         
     </body>
 </html>

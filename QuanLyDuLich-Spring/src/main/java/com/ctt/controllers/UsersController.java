@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -40,7 +42,7 @@ public class UsersController {
     }
     
     @GetMapping("/signin")
-    public String login(Model model){
+    public String signin(Model model){
         return "signInLayout";
     }
     
@@ -66,7 +68,7 @@ public class UsersController {
     
     @PostMapping("/change-password")
     @Transactional
-    public String changepassword(Model model ,Principal principal,
+    public String changepassword(Model model , Principal principal,
             @RequestParam(required = false) Map<String, String> params) {
         User user = this.userDetailsService.getUsers(principal.getName()).get(0);
         String msgError = "";

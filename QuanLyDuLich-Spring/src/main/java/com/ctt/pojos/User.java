@@ -8,8 +8,10 @@ package com.ctt.pojos;
 import com.ctt.validator.UserEmail;
 import com.ctt.validator.UserName;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,8 +19,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
@@ -34,13 +39,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
-
-    public static final String ADMIN = "Admin";
-    public static final String BUSINESS = "Nhân viên kinh doanh";
-    public static final String SALESMAN = "Nhân viên bán hàng";
-    public static final String EMPLOYEE_MANAGER = "Admin";
-    public static final String MANAGER = "Quản lý";
-    public static final String USER = "Khách hàng";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -76,19 +74,21 @@ public class User implements Serializable {
     //@NotNull(message = "{tour.category.nullError}")
     private Province province;
     @Column(name = "user_role")
-    private String userRole;
+    private Role role;
     @Transient
     private MultipartFile file;
     @Transient
     private String confirmPassword;
-    
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Blog> blog;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Payments> payments;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<TourBooking> tourbooking;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<RateTour> ratetour;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    @OrderBy("id")
     private Set<CommentTour> commenttour;
 
     /**
@@ -231,20 +231,6 @@ public class User implements Serializable {
     }
 
     /**
-     * @return the role
-     */
-    public String getRole() {
-        return getUserRole();
-    }
-
-    /**
-     * @param role the role to set
-     */
-    public void setRole(String role) {
-        this.setUserRole(role);
-    }
-
-    /**
      * @return the password
      */
     public String getPassword() {
@@ -357,20 +343,6 @@ public class User implements Serializable {
     }
 
     /**
-     * @return the userRole
-     */
-    public String getUserRole() {
-        return userRole;
-    }
-
-    /**
-     * @param userRole the userRole to set
-     */
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
-    }
-
-    /**
      * @return the provine
      */
     public Province getProvince() {
@@ -382,6 +354,34 @@ public class User implements Serializable {
      */
     public void setProvince(Province province) {
         this.province = province;
+    }
+
+    /**
+     * @return the role
+     */
+    public Role getRole() {
+        return role;
+    }
+
+    /**
+     * @param role the role to set
+     */
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    /**
+     * @return the blog
+     */
+    public Set<Blog> getBlog() {
+        return blog;
+    }
+
+    /**
+     * @param blog the blog to set
+     */
+    public void setBlog(Set<Blog> blog) {
+        this.blog = blog;
     }
 
     /**

@@ -5,9 +5,8 @@
  */
 package com.ctt.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,11 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -31,11 +25,13 @@ public class RateTour implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private Rate rate;
+    private int rate;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "tour_id")
     private Tours tour;
 
@@ -56,14 +52,14 @@ public class RateTour implements Serializable{
     /**
      * @return the rate
      */
-    public Rate getRate() {
+    public int getRate() {
         return rate;
     }
 
     /**
      * @param rate the rate to set
      */
-    public void setRate(Rate rate) {
+    public void setRate(int rate) {
         this.rate = rate;
     }
 

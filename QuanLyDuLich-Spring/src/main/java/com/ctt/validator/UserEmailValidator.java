@@ -21,6 +21,6 @@ public class UserEmailValidator implements ConstraintValidator<UserEmail, String
             if(userRepository == null) {
                     return true;
             }
-            return userRepository.getUsersByEmail(email) == null;
+            return userRepository.getUserByEmail(email) == null;
 	}
 }

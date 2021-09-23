@@ -16,5 +16,6 @@ public interface TourService {
     List<Tours> getTours(String kw, String cate, String date, String priceMin, String priceMax, int page);
     long countTours();
     boolean addOrUpdate(Tours tours);
-    List<Tours> getTourById(String id);
+    Tours getTourById(int id);
+    List<Tours> getToursNew();
 }

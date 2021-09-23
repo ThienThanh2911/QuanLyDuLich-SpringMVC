@@ -7,10 +7,12 @@ package com.ctt.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.ctt.pojos.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,7 +32,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     "com.ctt.repository",
     "com.ctt.service"
 })
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
+public class SpringSecurityConfig{
     @Autowired
     private UserDetailsService userDetailsService;
     
@@ -38,6 +40,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+    
+    
     
     @Bean
     public Cloudinary cloudinary() {
@@ -49,24 +53,75 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
         ));
         return c;
     }
-    
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder()); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().loginPage("/signin")
-                .usernameParameter("username")
-                .passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/").failureUrl("/signin?error");
-
-        http.logout().logoutSuccessUrl("/signin");
+    @Configuration
+    @Order(2)
+    public class UserSpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.userDetailsService(userDetailsService)
+                    .passwordEncoder(passwordEncoder()); //To change body of generated methods, choose Tools | Templates.
+        }
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
         
-        http.csrf().disable();
-        
+        http.authorizeRequests()
+          .antMatchers("/")
+          .permitAll()
+          
+          .and()
+          .formLogin()
+          .loginPage("/signin")
+            .usernameParameter("username")
+            .passwordParameter("password")
+          .failureUrl("/signin?error=loginError")
+          .defaultSuccessUrl("/")
+          
+          .and()
+          .logout()
+          .logoutSuccessUrl("/signin")
+          
+          .and()
+          .exceptionHandling()
+          .accessDeniedPage("/403")
+          
+          .and()
+          .csrf().disable();
+        }
     }
-    
+    @Configuration
+    @Order(1)
+    public class AdminSpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.userDetailsService(userDetailsService)
+                    .passwordEncoder(passwordEncoder()); //To change body of generated methods, choose Tools | Templates.
+        }
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+        http.antMatcher("/admin*")
+          .authorizeRequests()
+          .anyRequest()
+          .hasRole(Role.ADMIN.name())
+          
+          .and()
+          .formLogin()
+          .loginPage("/admin/signin")
+           .usernameParameter("username")
+           .passwordParameter("password")
+          .failureUrl("/admin/signin?error=loginError")
+          .defaultSuccessUrl("/admin")
+          
+          .and()
+          .logout()
+          .logoutSuccessUrl("/admin/signin")
+          
+          .and()
+          .exceptionHandling()
+          .accessDeniedPage("/403")
+          
+          .and()
+          .csrf().disable();
+        }
+
+    }
 }

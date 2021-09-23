@@ -4,10 +4,11 @@
     Author     : Windows-1909
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!-- ***** Call to Action Start ***** -->
-    <section class="section section-bg" id="call-to-action" style="background-image: url(images/banner-image-1-1920x500.jpg)">
+    <section class="section section-bg" id="call-to-action" style="background-image: url(${pageContext.request.contextPath}/images/banner-image-1-1920x500.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
@@ -230,8 +231,111 @@
                 </section>
               </div>
             </div>
-        </div>
-    </section>
+            <c:if test="${rate != 0}">
+                <div class="rating"> 
+                    <c:set value="${5}" var="a"/>
+                    <c:forEach begin="1" end="5" var="i">
+                        <c:if test="${rate == a}">
+                            <input type="radio" name="rating" value="${a}" id="${a}" checked="true">
+                        </c:if>
+                        <c:if test="${rate != a}">
+                            <c:if test="${rate != a}">
+                                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                    <input type="radio" name="rating"  onClick="setRatingTour(${a}, ${user.id}, ${tour.id})" value="${a}" id="${a}">
+                                </c:if>
+                                <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                    <input type="radio" name="rating"  onClick="setRatingTour(${a}, null, ${tour.id})" value="${a}" id="${a}">
+                                </c:if>
+                            </c:if>
+                        </c:if>
+                        <label for="${a}">☆</label>
+                        <c:set value="${a-1}" var="a"/>
+                    </c:forEach>
+                </div>
+            </c:if>
+            <c:if test="${rate == 0}">
+                <div class="rating">
+                    <input type="radio" name="rating" onClick="setRatingTour(5, ${user.id}, ${tour.id})" value="5" id="5">
+                    <label for="5">☆</label>
+                    <input type="radio" name="rating" onClick="setRatingTour(4, ${user.id}, ${tour.id})" value="4" id="4">
+                    <label for="4">☆</label>
+                    <input type="radio" name="rating" onClick="setRatingTour(3, ${user.id}, ${tour.id})" value="3" id="3">
+                    <label for="3">☆</label>
+                    <input type="radio" name="rating" onClick="setRatingTour(2, ${user.id}, ${tour.id})" value="2" id="2">
+                    <label for="2">☆</label>
+                    <input type="radio" name="rating" onClick="setRatingTour(1, ${user.id}, ${tour.id})" value="1" id="1">
+                    <label for="1">☆</label>
+                </div>
+            </c:if>
+                <c:set var="total" value="${0}" />
+              <c:forEach var="r" items="${tour.ratetour}">
+                <c:set var="total" value="${total + r.rate}" />
+              </c:forEach>
+              <c:if test="${total != 0}">
+                  <div class="text-center" style="color: var(--text-color)">${total/tour.ratetour.size()} / ${tour.ratetour.size()} lượt đánh giá</div>
+              </c:if>
+            <section class='tabs-content'>
+                <div class="row" style="width:1200px">
+                    <div class="col-lg-6" style="width:600px">
+                        <h4>Comments</h4>
+                        <ul id="commentArea" class="features-items">
+                            <c:forEach items="${tour.commenttour}" var="comment">
+                                <li id="comment${comment.id}">
+                                    <div class="feature-item" style="margin-bottom:15px;">
+                                        <div class="left-icon user-avatar">
+                                            <img src="${comment.user.avatar}" alt="First One" style="width:100px">
+                                        </div>
+                                        <div class="right-content">
+                                            <h4>${comment.user.username}</h4>
+                                            <p><em style="color: var(--text-color)">${comment.comment}</em></p>
+                                            <p><a href="#"><i class="fa fa-thumbs-up"></i> Thích</a> | <a href="#"><i class="fa fa-comment"></i> Trả lời </a><c:if test="${pageContext.request.userPrincipal.name == comment.user.username}"> | <a href="javascript:void(0);" onClick="removeComment(${comment.id})"><i class="fa fa-remove"></i> Xóa </a></c:if>. <em class="date-comment-tour">${comment.created_date}</em></p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                    <script>
+                        window.onload = function(){
+                            let dates = document.getElementsByClassName("date-comment-tour")
+                            for(let i = 0; i < dates.length; i++){
+                                let d = dates[i]
+                                moment.locale('vi')
+                                d.innerText = moment(d.innerText).fromNow();
+                            }
+                        }
+                    </script>
+                    <div class="col-lg-6">
+                        <h4>Leave a comment</h4>
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                        <div class="contact-form">
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <fieldset>
+                                    <textarea id="content" name="content" rows="6" id="content" placeholder="Message" required=""></textarea>
+                                  </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                  <fieldset>
+                                      <input type="hidden" id="userName" value="${user.username}">
+                                      <input type="hidden" id="userAvatar" value="${user.avatar}">
+                                      <button type="submit" id="form-submit" onClick="addComment(${user.id}, ${tour.id})" class="main-button">Submit</button>
+                                  </fieldset>
+                                </div>
+                              </div>
+                        </div>
+                        </c:if>
+                        <c:if test="${pageContext.request.userPrincipal.name == null}">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div>Bạn cần phải đăng nhập để bình luận về Tour này</div>
+                                </div>
+                            </div>
+                        </c:if>
+                    </div>
+                </div>
+            </section>
+
     <!-- ***** Fleet Ends ***** -->
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -626,8 +626,12 @@ features
   margin-right: 30px;
 }
 
-.feature-item .right-content {
-  display: inline;
+.feature-item {
+  display: flex;
+}
+
+.right-content {
+    display: inline;
 }
 
 .feature-item .right-content h4 {

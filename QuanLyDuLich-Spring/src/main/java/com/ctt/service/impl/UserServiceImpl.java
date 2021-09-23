@@ -7,6 +7,7 @@ package com.ctt.service.impl;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.ctt.pojos.Role;
 import com.ctt.pojos.User;
 import com.ctt.repository.UserRepository;
 import com.ctt.service.UserService;
@@ -44,21 +45,21 @@ public class UserServiceImpl implements UserService{
         if(this.userRepository.getUsers(user.getUsername()).isEmpty()){
             String password = user.getPassword();
             user.setPassword(this.passwordEncoder.encode(password));
-            user.setRole(User.USER);
-        }else
+            user.setRole(Role.USER);
+        }else{
             user.setId(this.userRepository.getUsers(user.getUsername()).get(0).getId());
+        }
         MultipartFile img = user.getFile();
         if (img != null && !img.isEmpty()) {
             try {
                 Map r = this.cloudinary.uploader().upload(user.getFile().getBytes(), 
                     ObjectUtils.asMap("resource_type", "auto"));
                 user.setAvatar((String) r.get("secure_url"));
-                return this.userRepository.addOrUpdateUser(user);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
         }
-        return false;
+        return this.userRepository.addOrUpdateUser(user);
     }
 
     @Override
@@ -76,8 +77,13 @@ public class UserServiceImpl implements UserService{
     }
     
     @Override
-    public List<User> getUsersByEmail(String email) {
-        return this.userRepository.getUsersByEmail(email);
+    public User getUserByEmail(String email) {
+        return this.userRepository.getUserByEmail(email);
+    }
+    
+    @Override
+    public User getUserById(int id) {
+        return this.userRepository.getUserById(id);
     }
 
     @Override
@@ -87,7 +93,7 @@ public class UserServiceImpl implements UserService{
             throw new UsernameNotFoundException("User khong ton tai!!!");
         User u = users.get(0);
         Set<GrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority(u.getRole()));
+        authorities.add(new SimpleGrantedAuthority(u.getRole().toString()));
         return new org.springframework.security.core
                 .userdetails.User(u.getUsername(), u.getPassword(), authorities);
     }

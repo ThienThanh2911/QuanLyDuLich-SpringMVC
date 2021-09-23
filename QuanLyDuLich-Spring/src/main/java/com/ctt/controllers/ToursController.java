@@ -6,11 +6,15 @@
 package com.ctt.controllers;
 
 import com.cloudinary.Cloudinary;
+import com.ctt.pojos.CommentTour;
 import com.ctt.pojos.Tours;
 import com.ctt.service.CategoryService;
+import com.ctt.service.RateTourService;
 import com.ctt.service.TourService;
+import com.ctt.service.UserService;
 import com.ctt.validator.WebAppValidator;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -29,8 +33,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.util.List;
-import java.util.Locale;
 
 /**
  *
@@ -41,7 +43,9 @@ public class ToursController {
     @Autowired
     private Cloudinary cloudinary;
     @Autowired
-    private CategoryService categoryService;
+    private UserService userDetailsService;
+    @Autowired
+    private RateTourService rateTourService;
     @Autowired
     private WebAppValidator tourValidator;
     @Autowired
@@ -70,15 +74,13 @@ public class ToursController {
         return "packagesLayout";
     }
     
-    @RequestMapping("/package-details")
-    public String packageDetails(Model model) {
-        return "packageDetailsLayout";
-    }
-    
     @RequestMapping("/package-details/{tourId}")
-    public String packageDetails(Model model, @PathVariable("tourId") String tourId) {
-        if(tourId != null)
-            model.addAttribute("tour", this.tourService.getTourById(tourId).get(0));
+    public String packageDetails(Model model, @PathVariable("tourId") String tourId, Principal principal) {
+        if(principal != null){
+            model.addAttribute("rate", this.rateTourService.getRateTour(this.userDetailsService.getUsers(principal.getName()).get(0).getId(), Integer.parseInt(tourId)));
+            model.addAttribute("user", this.userDetailsService.getUsers(principal.getName()).get(0));
+        }
+        model.addAttribute("tour", this.tourService.getTourById(Integer.parseInt(tourId)));
         return "packageDetailsLayout";
     }
     
