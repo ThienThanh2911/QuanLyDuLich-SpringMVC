@@ -7,15 +7,8 @@ package com.ctt.repository.impl;
 
 import com.ctt.pojos.Tours;
 import com.ctt.repository.TourRepository;
-import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -64,7 +57,7 @@ public class TourRepositoryImpl implements TourRepository {
         if(cate != null && !cate.equals(""))
             ps.add(builder.equal(root.get("category"), Integer.parseInt(cate)));
         if(date != null)
-            ps.add(builder.like(root.get("startDate").as(String.class), String.format("%%%s%%", date)));
+            ps.add(builder.like(root.join("datedetail").get("startDate").as(String.class), String.format("%%%s%%", date)));
         if (priceMin == null || priceMin.equals(""))
             priceMin = "0";
         if (priceMax == null || priceMax.equals(""))

@@ -7,6 +7,7 @@ package com.ctt.repository.impl;
 
 import com.ctt.pojos.CommentTour;
 import com.ctt.repository.CommentTourRepository;
+import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -65,6 +66,21 @@ public class CommentTourRepositoryImpl implements CommentTourRepository{
         Query q = session.createQuery(query);
 
         return (CommentTour) q.getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public List<CommentTour> getListCommentsTourById(int tourId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<CommentTour> query = builder.createQuery(CommentTour.class);
+        Root root = query.from(CommentTour.class);
+
+        Predicate p = builder.equal(root.get("tour"), tourId);
+        query = query.where(p);
+
+        Query q = session.createQuery(query);
+        return q.getResultList();
     }
     
     

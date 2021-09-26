@@ -19,7 +19,7 @@
                         <p>Giá tiền của chuyến đi</p>
 
                         <div class="main-button">
-                          <a href="#" data-toggle="modal" data-target="#exampleModal">Enquiry</a>
+                          <a href="#" data-toggle="modal" data-target="#exampleModal">Đặt Vé</a>
                         </div>
                     </div>
                 </div>
@@ -125,12 +125,14 @@
                          </thead>
                          
                          <tbody>
+                             <c:forEach items="${dates}" var="date">
                               <tr>
                                    <td></td>
-                                   <td style="color: #7a7a7a">${tour.startDate}</td>
-                                   <td style="color: #7a7a7a">${tour.finishDate}</td>
+                                   <td style="color: #7a7a7a">${date.startDate}</td>
+                                   <td style="color: #7a7a7a">${date.finishDate}</td>
                                    <td style="color: #7a7a7a">${tour.price}</td>
                               </tr>
+                             </c:forEach>
                          </tbody>
                       </table>
                     </div>
@@ -279,7 +281,7 @@
                     <div class="col-lg-6" style="width:600px">
                         <h4>Comments</h4>
                         <ul id="commentArea" class="features-items">
-                            <c:forEach items="${tour.commenttour}" var="comment">
+                            <c:forEach items="${comments}" var="comment">
                                 <li id="comment${comment.id}">
                                     <div class="feature-item" style="margin-bottom:15px;">
                                         <div class="left-icon user-avatar">
@@ -342,7 +344,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Enquiry</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Đặt Vé</h5>
             <button type="button" class="close" style="color: var(--text-color)" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -352,37 +354,22 @@
             <div class="contact-form">
               <form action="#" id="contact">
                   <div class="row">
-                       <div class="col-md-6">
-                          <fieldset>
-                            <input type="text" class="form-control" placeholder="Enter full name" required="">
-                          </fieldset>
-                       </div>
-
-                       <div class="col-md-6">
-                          <fieldset>
-                            <input type="text" class="form-control" placeholder="Enter email address" required="">
-                          </fieldset>
-                       </div>
-                  </div>
-
-                  <div class="row">
-                       <div class="col-md-6">
-                          <fieldset>
-                            <input type="text" class="form-control" placeholder="Enter phone" required="">
-                          </fieldset>
-                       </div>
-
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <select name="method" class="custom-select" style="text-align-last: center; width: 75%; background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
+                                        <option value="">Phuong thuc thanh toan</option>
+                                        <option value="male">Momo</option>
+                                        <option value="female">ZaloPay</option>
+                                    </select>
+                                </div>
+                          </div>
+                        </div>
                        <div class="col-md-6">
                           <div class="row">
                              <div class="col-md-6">
                                 <fieldset>
                                   <input type="text" class="form-control" placeholder="From date" required="">
-                                </fieldset>
-                             </div>
-
-                             <div class="col-md-6">
-                                <fieldset>
-                                  <input type="text" class="form-control" placeholder="To date" required="">
                                 </fieldset>
                              </div>
                           </div>
@@ -397,13 +384,13 @@
                             <div class="col-md-6">
                             <div class="input-group">
                                  <span class="input-group-btn">
-                                     <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                     <button onclick="onUpdatePrice('minus', 'adult')" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
                                          <span class="fa fa-minus"></span>
                                      </button>
                                  </span>
-                                 <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="30" style="margin-top: -5%; text-align: center;">
+                                 <input id="adult" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="30" style="margin-top: -5%; text-align: center;">
                                  <span class="input-group-btn">
-                                     <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                     <button onclick="onUpdatePrice('plus', 'adult')" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
                                          <span class="fa fa-plus"></span>
                                      </button>
                                  </span>
@@ -419,13 +406,13 @@
                             <div class="col-md-6">
                             <div class="input-group">
                                  <span class="input-group-btn">
-                                     <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[2]">
+                                     <button onmouseup="onUpdatePrice('minus', 'children')" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[2]">
                                          <span class="fa fa-minus"></span>
                                      </button>
                                  </span>
-                                 <input type="text" name="quant[2]" class="form-control input-number" value="1" min="1" max="30" style="margin-top: -5%; text-align: center;">
+                                 <input id="children" type="text" name="quant[2]" class="form-control input-number" value="0" min="0" max="30" style="margin-top: -5%; text-align: center;">
                                  <span class="input-group-btn">
-                                     <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[2]">
+                                     <button onmouseup="onUpdatePrice('plus', 'children')" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[2]">
                                          <span class="fa fa-plus"></span>
                                      </button>
                                  </span>
@@ -440,7 +427,8 @@
           </div>
           <div class="modal-footer">
               <div class="inline mr-auto">
-                  <span style="color: var(--text-color)"><b style="font-size: 20px">Total Price</b> - 1.000.000 VND</span>
+                  <input type="hidden" id="price" value="${tour.price}">
+                  <span id="totalPrice" style="color: var(--text-color)"><b style="font-size: 20px">Total Price</b> - ${tour.price} VNĐ</span>
               </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button type="button" class="btn btn-primary">Send Request</button>
@@ -448,3 +436,44 @@
         </div>
       </div>
     </div>
+    <script>
+        let a = document.getElementById("adult")
+        let c = document.getElementById("children")
+        let t = document.getElementById("totalPrice")
+        let p = document.getElementById("price").value
+        function onUpdatePrice(type, test){
+            let aa = 0
+            if(type === "minus"){
+                if(test === "adult" && a.value > 1){
+                    aa = parseInt(a.value) - 1
+                    t.innerHTML = '<b style="font-size: 20px">Total Price</b> - ' + (p * aa + (p * c.value)*70/100) + ' VNĐ'
+                }
+                if(test === "children" && c.value > 0){
+                    aa = parseInt(c.value) - 1
+                    t.innerHTML = '<b style="font-size: 20px">Total Price</b> - ' + (p * a.value + (p * aa)*70/100) + ' VNĐ'
+                }
+            }
+            if(type === "plus"){
+                if(test === "adult" && a.value < 30){
+                    aa = parseInt(a.value) + 1
+                    t.innerHTML = '<b style="font-size: 20px">Total Price</b> - ' + (p * aa + (p * c.value)*70/100) + ' VNĐ'
+                }
+                if(test === "children" && c.value < 30){
+                    aa = parseInt(c.value) + 1
+                    t.innerHTML = '<b style="font-size: 20px">Total Price</b> - ' + (p * a.value + (p * aa)*70/100) + ' VNĐ'
+                }
+            }
+        }
+        a.addEventListener('input', function( event ) {
+            var value = event.target.value;
+            if ( !isNaN( value ) && a.value <=30) {
+              t.innerHTML = '<b style="font-size: 20px">Total Price</b> - ' + (p * value + p * c.value*70/100) + ' VNĐ'
+            }
+        });
+        c.addEventListener('input', function( event ) {
+            var value = event.target.value;
+            if ( !isNaN( value ) && c.value <=30) {
+              t.innerHTML = '<b style="font-size: 20px">Total Price</b> - ' + (p * a.value + p * value*70/100) + ' VNĐ'
+            }
+        });
+    </script>

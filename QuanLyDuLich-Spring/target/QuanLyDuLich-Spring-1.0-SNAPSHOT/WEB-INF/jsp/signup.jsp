@@ -61,7 +61,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                                 <label for="birth">Ngày sinh</label>
-                                                <form:input path="birth" class="form-control" id="birth" placeholder="Hãy nhập ngày sinh của bạn"/>
+                                                <form:input path="birth" type="date" class="form-control" id="birth" placeholder="Hãy nhập ngày sinh của bạn"/>
                                                 <form:errors path="birth" element="div" cssClass="alert alert-danger" />
                                         </div>  
                                 </div>

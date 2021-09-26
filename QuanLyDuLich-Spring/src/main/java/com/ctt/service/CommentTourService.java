@@ -6,6 +6,7 @@
 package com.ctt.service;
 
 import com.ctt.pojos.CommentTour;
+import java.util.List;
 
 /**
  *
@@ -14,5 +15,6 @@ import com.ctt.pojos.CommentTour;
 public interface CommentTourService {
     CommentTour addComment(String content, int userId, int tourId);
     CommentTour getCommentById(int id);
+    List<CommentTour> getListCommentsTourById(int tourId);
     void removeCommentTour(CommentTour c);
 }

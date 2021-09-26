@@ -7,6 +7,7 @@ package com.ctt.repository.impl;
 
 import com.ctt.pojos.CommentBlog;
 import com.ctt.repository.CommentBlogRepository;
+import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -65,6 +66,21 @@ public class CommentBlogRepositoryImpl implements CommentBlogRepository{
         Query q = session.createQuery(query);
 
         return (CommentBlog) q.getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public List<CommentBlog> getListCommentsBlogById(int blogId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<CommentBlog> query = builder.createQuery(CommentBlog.class);
+        Root root = query.from(CommentBlog.class);
+
+        Predicate p = builder.equal(root.get("blog"), blogId);
+        query = query.where(p);
+
+        Query q = session.createQuery(query);
+        return q.getResultList();
     }
     
     

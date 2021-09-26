@@ -98,7 +98,7 @@
                     <div class="col-lg-6" style="width:600px">
                         <h4>Comments</h4>
                         <ul id="commentArea" class="features-items">
-                            <c:forEach items="${blog.commentblog}" var="comment">
+                            <c:forEach items="${comments}" var="comment">
                                 <li id="comment${comment.id}">
                                     <div class="feature-item" style="margin-bottom:15px;">
                                         <div class="left-icon user-avatar">

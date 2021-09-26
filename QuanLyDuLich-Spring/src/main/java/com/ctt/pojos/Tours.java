@@ -44,14 +44,6 @@ public class Tours implements Serializable{
     @Size(min = 5, max = 30, message = "{tour.name.lenError}")
     private String name;
     private String description;
-    @Column(name = "start_date")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date startDate;
-    @Column(name = "finish_date")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date finishDate;
     @NotNull(message = "{tour.destination.nullError}")
     private String destination;
     private Vehicle vehicle;
@@ -82,6 +74,8 @@ public class Tours implements Serializable{
     private Set<Payments> payments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<TourBooking> tourbooking;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
+    private Set<DateDetail> datedetail;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<RateTour> ratetour;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
@@ -127,34 +121,6 @@ public class Tours implements Serializable{
      */
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    /**
-     * @return the startDate
-     */
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    /**
-     * @param startDate the startDate to set
-     */
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    /**
-     * @return the finishDate
-     */
-    public Date getFinishDate() {
-        return finishDate;
-    }
-
-    /**
-     * @param finishDate the finishDate to set
-     */
-    public void setFinishDate(Date finishDate) {
-        this.finishDate = finishDate;
     }
 
     /**

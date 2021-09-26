@@ -11,6 +11,7 @@ import com.ctt.repository.CommentBlogRepository;
 import com.ctt.repository.UserRepository;
 import com.ctt.service.CommentBlogService;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,5 +47,11 @@ public class CommentBlogServiceImpl implements CommentBlogService {
     public void removeCommentBlog(CommentBlog c) {
         this.commentBlogRepository.removeCommentBlog(c);
     }
+
+    @Override
+    public List<CommentBlog> getListCommentsBlogById(int blogId) {
+        return this.commentBlogRepository.getListCommentsBlogById(blogId);
+    }
+    
     
 }

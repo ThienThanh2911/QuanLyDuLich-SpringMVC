@@ -6,6 +6,7 @@
 package com.ctt.service;
 
 import com.ctt.pojos.CommentBlog;
+import java.util.List;
 
 /**
  *
@@ -14,5 +15,6 @@ import com.ctt.pojos.CommentBlog;
 public interface CommentBlogService {
     CommentBlog addCommentBlog(String content, int userId, int blogId);
     CommentBlog getCommentBlogById(int id);
+    List<CommentBlog> getListCommentsBlogById(int blogId);
     void removeCommentBlog(CommentBlog c);
 }

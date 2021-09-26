@@ -9,9 +9,12 @@ import com.ctt.pojos.User;
 import com.ctt.service.UserService;
 import com.ctt.validator.WebAppValidator;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -39,6 +42,9 @@ public class UsersController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setValidator(userValidator);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");   
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, null,  new CustomDateEditor(dateFormat, true));
     }
     
     @GetMapping("/signin")

@@ -5,16 +5,14 @@
  */
 package com.ctt.controllers;
 
-import com.ctt.pojos.Blog;
 import com.ctt.service.BlogService;
+import com.ctt.service.CommentBlogService;
 import com.ctt.service.RateBlogService;
 import com.ctt.service.UserService;
 import java.security.Principal;
-import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BlogController {
     @Autowired
     private BlogService blogService;
+    @Autowired
+    private CommentBlogService commentBlogService;
     @Autowired
     private UserService userDetailsService;
     @Autowired
@@ -46,6 +46,7 @@ public class BlogController {
             model.addAttribute("user", this.userDetailsService.getUsers(principal.getName()).get(0));
         }
         model.addAttribute("blog", this.blogService.getBlogById(Integer.parseInt(blogId)));
+        model.addAttribute("comments", this.commentBlogService.getListCommentsBlogById(Integer.parseInt(blogId)));
         return "blogDetailsLayout";
     }
 }

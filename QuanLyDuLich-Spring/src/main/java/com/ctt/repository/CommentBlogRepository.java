@@ -6,6 +6,7 @@
 package com.ctt.repository;
 
 import com.ctt.pojos.CommentBlog;
+import java.util.List;
 
 /**
  *
@@ -14,5 +15,6 @@ import com.ctt.pojos.CommentBlog;
 public interface CommentBlogRepository {
     CommentBlog addCommentBlog(CommentBlog c);
     CommentBlog getCommentBlogById(int id);
+    List<CommentBlog> getListCommentsBlogById(int blogId);
     void removeCommentBlog(CommentBlog c);
 }

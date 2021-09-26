@@ -5,16 +5,13 @@
  */
 package com.ctt.repository;
 
-import com.ctt.pojos.CommentTour;
+import com.ctt.pojos.DateDetail;
 import java.util.List;
 
 /**
  *
  * @author ADMIN
  */
-public interface CommentTourRepository {
-    CommentTour addCommentTour(CommentTour c);
-    CommentTour getCommentById(int id);
-    List<CommentTour> getListCommentsTourById(int tourId);
-    void removeCommentTour(CommentTour c);
+public interface DateDetailRepository {
+    List<DateDetail> getListDateDetailById(int tourId);
 }

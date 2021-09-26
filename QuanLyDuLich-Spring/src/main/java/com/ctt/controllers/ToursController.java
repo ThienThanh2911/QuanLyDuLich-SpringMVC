@@ -9,6 +9,8 @@ import com.cloudinary.Cloudinary;
 import com.ctt.pojos.CommentTour;
 import com.ctt.pojos.Tours;
 import com.ctt.service.CategoryService;
+import com.ctt.service.CommentTourService;
+import com.ctt.service.DateDetailService;
 import com.ctt.service.RateTourService;
 import com.ctt.service.TourService;
 import com.ctt.service.UserService;
@@ -47,9 +49,13 @@ public class ToursController {
     @Autowired
     private RateTourService rateTourService;
     @Autowired
+    private CommentTourService commentTourService;
+    @Autowired
     private WebAppValidator tourValidator;
     @Autowired
     private TourService tourService;
+    @Autowired
+    private DateDetailService dateDetailService;
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setValidator(tourValidator);
@@ -81,6 +87,8 @@ public class ToursController {
             model.addAttribute("user", this.userDetailsService.getUsers(principal.getName()).get(0));
         }
         model.addAttribute("tour", this.tourService.getTourById(Integer.parseInt(tourId)));
+        model.addAttribute("dates", this.dateDetailService.getListDateDetailById(Integer.parseInt(tourId)));
+        model.addAttribute("comments", this.commentTourService.getListCommentsTourById(Integer.parseInt(tourId)));
         return "packageDetailsLayout";
     }
     

@@ -11,6 +11,7 @@ import com.ctt.repository.TourRepository;
 import com.ctt.repository.UserRepository;
 import com.ctt.service.CommentTourService;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,5 +47,11 @@ public class CommentTourServiceImpl implements CommentTourService {
     public void removeCommentTour(CommentTour c) {
         this.commentTourRepository.removeCommentTour(c);
     }
+
+    @Override
+    public List<CommentTour> getListCommentsTourById(int tourId) {
+        return this.commentTourRepository.getListCommentsTourById(tourId);
+    }
+    
     
 }
