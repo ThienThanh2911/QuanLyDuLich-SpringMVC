@@ -45,7 +45,8 @@ public class UserServiceImpl implements UserService{
         if(this.userRepository.getUsers(user.getUsername()).isEmpty()){
             String password = user.getPassword();
             user.setPassword(this.passwordEncoder.encode(password));
-            user.setRole(Role.USER);
+            user.setRole(Role.ROLE_USER);
+            user.setActive(true);
         }else{
             user.setId(this.userRepository.getUsers(user.getUsername()).get(0).getId());
         }

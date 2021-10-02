@@ -5,9 +5,8 @@
  */
 package com.ctt.repository.impl;
 
-import com.ctt.pojos.DateDetail;
-import com.ctt.repository.DateDetailRepository;
-import java.util.List;
+import com.ctt.pojos.Payments;
+import com.ctt.repository.PaymentRepository;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -24,36 +23,37 @@ import org.springframework.transaction.annotation.Transactional;
  * @author ADMIN
  */
 @Repository
-public class DateDetailRepositoryImpl implements DateDetailRepository{
+public class PaymentRepositoryImpl implements PaymentRepository{
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
 
     @Override
     @Transactional
-    public List<DateDetail> getListDateDetailById(int tourId) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<DateDetail> query = builder.createQuery(DateDetail.class);
-        Root root = query.from(DateDetail.class);
-
-        Predicate p = builder.equal(root.get("tour"), tourId);
-        query = query.where(p);
-
-        Query q = session.createQuery(query);
-        return q.getResultList();
-    }
-    
-    @Override
-    @Transactional
-    public boolean addDateDetail(DateDetail d) {
+    public Payments addPayment(Payments c) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try{
-            session.save(d);
-            return true;
+            session.save(c);
+            return c;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return false;
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public Payments getPaymentById(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Payments> query = builder.createQuery(Payments.class);
+        Root root = query.from(Payments.class);
+
+        Predicate p = builder.equal(root.get("id"), id);
+        query = query.where(p);
+        
+        Query q = session.createQuery(query);
+
+        return (Payments) q.getSingleResult();
     }
     
 }

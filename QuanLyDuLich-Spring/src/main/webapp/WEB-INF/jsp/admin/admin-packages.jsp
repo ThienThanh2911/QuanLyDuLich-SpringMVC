@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+=======
 <div class="sidebar" data-image="../resources/assets/img/sidebar.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">

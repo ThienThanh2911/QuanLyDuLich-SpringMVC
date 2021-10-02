@@ -357,10 +357,11 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-10">
-                                    <select name="method" class="custom-select" style="text-align-last: center; width: 75%; background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
-                                        <option value="">Phuong thuc thanh toan</option>
-                                        <option value="male">Momo</option>
-                                        <option value="female">ZaloPay</option>
+                                    <select id="method" name="method" class="custom-select" style="text-align-last: center; width: 75%; background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
+                                        <option value="">Phương thức thanh toán</option>
+                                        <option value="0">ZaloPay</option>
+                                        <option value="1">Momo</option>
+                                        <option value="2">Cash</option>
                                     </select>
                                 </div>
                           </div>
@@ -428,10 +429,10 @@
           <div class="modal-footer">
               <div class="inline mr-auto">
                   <input type="hidden" id="price" value="${tour.price}">
-                  <span id="totalPrice" style="color: var(--text-color)"><b style="font-size: 20px">Total Price</b> - ${tour.price} VNĐ</span>
+                  <span id="totalPrice" style="color: var(--text-color)"><b style="font-size: 20px">Tổng tiền</b> - ${tour.price} VNĐ</span>
               </div>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Send Request</button>
+            <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            <button onclick="addPayment('${pageContext.request.userPrincipal.name}', '${tour.name}')" type="button" class="btn btn-primary">Đặt Vé</button>
           </div>
         </div>
       </div>
@@ -476,4 +477,32 @@
               t.innerHTML = '<b style="font-size: 20px">Total Price</b> - ' + (p * a.value + p * value*70/100) + ' VNĐ'
             }
         });
+        function addPayment(user, tour){
+            let method = document.getElementById("method").value
+            let totalP = p * a.value + p * c.value
+            let close = document.getElementById("close")
+            if(method !== ""){
+                fetch("/QuanLyDuLich-Spring/api/add-payment",{
+                    method: 'post',
+                    body: JSON.stringify({
+                        "user": user,
+                        "tour": tour,
+                        "price": totalP,
+                        "adult": a.value,
+                        "children": c.value,
+                        "method": method
+                    }),
+                    headers:{
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function(res){
+                    return res.json();
+                }).then(function(data){
+                    window.location.href = '/QuanLyDuLich-Spring';
+                }).catch(function(err){
+                    console.error(err);
+                });
+            }else
+                alert("Bạn cần phải chọn phương thức thanh toán!");
+        }
     </script>

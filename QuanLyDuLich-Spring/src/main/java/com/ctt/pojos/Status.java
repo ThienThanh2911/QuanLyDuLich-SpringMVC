@@ -10,22 +10,7 @@ package com.ctt.pojos;
  * @author ADMIN
  */
 public enum Status {
-    ACTIVE{
-        @Override
-        public String toString() {
-            return "Active"; //To change body of generated methods, choose Tools | Templates.
-        }
-    },
-    CANCELLED{
-        @Override
-        public String toString() {
-            return "Cancelled";
-        }
-    },
-    ARCHIVED{
-        @Override
-        public String toString() {
-            return "Archived";
-        }
-    }
+    ACTIVE,
+    CANCELLED,
+    ARCHIVED;
 }
