@@ -5,38 +5,27 @@
  */
 package com.ctt.controllers;
 
-import com.cloudinary.Cloudinary;
-import com.ctt.pojos.CommentTour;
 import com.ctt.pojos.DateDetail;
-import com.ctt.pojos.Tours;
-import com.ctt.service.CategoryService;
 import com.ctt.service.CommentTourService;
 import com.ctt.service.DateDetailService;
 import com.ctt.service.RateTourService;
 import com.ctt.service.TourService;
 import com.ctt.service.UserService;
 import com.ctt.validator.WebAppValidator;
-import java.math.BigDecimal;
 import java.security.Principal;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -46,8 +35,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class ToursController {
-    @Autowired
-    private Cloudinary cloudinary;
     @Autowired
     private UserService userDetailsService;
     @Autowired
@@ -97,24 +84,5 @@ public class ToursController {
         model.addAttribute("dates", this.dateDetailService.getListDateDetailById(Integer.parseInt(tourId)));
         model.addAttribute("comments", this.commentTourService.getListCommentsTourById(Integer.parseInt(tourId)));
         return "packageDetailsLayout";
-    }
-    
-    @GetMapping("/admin/packages")
-    public String adminPackagesView(Model model) {
-        model.addAttribute("packages", new Tours());
-        
-        return "adminPackagesLayout";
-    }
-    
-    @PostMapping(path="/admin/packages")
-    public String adminPackages(Model model, @ModelAttribute(value =  "packages") @Valid Tours tours,
-            BindingResult result) {
-        if(!result.hasErrors()){
-            if(this.tourService.addOrUpdate(tours) == true){
-                return "redirect:/";
-            }else
-                model.addAttribute("errMsg", "Something wrong!!!");
-            }
-        return "adminPackagesLayout";
     }
 }

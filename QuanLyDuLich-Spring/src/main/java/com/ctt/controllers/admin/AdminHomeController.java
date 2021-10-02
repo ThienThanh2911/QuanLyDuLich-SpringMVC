@@ -23,6 +23,6 @@ public class AdminHomeController {
     
     @RequestMapping("/admin")
     public String adminHome(Model model) {
-        return "adminHomeLayout";
+        return "adminDashboardLayout";
     }
 }
