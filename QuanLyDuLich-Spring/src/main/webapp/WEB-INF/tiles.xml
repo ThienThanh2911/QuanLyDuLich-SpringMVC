@@ -77,19 +77,24 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Terms" />
         <put-attribute name="content" value="/WEB-INF/jsp/terms.jsp" />
     </definition>
-    <definition name="adminHomeLayout" extends="baseAdminLayout">
-        <put-attribute name="title" value="admin home" />
-        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-home.jsp" />
-        <put-attribute name="footer" value="" />
-    </definition>
     <definition name="adminSignInLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="admin sign in" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-signin.jsp" />
-        <put-attribute name="footer" value="" />
+    </definition>
+    <definition name="adminDashboardLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Dashboard" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-dashboard.jsp" />
+    </definition>
+    <definition name="adminProfileLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Thông tin nhân viên" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-profile.jsp" />
     </definition>
     <definition name="adminPackagesLayout" extends="baseAdminLayout">
-        <put-attribute name="title" value="admin packages" />
+        <put-attribute name="title" value="Danh sách tour" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-packages.jsp" />
-        <put-attribute name="footer" value="" />
+    </definition>
+    <definition name="adminMapLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Bản đồ" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-map.jsp" />
     </definition>
 </tiles-definitions>
