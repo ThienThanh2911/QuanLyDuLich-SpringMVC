@@ -15,6 +15,11 @@
                 Đã có lỗi xảy ra!
             </div>
         </c:if>
+        <c:if test="${param.accessDenied != null}">
+            <div class="alert alert-danger">
+                Bạn không có quyền truy cập!
+            </div>
+        </c:if>
         <c:url value="/signin" var="action" />
         <form action="${action}" method="post">
             <div class="card-body">

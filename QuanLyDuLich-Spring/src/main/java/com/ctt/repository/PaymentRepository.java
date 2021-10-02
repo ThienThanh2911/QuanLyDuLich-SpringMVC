@@ -5,14 +5,13 @@
  */
 package com.ctt.repository;
 
-import com.ctt.pojos.DateDetail;
-import java.util.List;
+import com.ctt.pojos.Payments;
 
 /**
  *
  * @author ADMIN
  */
-public interface DateDetailRepository {
-    List<DateDetail> getListDateDetailById(int tourId);
-    boolean addDateDetail(DateDetail datedetail);
+public interface PaymentRepository {
+    Payments addPayment(Payments c);
+    Payments getPaymentById(int id);
 }

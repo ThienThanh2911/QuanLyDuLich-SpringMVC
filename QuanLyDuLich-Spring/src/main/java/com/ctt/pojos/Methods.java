@@ -10,22 +10,7 @@ package com.ctt.pojos;
  * @author ADMIN
  */
 public enum Methods {
-    ZALOPAY{
-        @Override
-        public String toString() {
-            return "ZaloPay"; //To change body of generated methods, choose Tools | Templates.
-        }
-    },
-    MOMO{
-        @Override
-        public String toString() {
-            return "Momo"; //To change body of generated methods, choose Tools | Templates.
-        }
-    },
-    CASH{
-        @Override
-        public String toString() {
-            return "Cash"; //To change body of generated methods, choose Tools | Templates.
-        }
-    }
+    ZALOPAY,
+    MOMO,
+    CASH;
 }

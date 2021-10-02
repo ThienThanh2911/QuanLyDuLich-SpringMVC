@@ -31,14 +31,14 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="startDate">Ngay khoi hanh</label>
-                                <form:input type="text" id="start_date" path="startDate" cssClass="form-control"/>
+                                <form:input type="date" id="start_date" path="startDate" cssClass="form-control"/>
                                 <form:errors path="startDate" cssClass="alert alert-danger" element="div"/>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="finishDate">Ngay ket thuc</label>
-                                <form:input type="text" id="finish_date" path="finishDate" cssClass="form-control"/>
+                                <form:input type="date" id="finish_date" path="finishDate" cssClass="form-control"/>
                                 <form:errors path="finishDate" cssClass="alert alert-danger" element="div"/>
                             </div>
                         </div>

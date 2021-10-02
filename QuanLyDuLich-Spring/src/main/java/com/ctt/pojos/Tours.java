@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -53,10 +52,20 @@ public class Tours implements Serializable{
     @Max(value = 10000000, message = "{tour.price.maxError}")
     private BigDecimal price;
     private boolean active;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     //@NotNull(message = "{tour.category.nullError}")
     private Category category;
+    
+    @Transient
+    @Temporal(javax.persistence.TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date startDate;
+    @Transient
+    @Temporal(javax.persistence.TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date finishDate;
+    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "tour_tag",
@@ -70,11 +79,11 @@ public class Tours implements Serializable{
     private Set<Tags> tags;
     @Transient
     private MultipartFile file;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<Payments> payments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<TourBooking> tourbooking;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<DateDetail> datedetail;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<RateTour> ratetour;
@@ -289,6 +298,48 @@ public class Tours implements Serializable{
      */
     public void setRatetour(Set<RateTour> ratetour) {
         this.ratetour = ratetour;
+    }
+
+    /**
+     * @return the datedetail
+     */
+    public Set<DateDetail> getDatedetail() {
+        return datedetail;
+    }
+
+    /**
+     * @param datedetail the datedetail to set
+     */
+    public void setDatedetail(Set<DateDetail> datedetail) {
+        this.datedetail = datedetail;
+    }
+
+    /**
+     * @return the startDate
+     */
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    /**
+     * @param startDate the startDate to set
+     */
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    /**
+     * @return the finishDate
+     */
+    public Date getFinishDate() {
+        return finishDate;
+    }
+
+    /**
+     * @param finishDate the finishDate to set
+     */
+    public void setFinishDate(Date finishDate) {
+        this.finishDate = finishDate;
     }
 
 }

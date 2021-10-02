@@ -8,7 +8,6 @@ package com.ctt.pojos;
 import com.ctt.validator.UserEmail;
 import com.ctt.validator.UserName;
 import java.io.Serializable;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -19,8 +18,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
@@ -69,6 +66,7 @@ public class User implements Serializable {
     //@NotEmpty(message = "{user.message.emptyError}")
     private String gender;
     private String about;
+    private boolean active;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "province_id")
     //@NotNull(message = "{tour.category.nullError}")
@@ -81,7 +79,7 @@ public class User implements Serializable {
     private String confirmPassword;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Blog> blog;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Payments> payments;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<TourBooking> tourbooking;
@@ -382,6 +380,20 @@ public class User implements Serializable {
      */
     public void setBlog(Set<Blog> blog) {
         this.blog = blog;
+    }
+
+    /**
+     * @return the active
+     */
+    public boolean isActive() {
+        return active;
+    }
+
+    /**
+     * @param active the active to set
+     */
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     /**

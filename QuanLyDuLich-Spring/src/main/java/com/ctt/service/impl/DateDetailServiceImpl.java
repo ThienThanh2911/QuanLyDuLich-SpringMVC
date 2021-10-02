@@ -6,6 +6,7 @@
 package com.ctt.service.impl;
 
 import com.ctt.pojos.DateDetail;
+import com.ctt.pojos.Tours;
 import com.ctt.repository.DateDetailRepository;
 import com.ctt.service.DateDetailService;
 import java.util.List;
@@ -25,6 +26,13 @@ public class DateDetailServiceImpl implements DateDetailService {
     public List<DateDetail> getListDateDetailById(int tourId) {
         return this.dateDetailRepository.getListDateDetailById(tourId);
     }
+
+    @Override
+    public boolean addDateDetail(DateDetail d) {
+        return this.dateDetailRepository.addDateDetail(d);
+    }
     
     
+    
+
 }

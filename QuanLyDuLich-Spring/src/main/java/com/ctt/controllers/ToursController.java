@@ -7,6 +7,7 @@ package com.ctt.controllers;
 
 import com.cloudinary.Cloudinary;
 import com.ctt.pojos.CommentTour;
+import com.ctt.pojos.DateDetail;
 import com.ctt.pojos.Tours;
 import com.ctt.service.CategoryService;
 import com.ctt.service.CommentTourService;
@@ -19,10 +20,13 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -59,6 +63,9 @@ public class ToursController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setValidator(tourValidator);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");   
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, null,  new CustomDateEditor(dateFormat, true));
     }
 
     
@@ -103,9 +110,9 @@ public class ToursController {
     public String adminPackages(Model model, @ModelAttribute(value =  "packages") @Valid Tours tours,
             BindingResult result) {
         if(!result.hasErrors()){
-            if(this.tourService.addOrUpdate(tours) == true)
+            if(this.tourService.addOrUpdate(tours) == true){
                 return "redirect:/";
-            else
+            }else
                 model.addAttribute("errMsg", "Something wrong!!!");
             }
         return "adminPackagesLayout";
