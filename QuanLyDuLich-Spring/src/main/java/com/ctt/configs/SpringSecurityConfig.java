@@ -32,7 +32,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     "com.ctt.repository",
     "com.ctt.service"
 })
-public class SpringSecurityConfig{
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
     
@@ -53,75 +53,36 @@ public class SpringSecurityConfig{
         ));
         return c;
     }
-    @Configuration
-    @Order(2)
-    public class UserSpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
-        @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(userDetailsService)
-                    .passwordEncoder(passwordEncoder()); //To change body of generated methods, choose Tools | Templates.
-        }
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-        
-        http.authorizeRequests()
-          .antMatchers("/")
-          .permitAll()
-          
-          .and()
-          .formLogin()
-          .loginPage("/signin")
-            .usernameParameter("username")
-            .passwordParameter("password")
-          .failureUrl("/signin?error=loginError")
-          .defaultSuccessUrl("/")
-          
-          .and()
-          .logout()
-          .logoutSuccessUrl("/signin")
-          
-          .and()
-          .exceptionHandling()
-          .accessDeniedPage("/403")
-          
-          .and()
-          .csrf().disable();
-        }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder()); //To change body of generated methods, choose Tools | Templates.
     }
-    @Configuration
-    @Order(1)
-    public class AdminSpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
-        @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(userDetailsService)
-                    .passwordEncoder(passwordEncoder()); //To change body of generated methods, choose Tools | Templates.
-        }
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/admin*")
-          .authorizeRequests()
-          .anyRequest()
-          .hasRole(Role.ADMIN.name())
-          
-          .and()
-          .formLogin()
-          .loginPage("/admin/signin")
-           .usernameParameter("username")
-           .passwordParameter("password")
-          .failureUrl("/admin/signin?error=loginError")
-          .defaultSuccessUrl("/admin")
-          
-          .and()
-          .logout()
-          .logoutSuccessUrl("/admin/signin")
-          
-          .and()
-          .exceptionHandling()
-          .accessDeniedPage("/403")
-          
-          .and()
-          .csrf().disable();
-        }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests()
+      .antMatchers("/")
+      .permitAll()
 
+      .antMatchers("/admin/**").access("hasRole('" + Role.ROLE_ADMIN.name() + "')")
+
+      .and()
+      .formLogin()
+      .loginPage("/signin")
+        .usernameParameter("username")
+        .passwordParameter("password")
+      .failureUrl("/signin?error=loginError")
+      .defaultSuccessUrl("/")
+
+      .and()
+      .logout()
+      .logoutSuccessUrl("/signin")
+
+      .and()
+      .exceptionHandling()
+      .accessDeniedPage("/signin?accessDenied")
+
+      .and()
+      .csrf().disable();
     }
 }

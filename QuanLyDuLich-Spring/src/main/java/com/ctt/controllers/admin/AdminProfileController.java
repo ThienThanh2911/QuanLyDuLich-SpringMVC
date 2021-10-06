@@ -19,4 +19,9 @@ public class AdminProfileController {
     public String adminProfile(Model model){
         return "adminProfileLayout";
     }
+    
+    @GetMapping("/admin/edit-tour")
+    public String adminEditTour(Model model){
+        return "adminEditTourLayout";
+    }
 }

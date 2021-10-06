@@ -20,8 +20,8 @@ public class AdminUserController {
     @Autowired
     private UserService userDetailsService;
     
-    @GetMapping("/admin/signin")
-    public String adminSignIn(Model model){
-        return "adminSignInLayout";
-    }
+//    @GetMapping("/admin/signin")
+//    public String adminSignIn(Model model){
+//        return "adminSignInLayout";
+//    }
 }

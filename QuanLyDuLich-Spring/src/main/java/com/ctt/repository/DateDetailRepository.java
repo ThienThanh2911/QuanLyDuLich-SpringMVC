@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface DateDetailRepository {
     List<DateDetail> getListDateDetailById(int tourId);
+    boolean addDateDetail(DateDetail datedetail);
 }

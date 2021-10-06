@@ -43,6 +43,17 @@ public class DateDetailRepositoryImpl implements DateDetailRepository{
         return q.getResultList();
     }
     
-    
+    @Override
+    @Transactional
+    public boolean addDateDetail(DateDetail d) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.save(d);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
     
 }

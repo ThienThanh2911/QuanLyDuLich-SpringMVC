@@ -8,6 +8,8 @@ package com.ctt.controllers;
 import com.ctt.service.CategoryService;
 import com.ctt.service.ProvinceService;
 import com.ctt.service.TourService;
+import com.ctt.service.UserService;
+import java.security.Principal;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +33,8 @@ public class HomeController {
     private ProvinceService provinceService;
     @Autowired
     private TourService tourService;
-    
+    @Autowired
+    private UserService userDetailsService;
     @ModelAttribute
     public void commonAttr(Model model) {
         model.addAttribute("categories", this.categoryService.getCategories());
@@ -39,7 +42,9 @@ public class HomeController {
     }
     
     @RequestMapping("/")
-    public String index(Model model) {
+    public String index(Model model, Principal principal) {
+        if(principal != null)
+            model.addAttribute("user", this.userDetailsService.getUsers(principal.getName()).get(0));
         model.addAttribute("toursNew", this.tourService.getToursNew());
         return "homeLayout";
     }
@@ -62,5 +67,15 @@ public class HomeController {
     @RequestMapping("/terms")
     public String terms(Model model) {
         return "termsLayout";
+    }
+    
+    @RequestMapping("/payment-history")
+    public String paymentHistory(Model model) {
+        return "paymentHistoryLayout";
+    }
+    
+    @RequestMapping("/invoice-details")
+    public String invoiceDetails(Model model) {
+        return "invoiceDetailsLayout";
     }
 }

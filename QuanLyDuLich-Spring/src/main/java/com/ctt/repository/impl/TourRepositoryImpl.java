@@ -5,6 +5,7 @@
  */
 package com.ctt.repository.impl;
 
+import com.ctt.pojos.DateDetail;
 import com.ctt.pojos.Tours;
 import com.ctt.repository.TourRepository;
 import java.util.ArrayList;
