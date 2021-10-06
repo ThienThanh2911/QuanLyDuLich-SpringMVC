@@ -7,6 +7,9 @@
     --border-color: #ddd;
     --input-color: #fff;
     --inputtext-color: #232d39;
+    --table-color: #343a40;
+    --tabletext-color: #fff;
+    --tabletotal-color: #8e8e8e;
 }
 
 .dark-theme {
@@ -16,6 +19,9 @@
     --border-color: #596280;
     --input-color: #1A233A;
     --inputtext-color: #bcd0f7;
+    --table-color: #1A233A;
+    --tabletext-color: #bcd0f7;
+    --tabletotal-color: #1f2a45;
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
@@ -1326,4 +1332,26 @@ a:hover {
 
 .list-group-item {
     background-color: var(--card-color);
+}
+
+.headline {
+    margin-bottom: 30px;
+    padding: 8px;
+    border-bottom: 3px solid #ed563b;
+    
+}
+
+.headline > span {
+    color: #ed563b;
+}
+
+.readmore {
+    font-size: 20px;
+    position: relative;
+    top: 10px;
+}
+
+.clearfix-headline {
+    display: flex;
+    justify-content: space-between;
 }

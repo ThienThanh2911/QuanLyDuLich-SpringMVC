@@ -77,5 +77,9 @@
             //demo.showNotification("fa-info-circle", "Bạn đã vào trang quannr lý User", 1);
 
         });
+        $('#bologna-list a').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
     </script>
 </html>

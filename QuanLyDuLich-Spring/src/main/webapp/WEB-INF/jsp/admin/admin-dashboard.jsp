@@ -6,16 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            // Javascript method's body can be found in assets/js/demos.js
-            demo.initDashboardPageCharts();
 
-            demo.showNotification();
-
-        });
-    </script>
-<div class="sidebar" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
+<div class="sidebar" data-color="blue" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="http://www.creative-tim.com" class="simple-text">
@@ -85,36 +77,11 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#pablo"> Tours </a>
-            <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-bar burger-lines"></span>
-                <span class="navbar-toggler-bar burger-lines"></span>
-                <span class="navbar-toggler-bar burger-lines"></span>
-            </button>
+            <a class="navbar-brand" style="margin-top: 0" href="#pablo"> Dashboard <i class="nc-icon nc-palette"></i></a>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-toggle="dropdown">
-                            <i class="nc-icon nc-palette"></i>
-                            <span class="d-lg-none">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                            <i class="nc-icon nc-planet"></i>
-                            <span class="notification">5</span>
-                            <span class="d-lg-none">Notification</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Notification 1</a>
-                            <a class="dropdown-item" href="#">Notification 2</a>
-                            <a class="dropdown-item" href="#">Notification 3</a>
-                            <a class="dropdown-item" href="#">Notification 4</a>
-                            <a class="dropdown-item" href="#">Another notification</a>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <input class="nav-link" style="border: 0" placeholder="Search..."/>
+                        <input class="nav-link" style="border: 0;" placeholder="Search..."/>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -123,28 +90,16 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#pablo">
-                            <span class="no-icon">Account</span>
-                        </a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="no-icon">Dropdown</span>
+                            <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#">Your Profile</a>
+                            <a class="dropdown-item" href="#">Change Password</a>
                             <div class="divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
+                            <a class="dropdown-item" href="#">Logout</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#pablo">
-                            <span class="no-icon">Log out</span>
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -157,19 +112,19 @@
                 <div class="col-md-4">
                     <div class="card ">
                         <div class="card-header ">
-                            <h4 class="card-title">Email Statistics</h4>
-                            <p class="card-category">Last Campaign Performance</p>
+                            <h4 class="card-title">The Most Popular Product Statistics</h4>
+                            <p class="card-category">Biểu đồ thống kê sản phẩm bán chạy nhất</p>
                         </div>
                         <div class="card-body ">
                             <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
                             <div class="legend">
-                                <i class="fa fa-circle text-info"></i> Open
-                                <i class="fa fa-circle text-danger"></i> Bounce
-                                <i class="fa fa-circle text-warning"></i> Unsubscribe
+                                <i class="fa fa-circle text-info"></i> Tour miền Nam
+                                <i class="fa fa-circle text-danger"></i> Tour miền Bắc
+                                <i class="fa fa-circle text-warning"></i> Tour miền Trung
                             </div>
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                                <i class="nc-icon nc-layers-3"></i> Thống kê số liệu 3 sản phẩm bán chạy nhất
                             </div>
                         </div>
                     </div>
@@ -201,16 +156,16 @@
                 <div class="col-md-6">
                     <div class="card ">
                         <div class="card-header ">
-                            <h4 class="card-title">2017 Sales</h4>
-                            <p class="card-category">All products including Taxes</p>
+                            <h4 class="card-title">Revenue Statistics</h4>
+                            <p class="card-category">Biểu đồ thống kê doanh thu</p>
                         </div>
                         <div class="card-body ">
                             <div id="chartActivity" class="ct-chart"></div>
                         </div>
                         <div class="card-footer ">
                             <div class="legend">
-                                <i class="fa fa-circle text-info"></i> Tesla Model S
-                                <i class="fa fa-circle text-danger"></i> BMW 5 Series
+                                <i class="fa fa-circle text-info"></i> Vé người lớn
+                                <i class="fa fa-circle text-danger"></i> Vé trẻ em
                             </div>
                             <hr>
                             <div class="stats">
@@ -222,136 +177,86 @@
                 <div class="col-md-6">
                     <div class="card  card-tasks">
                         <div class="card-header ">
-                            <h4 class="card-title">Tasks</h4>
-                            <p class="card-category">Backend development</p>
+                            <h4 class="card-title">Statistics</h4>
+                            <p class="card-category">Chi tiết thống kê doanh thu theo thời gian</p>
                         </div>
                         <div class="card-body ">
-                            <div class="table-full-width">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                            </td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" checked>
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Read "Following makes Medium better"</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" disabled>
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Unfollow 5 enemies from twitter</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">Theo tháng</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">Theo quý</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#deals" role="tab" aria-controls="deals" aria-selected="false">Theo năm</a>
+                                </li>
+                             </ul>
+                            <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="description" role="tabpanel">
+                                    <p style="font-size: 20px"><strong>Số liệu thống kê tháng 9</strong></p>
+                                    <p class="card-text"><strong>Tổng số vé:</strong> <em>100</em></p>
+                                    <p class="card-text"><strong>Tổng doanh thu:</strong> <em>100.000.000VNĐ</em></p>
+                                    <p class="card-text"><strong>Chọn tháng mà bạn muốn xem thống kê chi tiết:</strong> 
+                                        <span>
+                                            <select class="form-select" aria-label="Default select example" style="border: 0; border-bottom: 1px solid black">
+                                                <option selected>Chọn tháng</option>
+                                                <option value="1">Tháng 1</option>
+                                                <option value="2">Tháng 2</option>
+                                                <option value="3">Tháng 3</option>
+                                                <option value="1">Tháng 4</option>
+                                                <option value="2">Tháng 5</option>
+                                                <option value="3">Tháng 6</option>
+                                                <option value="1">Tháng 7</option>
+                                                <option value="2">Tháng 8</option>
+                                                <option value="3">Tháng 9</option>
+                                                <option value="1">Tháng 10</option>
+                                                <option value="2">Tháng 11</option>
+                                                <option value="3">Tháng 12</option>
+                                            </select>
+                                        </span>
+                                    </p>
+                                </div>
+                                
+                                <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="history-tab">  
+                                    <p style="font-size: 20px"><strong>Số liệu thống kê quý 4</strong></p>
+                                    <p class="card-text"><strong>Tổng số vé:</strong> <em>200</em></p>
+                                    <p class="card-text"><strong>Tổng doanh thu:</strong> <em>200.000.000VNĐ</em></p>
+                                    <p class="card-text"><strong>Chọn quý mà bạn muốn xem thống kê chi tiết:</strong> 
+                                        <span>
+                                            <select class="form-select" aria-label="Default select example" style="border: 0; border-bottom: 1px solid black">
+                                                <option selected>Chọn quý</option>
+                                                <option value="1">Quý 1</option>
+                                                <option value="2">Quý 2</option>
+                                                <option value="3">Quý 3</option>
+                                                <option value="1">Quý 4</option>
+                                            </select>
+                                        </span>
+                                    </p>
+                                </div>
+
+                                <div class="tab-pane" id="deals" role="tabpanel" aria-labelledby="deals-tab">
+                                    <p style="font-size: 20px"><strong>Số liệu thống kê năm 2021</strong></p>
+                                    <p class="card-text"><strong>Tổng số vé:</strong> <em>1000</em></p>
+                                    <p class="card-text"><strong>Tổng doanh thu:</strong> <em>999.000.000VNĐ</em></p>
+                                    <p class="card-text"><strong>Nhập năm mà bạn muốn xem thống kê chi tiết:</strong> 
+                                        <span>
+                                            <select class="form-select" aria-label="Default select example" style="border: 0; border-bottom: 1px solid black">
+                                                <option selected>Chọn năm</option>
+                                                <option value="1">Năm 2020</option>
+                                                <option value="2">Năm 2021</option>
+                                            </select>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <div class="card-footer ">
                             <hr>
                             <div class="stats">
-                                <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
+                                <i class="fa fa-history"></i> Update data when using
                             </div>
                         </div>
                     </div>
@@ -396,13 +301,3 @@
         </div>
     </footer>
 </div>
-                
-<script type="text/javascript">
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-
-        demo.showNotification();
-
-    });
-</script>

@@ -65,4 +65,14 @@ public class HomeController {
     public String terms(Model model) {
         return "termsLayout";
     }
+    
+    @RequestMapping("/payment-history")
+    public String paymentHistory(Model model) {
+        return "paymentHistoryLayout";
+    }
+    
+    @RequestMapping("/invoice-details")
+    public String invoiceDetails(Model model) {
+        return "invoiceDetailsLayout";
+    }
 }

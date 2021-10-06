@@ -15,15 +15,16 @@
             </a>
         </div>
         <ul class="nav">
-            <li>
-                <c:url value="/admin/dashboard" var="url" />
+            <li class="nav-item active">
+                <c:url value="/admin/" var="url" />
                 <a class="nav-link" href="${url}">
                     <i class="nc-icon nc-chart-pie-35"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./user.html">
+                <c:url value="/admin/" var="url" />
+                <a class="nav-link" href="${url}">
                     <i class="nc-icon nc-circle-09"></i>
                     <p>QUẢN LÝ TÀI KHOẢN</p>
                 </a>
@@ -78,7 +79,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class="container-fluid">
-            <a class="navbar-brand" style="margin-top: 0" href="#pablo"> Edit Profile <i class="nc-icon nc-palette"></i></a>
+            <a class="navbar-brand" style="margin-top: 0" href="#pablo"> Edit Tour <i class="nc-icon nc-palette"></i></a>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
@@ -113,81 +114,121 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Profile</h4>
+                            <h4 class="card-title">Edit Tour Information</h4>
                         </div>
                         <div class="card-body">
                             <form>
                                 <div class="row">
                                     <div class="col-md-5 pr-1">
                                         <div class="form-group">
-                                            <label>Company (disabled)</label>
-                                            <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
+                                            <label>Tour Name</label>
+                                            <input type="text" class="form-control" placeholder="Tên tour..." value="">
                                         </div>
                                     </div>
                                     <div class="col-md-3 px-1">
                                         <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="text" class="form-control" placeholder="Username" value="michael23">
+                                            <label>Destination</label>
+                                            <input type="text" class="form-control" placeholder="Điểm đến..." value="">
                                         </div>
                                     </div>
                                     <div class="col-md-4 pl-1">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" class="form-control" placeholder="Email">
+                                            <label>Price</label>
+                                            <input type="text" class="form-control" placeholder="Giá vé..." value="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 pr-1">
                                         <div class="form-group">
-                                            <label>First Name</label>
-                                            <input type="text" class="form-control" placeholder="Company" value="Mike">
+                                            <label>Start Date</label>
+                                            <input type="date" class="form-control" value="2021-10-01">
                                         </div>
                                     </div>
                                     <div class="col-md-6 pl-1">
                                         <div class="form-group">
-                                            <label>Last Name</label>
-                                            <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                            <label>Finish Date</label>
+                                            <input type="date" class="form-control" value="2021-10-04">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 pr-1">
+                                        <div class="form-group">
+                                            <label>Category</label>
+                                            <div>
+                                                <select class="form-select" style="width: 100%" aria-label="Default select example">
+                                                    <option selected>Danh mục tour</option>
+                                                    <option value="1">Tour miền Nam</option>
+                                                    <option value="2">Tour miền Bắc</option>
+                                                    <option value="3">Tour miền Trung</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pl-1">
+                                        <div class="form-group">
+                                            <label>Vehicle</label>
+                                            <div>
+                                                <select class="form-select" style="width: 100%" aria-label="Default select example">
+                                                    <option selected>Phương tiện di chuyển</option>
+                                                    <option value="1">Ô tô</option>
+                                                    <option value="2">Máy bay</option>
+                                                    <option value="3">Du thuyền</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 pr-1">
+                                        <div class="form-group">
+                                            <label>Tag</label>
+                                            <div style="width: 100%">
+                                                <button class="btn dropdown-toggle btn-block" type="button" data-toggle="dropdown" width="100%" style="border: 1px solid #E3E3E3; color:black; text-align: left;"
+                                                        aria-haspopup="true" aria-expanded="false">Chọn nhãn dán</button>
+
+                                                <div class="dropdown-menu" style="width:95%">
+                                                  <a class="dropdown-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                      <input type="checkbox" style="margin: 2px 5px 0 0;" id="checkbox1">
+                                                      <label class="custom-control-label" for="checkbox1">Bắc</label>
+                                                    </div>
+                                                  </a>
+                                                  <a class="dropdown-item" href="#">
+                                                    <div class="custom-control custom-checkbox">
+                                                      <input type="checkbox" style="margin: 2px 5px 0 0;" id="checkbox2">
+                                                      <label class="custom-control-label" for="checkbox2">Trung</label>
+                                                    </div>
+                                                  </a>
+                                                  <a class="dropdown-item" href="#">
+                                                    <div class="custom-control custom-checkbox">
+                                                      <input type="checkbox" style="margin: 2px 5px 0 0;" id="checkbox3">
+                                                      <label class="custom-control-label" for="checkbox3">Nam</label>
+                                                    </div>
+                                                  </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9 pl-1">
+                                        <div class="form-group">
+                                            <label>Image</label>
+                                            <div>
+                                                <input type="file" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                            <label>Description</label>
+                                            <textarea rows="4" cols="80" class="form-control" placeholder="Mô tả tour..." value="">Tour miền Nam...</textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4 pr-1">
-                                        <div class="form-group">
-                                            <label>City</label>
-                                            <input type="text" class="form-control" placeholder="City" value="Mike">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 px-1">
-                                        <div class="form-group">
-                                            <label>Country</label>
-                                            <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 pl-1">
-                                        <div class="form-group">
-                                            <label>Postal Code</label>
-                                            <input type="number" class="form-control" placeholder="ZIP Code">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>About Me</label>
-                                            <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Tour</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>
@@ -195,35 +236,18 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card card-user">
-                        <div class="card-image" style="background-color: gray;">
-                        </div>
                         <div class="card-body">
-                            <div class="author">
-                                <a href="#">
-                                    <img class="avatar border-gray" src="../resources/assets/img/faces/face-3.jpg" alt="...">
-                                    <h5 class="title">Mike Andrew</h5>
-                                </a>
-                                <p class="description">
-                                    michael24
-                                </p>
-                            </div>
+                            <img src="../resources/images/blog-image-1-940x460.jpg" height="100%" width="100%" alt="..." class="img-thumbnail">
                             <p class="description text-center">
-                                "Lamborghini Mercy
-                                <br> Your chick she so thirsty
-                                <br> I'm in that two seat Lambo"
+                                <span style="font-size: 20px; "><strong>Tour miền Nam</strong></span>
+                                <br>Giá vé: 1.000.000VNĐ
+                                <br>Danh mục: Tour miền nam
+                                <br>Phương tiện di chuyển: Máy bay
                             </p>
                         </div>
                         <hr>
                         <div class="button-container mr-auto ml-auto">
-                            <button href="#" class="btn btn-simple btn-link btn-icon">
-                                <i class="fa fa-facebook-square"></i>
-                            </button>
-                            <button href="#" class="btn btn-simple btn-link btn-icon">
-                                <i class="fa fa-twitter"></i>
-                            </button>
-                            <button href="#" class="btn btn-simple btn-link btn-icon">
-                                <i class="fa fa-google-plus-square"></i>
-                            </button>
+                            <span><i class="nc-icon nc-square-pin"></i> Điểm đến TP.Hồ Chí Minh</span>
                         </div>
                     </div>
                 </div>

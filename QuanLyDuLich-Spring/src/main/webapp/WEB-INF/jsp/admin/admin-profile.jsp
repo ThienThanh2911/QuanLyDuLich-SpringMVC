@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="sidebar" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
+<div class="sidebar" data-color="blue" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="http://www.creative-tim.com" class="simple-text">
@@ -78,36 +78,11 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#pablo"> Tours </a>
-            <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-bar burger-lines"></span>
-                <span class="navbar-toggler-bar burger-lines"></span>
-                <span class="navbar-toggler-bar burger-lines"></span>
-            </button>
+            <a class="navbar-brand" style="margin-top: 0" href="#pablo"> Edit Profile <i class="nc-icon nc-palette"></i></a>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-toggle="dropdown">
-                            <i class="nc-icon nc-palette"></i>
-                            <span class="d-lg-none">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                            <i class="nc-icon nc-planet"></i>
-                            <span class="notification">5</span>
-                            <span class="d-lg-none">Notification</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Notification 1</a>
-                            <a class="dropdown-item" href="#">Notification 2</a>
-                            <a class="dropdown-item" href="#">Notification 3</a>
-                            <a class="dropdown-item" href="#">Notification 4</a>
-                            <a class="dropdown-item" href="#">Another notification</a>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <input class="nav-link" style="border: 0" placeholder="Search..."/>
+                        <input class="nav-link" style="border: 0;" placeholder="Search..."/>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -116,28 +91,16 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#pablo">
-                            <span class="no-icon">Account</span>
-                        </a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="no-icon">Dropdown</span>
+                            <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#">Your Profile</a>
+                            <a class="dropdown-item" href="#">Change Password</a>
                             <div class="divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
+                            <a class="dropdown-item" href="#">Logout</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#pablo">
-                            <span class="no-icon">Log out</span>
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -232,7 +195,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card card-user">
-                        <div class="card-image" style="background-color: purple;">
+                        <div class="card-image" style="background-color: gray;">
                         </div>
                         <div class="card-body">
                             <div class="author">

@@ -243,6 +243,7 @@ input:focus {
 /*           Animations              */
 
 .form-control,
+.form-select,
 .input-group-addon,
 .tagsinput,
 .navbar,
@@ -1532,6 +1533,50 @@ fieldset[disabled] .btn-neutral.active {
 }
 
 .form-control:focus {
+    background-color: #FFFFFF;
+    border: 1px solid #AAAAAA;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: 0 !important;
+    color: #333333;
+}
+
+.form-select::-moz-placeholder {
+    color: #DDDDDD;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.form-select:-moz-placeholder {
+    color: #DDDDDD;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.form-select::-webkit-input-placeholder {
+    color: #DDDDDD;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.form-select:-ms-input-placeholder {
+    color: #DDDDDD;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.form-select {
+    background-color: #FFFFFF;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    color: #565656;
+    padding: 8px 12px;
+    height: 40px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.form-select:focus {
     background-color: #FFFFFF;
     border: 1px solid #AAAAAA;
     -webkit-box-shadow: none;
