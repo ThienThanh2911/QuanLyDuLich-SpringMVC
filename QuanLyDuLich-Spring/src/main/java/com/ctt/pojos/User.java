@@ -82,8 +82,6 @@ public class User implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Payments> payments;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<TourBooking> tourbooking;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<RateTour> ratetour;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     @OrderBy("id")
@@ -268,20 +266,6 @@ public class User implements Serializable {
      */
     public void setPayments(Set<Payments> payments) {
         this.payments = payments;
-    }
-
-    /**
-     * @return the tourbooking
-     */
-    public Set<TourBooking> getTourbooking() {
-        return tourbooking;
-    }
-
-    /**
-     * @param tourbooking the tourbooking to set
-     */
-    public void setTourbooking(Set<TourBooking> tourbooking) {
-        this.tourbooking = tourbooking;
     }
 
     /**

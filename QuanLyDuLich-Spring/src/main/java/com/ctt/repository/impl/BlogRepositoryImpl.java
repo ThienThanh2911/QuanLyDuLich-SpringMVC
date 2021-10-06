@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -31,7 +32,7 @@ public class BlogRepositoryImpl implements BlogRepository{
     
     @Override
     @Transactional
-    public List<Blog> getBlogs(String kw) {
+    public List<Blog> getBlogs(String kw, int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Blog> query = builder.createQuery(Blog.class);
@@ -44,6 +45,9 @@ public class BlogRepositoryImpl implements BlogRepository{
         
         query = query.select(root); 
         Query q = session.createQuery(query);
+        int max = 9;
+        q.setMaxResults(max);
+        q.setFirstResult((page - 1) * max);
         return q.getResultList();
     }
 
@@ -57,9 +61,38 @@ public class BlogRepositoryImpl implements BlogRepository{
         Predicate p = builder.equal(root.get("id"), id);
         query = query.where(p);
         
-        org.hibernate.query.Query q = session.createQuery(query);
-
+        Query q = session.createQuery(query);
         return (Blog) q.getSingleResult();
+    }
+
+    @Override
+    public boolean addOrUpdateBlog(Blog blog) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.merge(blog);
+            return true;
+        }catch(HibernateException ex){
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public void removeBlog(Blog blog) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.delete(blog);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public long countBlogs() {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        Query q = s.createQuery("Select Count(*) From Blog");
+        
+        return Long.parseLong(q.getSingleResult().toString());
     }
     
     

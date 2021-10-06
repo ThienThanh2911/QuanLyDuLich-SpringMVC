@@ -358,7 +358,7 @@
                             <div class="row">
                                 <div class="col-md-10">
                                     <select id="method" name="method" class="custom-select" style="text-align-last: center; width: 75%; background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
-                                        <option value="">Phương thức thanh toán</option>
+                                        <option value="">Chọn phương thức thanh toán</option>
                                         <option value="0">ZaloPay</option>
                                         <option value="1">Momo</option>
                                         <option value="2">Cash</option>
@@ -368,10 +368,13 @@
                         </div>
                        <div class="col-md-6">
                           <div class="row">
-                             <div class="col-md-6">
-                                <fieldset>
-                                  <input type="text" class="form-control" placeholder="From date" required="">
-                                </fieldset>
+                             <div class="col-md-10">
+                                <select id="datedetail" name="datedetail" class="custom-select" style="text-align-last: center; width: 75%; background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
+                                        <option value="">Chọn ngày khởi hành</option>
+                                        <c:forEach items="${dates}" var="date">
+                                            <option value="${date.id}">${date.startDate}</option>
+                                        </c:forEach>
+                                </select>
                              </div>
                           </div>
                         </div>
@@ -479,9 +482,10 @@
         });
         function addPayment(user, tour){
             let method = document.getElementById("method").value
+            let datedetail = document.getElementById("datedetail").value
             let totalP = p * a.value + p * c.value
             let close = document.getElementById("close")
-            if(method !== ""){
+            if(method !== "" && datedetail !== ""){
                 fetch("/QuanLyDuLich-Spring/api/add-payment",{
                     method: 'post',
                     body: JSON.stringify({
@@ -490,7 +494,8 @@
                         "price": totalP,
                         "adult": a.value,
                         "children": c.value,
-                        "method": method
+                        "method": method,
+                        "datedetail": datedetail
                     }),
                     headers:{
                         'Content-Type': 'application/json'
@@ -503,6 +508,6 @@
                     console.error(err);
                 });
             }else
-                alert("Bạn cần phải chọn phương thức thanh toán!");
+                alert("Bạn cần phải chọn phương thức thanh toán và ngày muốn khởi hành!");
         }
     </script>

@@ -54,31 +54,38 @@ public class TourServiceImpl implements TourService {
     @Transactional
     public boolean addOrUpdate(Tours tours) {
         MultipartFile img = tours.getFile();
-        if (img != null && !img.isEmpty()) {
-            try {
-                if(!this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).isEmpty())
-                    tours.setId(this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).get(0).getId());
-
+        if(!this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).isEmpty())
+            tours.setId(this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).get(0).getId());
+        try {
+            if (img != null && !img.isEmpty()) {
                 Map r = this.cloudinary.uploader().upload(tours.getFile().getBytes(), 
                     ObjectUtils.asMap("resource_type", "auto"));
                 tours.setPhotos((String) r.get("secure_url"));
-                if(this.tourRepository.addOrUpdate(tours)){
-                    Tours t = this.tourRepository.getTours(tours.getName(), null, null, null, null, 0).get(0);
-                    DateDetail d = new DateDetail();
-                    d.setStartDate(tours.getStartDate());
-                    d.setFinishDate(tours.getFinishDate());
-                    d.setTour(t);
-                    d.setStatus(Status.ACTIVE);
-                    this.dateDetailService.addDateDetail(d);
-                    return true;
-                }else return false;
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
             }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
-        return false;
+        if(this.tourRepository.addOrUpdate(tours)){
+            if(tours.getStartDate() != null && tours.getFinishDate() != null){
+                Tours t = this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).get(0);
+                DateDetail d = new DateDetail();
+                d.setStartDate(tours.getStartDate());
+                d.setFinishDate(tours.getFinishDate());
+                d.setTour(t);
+                d.setStatus(Status.ACTIVE);
+                this.dateDetailService.addDateDetail(d);
+            }
+            return true;
+        }else return false;
     }
 
+    @Override
+    public void removeTour(Tours tours) {
+        this.tourRepository.removeTour(tours);
+    }
+
+    
+    
     @Override
     public long countTours() {
         return this.tourRepository.countTours();

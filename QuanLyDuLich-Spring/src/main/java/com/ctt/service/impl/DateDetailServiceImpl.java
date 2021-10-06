@@ -31,8 +31,11 @@ public class DateDetailServiceImpl implements DateDetailService {
     public boolean addDateDetail(DateDetail d) {
         return this.dateDetailRepository.addDateDetail(d);
     }
-    
-    
-    
 
+    @Override
+    public DateDetail getDateDetailById(int i) {
+        return this.dateDetailRepository.getDateDetailById(i);
+    }
+    
+    
 }

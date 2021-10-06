@@ -90,8 +90,24 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-profile.jsp" />
     </definition>
     <definition name="adminPackagesLayout" extends="baseAdminLayout">
-        <put-attribute name="title" value="Danh sách tour" />
+        <put-attribute name="title" value="Danh sách Tours" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-packages.jsp" />
+    </definition>
+    <definition name="adminUsersLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Danh sách Users" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-users.jsp" />
+    </definition>
+    <definition name="adminBlogsLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Danh sách Blogs" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-blogs.jsp" />
+    </definition>
+    <definition name="adminCommentBlogsLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Danh sách Comment Blogs" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-comment-blog.jsp" />
+    </definition>
+    <definition name="adminCommentToursLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Danh sách Comment Tours" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-comment-tour.jsp" />
     </definition>
     <definition name="adminMapLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="Bản đồ" />

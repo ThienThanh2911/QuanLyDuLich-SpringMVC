@@ -5,6 +5,7 @@
  */
 package com.ctt.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -65,7 +66,6 @@ public class Tours implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date finishDate;
-    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "tour_tag",
@@ -81,8 +81,6 @@ public class Tours implements Serializable{
     private MultipartFile file;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<Payments> payments;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
-    private Set<TourBooking> tourbooking;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<DateDetail> datedetail;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
@@ -242,20 +240,6 @@ public class Tours implements Serializable{
      */
     public void setPayments(Set<Payments> payments) {
         this.payments = payments;
-    }
-
-    /**
-     * @return the tourbooking
-     */
-    public Set<TourBooking> getTourbooking() {
-        return tourbooking;
-    }
-
-    /**
-     * @param tourbooking the tourbooking to set
-     */
-    public void setTourbooking(Set<TourBooking> tourbooking) {
-        this.tourbooking = tourbooking;
     }
 
     /**

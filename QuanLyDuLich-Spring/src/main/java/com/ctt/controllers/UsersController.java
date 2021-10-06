@@ -76,7 +76,7 @@ public class UsersController {
     @Transactional
     public String changepassword(Model model , Principal principal,
             @RequestParam(required = false) Map<String, String> params) {
-        User user = this.userDetailsService.getUsers(principal.getName()).get(0);
+        User user = this.userDetailsService.getUsers(principal.getName(), 1).get(0);
         String msgError = "";
         if(!params.get("oldPassword").trim().equals(params.get("newPassword").trim()))
             if(params.get("newPassword").trim().equals(params.get("confirmNewPassword").trim()))
@@ -97,8 +97,8 @@ public class UsersController {
     @GetMapping("/your-profile")
     public String profileView(Model model, Principal principal){
         if(principal != null){
-            model.addAttribute("user", this.userDetailsService.getUsers(principal.getName()).get(0));
-            model.addAttribute("provinceId", this.userDetailsService.getUsers(principal.getName()).get(0).getProvince().getId());
+            model.addAttribute("user", this.userDetailsService.getUsers(principal.getName(), 1).get(0));
+            model.addAttribute("provinceId", this.userDetailsService.getUsers(principal.getName(), 1).get(0).getProvince().getId());
             return "profileLayout";
         }
         return "redirect:/signin";
@@ -107,7 +107,7 @@ public class UsersController {
     @PostMapping("/your-profile")
     public String profile(Model model, @ModelAttribute(value = "user") User user, Principal principal){
         user.setUsername(principal.getName());
-        User userRoot = this.userDetailsService.getUsers(principal.getName()).get(0);
+        User userRoot = this.userDetailsService.getUsers(principal.getName(), 1).get(0);
         user.setEmail(userRoot.getEmail());
         user.setRole(userRoot.getRole());
         user.setPassword(userRoot.getPassword());

@@ -55,5 +55,22 @@ public class DateDetailRepositoryImpl implements DateDetailRepository{
         }
         return false;
     }
+
+    @Override
+    @Transactional
+    public DateDetail getDateDetailById(int datedetailId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<DateDetail> query = builder.createQuery(DateDetail.class);
+        Root root = query.from(DateDetail.class);
+
+        Predicate p = builder.equal(root.get("id"), datedetailId);
+        query = query.where(p);
+        
+        Query q = session.createQuery(query);
+
+        return (DateDetail) q.getSingleResult();
+    }
+    
     
 }

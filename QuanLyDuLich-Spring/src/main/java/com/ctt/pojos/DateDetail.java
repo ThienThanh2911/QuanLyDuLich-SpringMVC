@@ -7,13 +7,17 @@ package com.ctt.pojos;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,6 +44,8 @@ public class DateDetail implements Serializable {
     @JoinColumn(name = "tour_id")
     private Tours tour;
     private Status status;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "datedetail", cascade = CascadeType.ALL)
+    private Set<Payments> payments;
     /**
      * @return the id
      */
@@ -108,5 +114,19 @@ public class DateDetail implements Serializable {
      */
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    /**
+     * @return the payments
+     */
+    public Set<Payments> getPayments() {
+        return payments;
+    }
+
+    /**
+     * @param payments the payments to set
+     */
+    public void setPayments(Set<Payments> payments) {
+        this.payments = payments;
     }
 }

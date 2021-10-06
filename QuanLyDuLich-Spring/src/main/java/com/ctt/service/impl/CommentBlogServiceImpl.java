@@ -52,6 +52,16 @@ public class CommentBlogServiceImpl implements CommentBlogService {
     public List<CommentBlog> getListCommentsBlogById(int blogId) {
         return this.commentBlogRepository.getListCommentsBlogById(blogId);
     }
+
+    @Override
+    public List<CommentBlog> getCommentBlogs(int page) {
+        return this.commentBlogRepository.getCommentBlogs(page);
+    }
+
+    @Override
+    public long countCommentBlogs() {
+        return this.commentBlogRepository.countCommentBlogs();
+    }
     
     
 }

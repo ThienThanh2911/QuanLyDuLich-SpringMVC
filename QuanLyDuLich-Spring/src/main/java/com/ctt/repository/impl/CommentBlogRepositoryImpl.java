@@ -82,6 +82,31 @@ public class CommentBlogRepositoryImpl implements CommentBlogRepository{
         Query q = session.createQuery(query);
         return q.getResultList();
     }
+
+    @Override
+    @Transactional
+    public List<CommentBlog> getCommentBlogs(int page) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<CommentBlog> query = builder.createQuery(CommentBlog.class);
+        Root root = query.from(CommentBlog.class);
+        query = query.select(root).orderBy(builder.desc(root.get("id")));
+        
+        Query q = session.createQuery(query);
+        int max = 9;
+        q.setMaxResults(max);
+        q.setFirstResult((page - 1) * max);
+        return q.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public long countCommentBlogs() {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        Query q = s.createQuery("Select Count(*) From CommentBlog");
+        
+        return Long.parseLong(q.getSingleResult().toString());
+    }
     
     
     

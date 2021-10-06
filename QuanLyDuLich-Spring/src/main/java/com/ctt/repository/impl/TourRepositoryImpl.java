@@ -5,7 +5,6 @@
  */
 package com.ctt.repository.impl;
 
-import com.ctt.pojos.DateDetail;
 import com.ctt.pojos.Tours;
 import com.ctt.repository.TourRepository;
 import java.util.ArrayList;
@@ -103,6 +102,18 @@ public class TourRepositoryImpl implements TourRepository {
         }
         return false;
     }
+
+    @Override
+    public void removeTour(Tours tour) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.delete(tour);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
 
     @Override
     public long countTours() {

@@ -6,8 +6,16 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
 
-<div class="sidebar" data-image="../resources/assets/img/sidebar.jpg">
+            demo.showNotification();
+
+        });
+    </script>
+<div class="sidebar" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="http://www.creative-tim.com" class="simple-text">
@@ -16,45 +24,43 @@
         </div>
         <ul class="nav">
             <li class="nav-item active">
-                <c:url value="/admin/" var="url" />
-                <a class="nav-link" href="${url}">
+                <a class="nav-link" href="<c:url value="/admin" />">
                     <i class="nc-icon nc-chart-pie-35"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li>
-                <c:url value="/admin/" var="url" />
-                <a class="nav-link" href="${url}">
+                <a class="nav-link" href="<c:url value="/admin/users" />">
                     <i class="nc-icon nc-circle-09"></i>
                     <p>QUẢN LÝ TÀI KHOẢN</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./table.html">
+                <a class="nav-link" href="<c:url value="/admin/packages" />">
                     <i class="nc-icon nc-notes"></i>
                     <p>QUẢN LÝ DU LỊCH</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./typography.html">
+                <a class="nav-link" href="<c:url value="/admin/blogs" />">
                     <i class="nc-icon nc-notes"></i>
                     <p>QUẢN LÝ BÀI VIẾT</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./icons.html">
+                <a class="nav-link" href="<c:url value="/admin/commenttours" />">
                     <i class="nc-icon nc-paper-2"></i>
                     <p>BÌNH LUẬN DU LỊCH</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./maps.html">
+                <a class="nav-link" href="<c:url value="/admin/commentblogs" />">
                     <i class="nc-icon nc-paper-2"></i>
                     <p>BÌNH LUẬN BÀI VIẾT</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./notifications.html">
+                <a class="nav-link" href="<c:url value="/admin/payments" />">
                     <i class="nc-icon nc-bank"></i>
                     <p>QUẢN LÝ HÓA ĐƠN</p>
                 </a>

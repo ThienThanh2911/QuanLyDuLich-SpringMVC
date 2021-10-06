@@ -17,4 +17,6 @@ public interface CommentBlogRepository {
     CommentBlog getCommentBlogById(int id);
     List<CommentBlog> getListCommentsBlogById(int blogId);
     void removeCommentBlog(CommentBlog c);
+    List<CommentBlog> getCommentBlogs(int page);
+    long countCommentBlogs();
 }

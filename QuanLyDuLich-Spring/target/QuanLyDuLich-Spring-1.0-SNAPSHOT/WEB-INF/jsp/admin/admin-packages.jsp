@@ -6,8 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<div class="sidebar" data-image="../resources/assets/img/sidebar.jpg">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apitour.js"></script>
+=======
+<div class="sidebar" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="http://www.creative-tim.com" class="simple-text">
@@ -16,43 +17,43 @@
         </div>
         <ul class="nav">
             <li>
-                <a class="nav-link" href="dashboard.html">
+                <a class="nav-link" href="<c:url value="/admin" />">
                     <i class="nc-icon nc-chart-pie-35"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./user.html">
+                <a class="nav-link" href="<c:url value="/admin/users" />">
                     <i class="nc-icon nc-circle-09"></i>
                     <p>QUẢN LÝ TÀI KHOẢN</p>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="./table.html">
+            <li class="nav-item active">
+                <a class="nav-link" href="<c:url value="/admin/packages" />">
                     <i class="nc-icon nc-notes"></i>
                     <p>QUẢN LÝ DU LỊCH</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./typography.html">
+                <a class="nav-link" href="<c:url value="/admin/blogs" />">
                     <i class="nc-icon nc-notes"></i>
                     <p>QUẢN LÝ BÀI VIẾT</p>
                 </a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="./icons.html">
+            <li>
+                <a class="nav-link" href="<c:url value="/admin/commenttours" />">
                     <i class="nc-icon nc-paper-2"></i>
                     <p>BÌNH LUẬN DU LỊCH</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./maps.html">
+                <a class="nav-link" href="<c:url value="/admin/commentblogs" />">
                     <i class="nc-icon nc-paper-2"></i>
                     <p>BÌNH LUẬN BÀI VIẾT</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./notifications.html">
+                <a class="nav-link" href="<c:url value="/admin/payments" />">
                     <i class="nc-icon nc-bank"></i>
                     <p>QUẢN LÝ HÓA ĐƠN</p>
                 </a>
@@ -155,124 +156,52 @@
                             <thead>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Salary</th>
-                                <th>Country</th>
-                                <th>City</th>
+                                <th>Destination</th>
+                                <th>Price</th>
+                                <th>Category</th>
                                 <th style="width: 60px">Active</th>
                                 <th style="text-align: center!important">Edit</th>
                                 <th>Remove</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Dakota Rice</td>
-                                    <td>$36,738</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td class="text-center"><i class="fa fa-check-circle" style="color:green"></i></td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                            <i class="fa fa-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>$23,789</td>
-                                    <td>Curaçao</td>
-                                    <td>Sinaai-Waas</td>
-                                    <td class="text-center"><i class="fa fa-check-circle" style="color:green; text-align: center"></i></td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                            <i class="fa fa-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Sage Rodriguez</td>
-                                    <td>$56,142</td>
-                                    <td>Netherlands</td>
-                                    <td>Baileux</td>
-                                    <td class="text-center"><i class="fa fa-check-circle" style="color:green; text-align: center"></i></td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                            <i class="fa fa-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Philip Chaney</td>
-                                    <td>$38,735</td>
-                                    <td>Korea, South</td>
-                                    <td>Overland Park</td>
-                                    <td class="text-center"><i class="fa fa-check-circle" style="color:green; text-align: center"></i></td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                            <i class="fa fa-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Doris Greene</td>
-                                    <td>$63,542</td>
-                                    <td>Malawi</td>
-                                    <td>Feldkirchen in Kärnten</td>
-                                    <td class="text-center"><i class="fa fa-check-circle" style="color:green; text-align: center"></i></td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                            <i class="fa fa-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Mason Porter</td>
-                                    <td>$78,615</td>
-                                    <td>Chile</td>
-                                    <td>Gloucester</td>
-                                    <td class="text-center"><i class="fa fa-check-circle" style="color:green; text-align: center"></i></td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                            <i class="fa fa-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                <c:forEach items="${packages}" var="p">
+                                    <tr id="tour${p.id}">
+                                        <td>${p.id}</td>
+                                        <td>${p.name}</td>
+                                        <td>${p.destination}</td>
+                                        <td>${p.price}</td>
+                                        <td>${p.category.name}</td>
+                                        <td class="text-center">
+                                            <c:if test="${p.active == true}">
+                                                <button id="buttontour${p.id}" onclick="setActiveTour(${p.id})" type="button" rel="tooltip" title="Deactive Tour" class="btn btn-info btn-simple btn-link">
+                                                    <i id="itour${p.id}" class="fa fa-check-circle" style="color:green; text-align: center"></i>
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${p.active == false}">
+                                                <button id="buttontour${p.id}" onclick="setActiveTour(${p.id})" type="button" rel="tooltip" title="Active Tour" class="btn btn-info btn-simple btn-link">
+                                                    <i id="itour${p.id}" class="fa fa-check-circle" style="color:red; text-align: center"></i>
+                                                </button>
+                                            </c:if>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button onclick="removeTour(${p.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
+                        <ul class="pagination justify-content-center">
+                            <c:forEach begin="1" end="${countPage}" var="i">
+                                <li class="page-item"><a class="page-link" href="<c:url value="/admin/packages" />?page=${i}">${i}</a></li>
+                            </c:forEach>
+                        </ul>
                     </div>
                 </div>
             </div>

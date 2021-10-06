@@ -50,6 +50,7 @@ public class Blog implements Serializable{
     private Set<RateBlog> rateblog;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "blog")
     private Set<CommentBlog> commentblog;
+    private boolean active;
     /**
      * @return the id
      */
@@ -174,5 +175,19 @@ public class Blog implements Serializable{
      */
     public void setRateblog(Set<RateBlog> rateblog) {
         this.rateblog = rateblog;
+    }
+
+    /**
+     * @return the active
+     */
+    public boolean isActive() {
+        return active;
+    }
+
+    /**
+     * @param active the active to set
+     */
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

@@ -18,4 +18,6 @@ public interface TourRepository {
     long countTours();
     boolean addOrUpdate(Tours tours);
     List<Tours> getToursNew();
+    void removeTour(Tours tour);
+
 }

@@ -54,6 +54,7 @@ function removeComment(commentId){
     }).then(function(data){
         let a = document.getElementById(`comment${commentId}`);
         a.style.display = "none"
+        demo.showNotification("fa fa-trash", `Bạn đã xóa CommentTourID ${commentId} thành công`, 2);
     }).catch(function(err){
         console.error(err);
     });

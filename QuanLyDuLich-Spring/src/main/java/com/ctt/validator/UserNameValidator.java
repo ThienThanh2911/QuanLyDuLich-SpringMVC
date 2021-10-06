@@ -21,7 +21,7 @@ public class UserNameValidator implements ConstraintValidator<UserName, String> 
             if(userRepository == null) {
                     return true;
             }
-            if(userRepository.getUsers(username).isEmpty())
+            if(userRepository.getUsers(username, 1).isEmpty())
                 return true;
             else
                 return false;

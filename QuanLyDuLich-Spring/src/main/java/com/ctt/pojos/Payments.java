@@ -53,6 +53,10 @@ public class Payments implements Serializable{
     @JoinColumn(name = "tour_id")
     private Tours tour;
     private Methods method;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "date_id")
+    private DateDetail datedetail;
     private String status;
     /**
      * @return the id
@@ -192,5 +196,19 @@ public class Payments implements Serializable{
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * @return the datedetail
+     */
+    public DateDetail getDatedetail() {
+        return datedetail;
+    }
+
+    /**
+     * @param datedetail the datedetail to set
+     */
+    public void setDatedetail(DateDetail datedetail) {
+        this.datedetail = datedetail;
     }
 }

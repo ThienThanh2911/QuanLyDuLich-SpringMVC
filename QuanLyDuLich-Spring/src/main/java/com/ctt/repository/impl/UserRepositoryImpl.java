@@ -43,7 +43,7 @@ public class UserRepositoryImpl implements UserRepository{
     }
 
     @Override
-    public List<User> getUsers(String username) {
+    public List<User> getUsers(String username, int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
@@ -56,6 +56,9 @@ public class UserRepositoryImpl implements UserRepository{
         
         query = query.select(root);  
         Query q = session.createQuery(query);
+        int max = 9;
+        q.setMaxResults(max);
+        q.setFirstResult((page - 1) * max);
         return q.getResultList();
     }
     
@@ -99,6 +102,24 @@ public class UserRepositoryImpl implements UserRepository{
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void removeUser(User user) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.delete(user);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public long countUsers() {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        Query q = s.createQuery("Select Count(*) From User");
+        
+        return Long.parseLong(q.getSingleResult().toString());
     }
     
     

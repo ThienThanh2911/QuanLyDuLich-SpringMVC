@@ -29,6 +29,7 @@ CREATE TABLE `blog` (
   `created_date` datetime NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `photos` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` tinyint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_blog_user_idx` (`user_id`),
   CONSTRAINT `fk_blog_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -41,7 +42,7 @@ CREATE TABLE `blog` (
 
 LOCK TABLES `blog` WRITE;
 /*!40000 ALTER TABLE `blog` DISABLE KEYS */;
-INSERT INTO `blog` VALUES (1,'fewf',10,'2021-09-20 09:24:51','vsa','asd');
+INSERT INTO `blog` VALUES (1,'fewf',10,'2021-09-20 09:24:51','vsa','asd',1);
 /*!40000 ALTER TABLE `blog` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +86,7 @@ CREATE TABLE `commentblog` (
   `blog_id` int NOT NULL,
   `created_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +95,7 @@ CREATE TABLE `commentblog` (
 
 LOCK TABLES `commentblog` WRITE;
 /*!40000 ALTER TABLE `commentblog` DISABLE KEYS */;
-INSERT INTO `commentblog` VALUES (5,'sda',NULL,14,1,'2021-09-22 19:23:17'),(7,'',NULL,14,1,'2021-09-22 19:23:23'),(8,'',NULL,14,1,'2021-09-22 19:23:25'),(9,'dsa',NULL,14,1,'2021-09-22 19:23:32');
+INSERT INTO `commentblog` VALUES (9,'dsa',NULL,14,1,'2021-09-22 19:23:32');
 /*!40000 ALTER TABLE `commentblog` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +127,7 @@ CREATE TABLE `commenttour` (
 
 LOCK TABLES `commenttour` WRITE;
 /*!40000 ALTER TABLE `commenttour` DISABLE KEYS */;
-INSERT INTO `commenttour` VALUES (57,'fefeeee',NULL,10,11,'2021-09-20 09:24:51'),(79,'dfdf',NULL,14,11,'2021-09-20 11:30:16'),(80,'efs',NULL,10,10,'2021-09-20 11:43:23'),(81,'fewfew',NULL,10,1,'2021-09-20 11:43:44'),(82,'fewfw',NULL,10,9,'2021-09-20 11:43:55'),(84,'das',NULL,14,10,'2021-09-20 16:57:05'),(85,'r3we',NULL,14,11,'2021-09-22 13:51:43'),(86,'ád',NULL,14,11,'2021-09-22 13:52:45'),(87,'asd',NULL,14,11,'2021-09-22 14:01:59'),(88,'asd',NULL,14,11,'2021-09-22 14:02:23'),(89,'asdj',NULL,14,11,'2021-09-22 14:03:12'),(90,'ewf',NULL,14,10,'2021-09-22 15:48:39'),(91,'dcd',NULL,14,10,'2021-09-22 15:49:38');
+INSERT INTO `commenttour` VALUES (57,'fefeeee',NULL,10,11,'2021-09-20 09:24:51'),(79,'dfdf',NULL,14,11,'2021-09-20 11:30:16'),(80,'efs',NULL,10,11,'2021-09-20 11:43:23'),(81,'fewfew',NULL,10,1,'2021-09-20 11:43:44'),(84,'das',NULL,14,11,'2021-09-20 16:57:05'),(85,'r3we',NULL,14,11,'2021-09-22 13:51:43'),(86,'ád',NULL,14,11,'2021-09-22 13:52:45'),(87,'asd',NULL,14,11,'2021-09-22 14:01:59'),(89,'asdj',NULL,14,11,'2021-09-22 14:03:12'),(91,'dcd',NULL,14,11,'2021-09-22 15:49:38');
 /*!40000 ALTER TABLE `commenttour` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,10 +143,11 @@ CREATE TABLE `datedetail` (
   `start_date` date NOT NULL,
   `finish_date` date NOT NULL,
   `tour_id` int NOT NULL,
+  `status` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_date_tour_idx` (`tour_id`),
   CONSTRAINT `fk_date_tour` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +156,7 @@ CREATE TABLE `datedetail` (
 
 LOCK TABLES `datedetail` WRITE;
 /*!40000 ALTER TABLE `datedetail` DISABLE KEYS */;
-INSERT INTO `datedetail` VALUES (1,'2021-08-17','2021-08-21',1),(2,'2021-08-21','2021-08-24',1),(3,'2021-08-21','2021-08-24',2),(4,'2021-08-21','2021-08-24',3),(5,'2021-08-21','2021-08-24',4),(6,'2021-08-21','2021-08-24',5),(7,'2021-08-21','2021-08-24',6),(8,'2021-08-21','2021-08-24',7),(9,'2021-08-21','2021-08-24',8),(10,'2021-08-21','2021-08-24',9),(11,'2021-08-21','2021-08-24',10),(12,'2021-08-21','2021-08-24',11);
+INSERT INTO `datedetail` VALUES (1,'2021-08-17','2021-08-21',1,'0'),(2,'2021-08-21','2021-08-24',1,'0'),(3,'2021-08-21','2021-08-24',2,'0'),(4,'2021-08-21','2021-08-24',3,'0'),(5,'2021-08-21','2021-08-24',4,'0'),(6,'2021-08-21','2021-08-24',5,'0'),(9,'2021-08-21','2021-08-24',8,'0'),(11,'2021-08-21','2021-08-24',11,'0'),(12,'2021-08-21','2021-08-24',11,'0'),(14,'2021-08-23','2021-08-26',11,'0');
 /*!40000 ALTER TABLE `datedetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,12 +175,18 @@ CREATE TABLE `payments` (
   `user_id` int NOT NULL,
   `tour_id` int NOT NULL,
   `method` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `adult` int NOT NULL,
+  `children` int NOT NULL,
+  `status` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `pk_tour_payment_tour_id_idx` (`tour_id`),
   KEY `pk_payment_user_id_idx` (`user_id`),
+  KEY `pk_payment_date_id_idx` (`date_id`),
+  CONSTRAINT `pk_payment_date_id` FOREIGN KEY (`date_id`) REFERENCES `datedetail` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `pk_payment_tour_id` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`),
   CONSTRAINT `pk_payment_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,6 +195,7 @@ CREATE TABLE `payments` (
 
 LOCK TABLES `payments` WRITE;
 /*!40000 ALTER TABLE `payments` DISABLE KEYS */;
+INSERT INTO `payments` VALUES (4,'2021-10-02 16:57:52',8500000,'Bạn đã chọn thanh toán qua Momo',10,11,'0',1,0,'Đã thanh toán',12),(5,'2021-10-02 16:59:47',8500000,'Bạn đã chọn thanh toán qua Momo',10,11,'0',1,0,'Đã thanh toán',12);
 /*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,7 +275,7 @@ CREATE TABLE `ratetour` (
 
 LOCK TABLES `ratetour` WRITE;
 /*!40000 ALTER TABLE `ratetour` DISABLE KEYS */;
-INSERT INTO `ratetour` VALUES (4,'5',10,10),(5,'4',14,10),(6,'5',14,11),(7,'5',10,11);
+INSERT INTO `ratetour` VALUES (4,'5',10,11),(5,'4',14,11),(6,'5',14,11),(7,'5',10,11);
 /*!40000 ALTER TABLE `ratetour` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -352,7 +361,7 @@ CREATE TABLE `tour_tag` (
 
 LOCK TABLES `tour_tag` WRITE;
 /*!40000 ALTER TABLE `tour_tag` DISABLE KEYS */;
-INSERT INTO `tour_tag` VALUES (7,1),(10,1),(11,1),(9,2),(11,2),(8,3),(11,3);
+INSERT INTO `tour_tag` VALUES (11,1),(11,2),(8,3),(11,3);
 /*!40000 ALTER TABLE `tour_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -407,7 +416,7 @@ CREATE TABLE `tours` (
   PRIMARY KEY (`id`),
   KEY `fk_tours_category_idx` (`category_id`),
   CONSTRAINT `fk_tours_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -416,7 +425,7 @@ CREATE TABLE `tours` (
 
 LOCK TABLES `tours` WRITE;
 /*!40000 ALTER TABLE `tours` DISABLE KEYS */;
-INSERT INTO `tours` VALUES (1,'Tou Miền Nam','test','Miền Nam','https://res.cloudinary.com/tourapp/image/upload/v1629907171/a5ijlkl4kmpubjy2gjvh.png',1500000,1,2,'0'),(2,'Tour Miền Bắc','test','Miền Bắc','https://res.cloudinary.com/tourapp/image/upload/v1629907171/a5ijlkl4kmpubjy2gjvh.png',1000000,1,1,'0'),(3,'Tour Miền Trung','test','Miền Nam','https://res.cloudinary.com/tourapp/image/upload/v1629907171/a5ijlkl4kmpubjy2gjvh.png',1500000,1,2,'0'),(4,'Tour Cao Bằng','test','Miền Nam','https://res.cloudinary.com/tourapp/image/upload/v1629907171/a5ijlkl4kmpubjy2gjvh.png',1500000,1,2,'0'),(5,'dafeefefe','test a b c','dfemkldffeswewqs','https://res.cloudinary.com/tourapp/image/upload/v1629907171/a5ijlkl4kmpubjy2gjvh.png',400000,1,2,'0'),(6,'gkgopretestwqew','fekfop','fewjifo','https://res.cloudinary.com/tourapp/image/upload/v1629906043/pu8alqpjulyu4it8puvh.png',300000,1,1,'0'),(7,'gkgopretestwqew','test a b c','da lat','https://res.cloudinary.com/tourapp/image/upload/v1629906212/rcsz9ctnixjktclouutr.png',200000,0,1,'0'),(8,'fewiojtest','gvefefefe','efefefefefe','https://res.cloudinary.com/tourapp/image/upload/v1632149676/mkae5gntdtalakgq05jz.png',200000,0,1,'1'),(9,'dewfweftest','fewfwe','dfemkldffeswewqs','https://res.cloudinary.com/tourapp/image/upload/v1631111556/kogttusbgbp1z2ckh3d4.jpg',660000,0,1,'1'),(10,'fewfwtest','wefew','fewjifo','https://res.cloudinary.com/tourapp/image/upload/v1631335023/nr1ayutbn0b7u3mhirnc.png',850000,0,2,'1'),(11,'fewfwtestreg','wefewtrhr','fewjifohtrh','https://res.cloudinary.com/tourapp/image/upload/v1631335062/xo8utzyz9c5jcnvlhiis.png',8500000,0,2,'1');
+INSERT INTO `tours` VALUES (1,'Tou Miền Nam','test','Miền Nam','https://res.cloudinary.com/tourapp/image/upload/v1629907171/a5ijlkl4kmpubjy2gjvh.png',1500000,1,2,'0'),(2,'Tour Miền Bắc','test','Miền Bắc','https://res.cloudinary.com/tourapp/image/upload/v1629907171/a5ijlkl4kmpubjy2gjvh.png',1000000,1,1,'0'),(3,'Tour Miền Trung','test','Miền Nam','https://res.cloudinary.com/tourapp/image/upload/v1629907171/a5ijlkl4kmpubjy2gjvh.png',1500000,1,2,'0'),(4,'Tour Cao Bằng','test','Miền Nam','https://res.cloudinary.com/tourapp/image/upload/v1629907171/a5ijlkl4kmpubjy2gjvh.png',1500000,1,2,'0'),(5,'dafeefefe','test a b c','dfemkldffeswewqs','https://res.cloudinary.com/tourapp/image/upload/v1629907171/a5ijlkl4kmpubjy2gjvh.png',400000,1,2,'0'),(6,'gkgopretestwqew','fekfop','fewjifo','https://res.cloudinary.com/tourapp/image/upload/v1629906043/pu8alqpjulyu4it8puvh.png',300000,1,1,'0'),(8,'fewiojtest','gvefefefe','efefefefefe','https://res.cloudinary.com/tourapp/image/upload/v1632149676/mkae5gntdtalakgq05jz.png',200000,1,1,'1'),(11,'fewfwtest','wefew','fewjifo','https://res.cloudinary.com/tourapp/image/upload/v1631335023/nr1ayutbn0b7u3mhirnc.png',850000,1,2,'1'),(44,'cdswdtestesfe','fefsfa','feaf','https://res.cloudinary.com/tourapp/image/upload/v1632818953/xgbktquhucvqhwubaii4.jpg',200000,1,1,'2');
 /*!40000 ALTER TABLE `tours` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -442,11 +451,12 @@ CREATE TABLE `users` (
   `gender` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `about` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `province_id` int NOT NULL,
+  `active` tinyint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   KEY `pk_user_provine_id_idx` (`province_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -455,7 +465,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,'adasd','fdfs','thienthanh@gmail.com','thienthanh','$2a$10$CMI.OoNakibClV8XI47p7u5WhpZf3uO.Jj8EfS/VtaZ/H.pF5qug.','ewrjiowefw',NULL,'2000-11-29','0901310332','0','male','asd',1),(14,'Chauads','Tuu','thientuu2911@gmail.com','thientuu2911','$2a$10$CMI.OoNakibClV8XI47p7u5WhpZf3uO.Jj8EfS/VtaZ/H.pF5qug.','ewrjiowefw','https://res.cloudinary.com/tourapp/image/upload/v1632294171/ziv4cngqnfs08uhlch9n.jpg','2000-11-29','0901310332','4','male','eqwqw',1),(21,'Chau','Tuu','thientuu2000@gmail.com','admin','$2a$10$rRgAYlnWouw7643X4paxtuPTssfqXBA4a7qwVk4m8JuYu2F1DbEAC','ewrjiowefw','https://res.cloudinary.com/tourapp/image/upload/v1632149475/agouqdtld7whoyhkednr.jpg','2000-09-02','0901310332','4','male','ftyasd',1),(22,'Chau','Tuu','thientuu@gmail.com','test','$2a$10$C2NRp0PL1fT60buitXGzS.j5ccqIeFtk7FEmw61bTAKjAFAsYYclC','ewrjiowefw',NULL,'2000-09-02','0901310332','4','male','assd',1),(23,'Chau','Tuu','weqw@gmail.com','adwwdassd','$2a$10$NJeNzA7I4Syp3B/WmN8qcuryQQWistRgrduI7aN/t/g4BQ8og/RA6','ewrjiowefw',NULL,'2021-09-09','0901310332','4','male','Æ°edwwe',2);
+INSERT INTO `users` VALUES (10,'adasd','fdfs','thienthanh@gmail.com','thienthanh','$2a$10$CMI.OoNakibClV8XI47p7u5WhpZf3uO.Jj8EfS/VtaZ/H.pF5qug.','ewrjiowefw',NULL,'2000-11-29','0901310332','0','male','asd',1,1),(14,'Chauads','Tuu','thientuu2911@gmail.com','thientuu2911','$2a$10$CMI.OoNakibClV8XI47p7u5WhpZf3uO.Jj8EfS/VtaZ/H.pF5qug.','ewrjiowefw','https://res.cloudinary.com/tourapp/image/upload/v1632294171/ziv4cngqnfs08uhlch9n.jpg','2000-11-29','0901310332','4','male','eqwqw',1,1),(21,'Chau','Tuu','thientuu2000@gmail.com','admin','$2a$10$rRgAYlnWouw7643X4paxtuPTssfqXBA4a7qwVk4m8JuYu2F1DbEAC','ewrjiowefw','https://res.cloudinary.com/tourapp/image/upload/v1632149475/agouqdtld7whoyhkednr.jpg','2000-09-02','0901310332','4','male','ftyasd',1,1),(22,'Chau','Tuu','thientsve@gmail.com','adminfefe','$2a$10$rRgAYlnWouw7643X4paxtuPTssfqXBA4a7qwVk4m8JuYu2F1DbEAC','ewrjiowefw','https://res.cloudinary.com/tourapp/image/upload/v1632149475/agouqdtld7whoyhkednr.jpg','2000-09-02','0901310332','4','male','ftyasd',1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -468,4 +478,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-27  0:05:22
+-- Dump completed on 2021-10-06 20:21:37

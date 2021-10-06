@@ -17,4 +17,6 @@ public interface CommentTourRepository {
     CommentTour getCommentById(int id);
     List<CommentTour> getListCommentsTourById(int tourId);
     void removeCommentTour(CommentTour c);
+    List<CommentTour> getCommentTours(int page);
+    long countCommentTours();
 }

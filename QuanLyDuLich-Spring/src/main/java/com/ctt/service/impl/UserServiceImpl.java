@@ -42,13 +42,13 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional
     public boolean addOrUpdateUser(User user) {
-        if(this.userRepository.getUsers(user.getUsername()).isEmpty()){
+        if(this.userRepository.getUsers(user.getUsername(), 1).isEmpty()){
             String password = user.getPassword();
             user.setPassword(this.passwordEncoder.encode(password));
             user.setRole(Role.ROLE_USER);
             user.setActive(true);
         }else{
-            user.setId(this.userRepository.getUsers(user.getUsername()).get(0).getId());
+            user.setId(this.userRepository.getUsers(user.getUsername(), 1).get(0).getId());
         }
         MultipartFile img = user.getFile();
         if (img != null && !img.isEmpty()) {
@@ -73,8 +73,8 @@ public class UserServiceImpl implements UserService{
     }
     
     @Override
-    public List<User> getUsers(String username) {
-        return this.userRepository.getUsers(username);
+    public List<User> getUsers(String username, int page) {
+        return this.userRepository.getUsers(username, page);
     }
     
     @Override
@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<User> users = this.getUsers(username);
+        List<User> users = this.getUsers(username, 1);
         if(users.isEmpty())
             throw new UsernameNotFoundException("User khong ton tai!!!");
         User u = users.get(0);
@@ -97,6 +97,16 @@ public class UserServiceImpl implements UserService{
         authorities.add(new SimpleGrantedAuthority(u.getRole().toString()));
         return new org.springframework.security.core
                 .userdetails.User(u.getUsername(), u.getPassword(), authorities);
+    }
+
+    @Override
+    public void removeUser(User user) {
+        this.userRepository.removeUser(user);
+    }
+
+    @Override
+    public long countUsers() {
+        return this.userRepository.countUsers();
     }
     
     

@@ -77,8 +77,8 @@ public class ToursController {
     @RequestMapping("/package-details/{tourId}")
     public String packageDetails(Model model, @PathVariable("tourId") String tourId, Principal principal) {
         if(principal != null){
-            model.addAttribute("rate", this.rateTourService.getRateTour(this.userDetailsService.getUsers(principal.getName()).get(0).getId(), Integer.parseInt(tourId)));
-            model.addAttribute("user", this.userDetailsService.getUsers(principal.getName()).get(0));
+            model.addAttribute("rate", this.rateTourService.getRateTour(this.userDetailsService.getUsers(principal.getName(), 1).get(0).getId(), Integer.parseInt(tourId)));
+            model.addAttribute("user", this.userDetailsService.getUsers(principal.getName(), 1).get(0));
         }
         model.addAttribute("tour", this.tourService.getTourById(Integer.parseInt(tourId)));
         model.addAttribute("dates", this.dateDetailService.getListDateDetailById(Integer.parseInt(tourId)));

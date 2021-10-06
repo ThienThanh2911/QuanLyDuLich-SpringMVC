@@ -13,6 +13,7 @@ import java.util.List;
  * @author ADMIN
  */
 public interface DateDetailRepository {
+    DateDetail getDateDetailById(int datedetailId);
     List<DateDetail> getListDateDetailById(int tourId);
     boolean addDateDetail(DateDetail datedetail);
 }

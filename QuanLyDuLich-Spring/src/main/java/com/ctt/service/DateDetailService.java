@@ -15,4 +15,5 @@ import java.util.List;
 public interface DateDetailService {
     List<DateDetail> getListDateDetailById(int tourId);
     boolean addDateDetail(DateDetail datedetail);
+    DateDetail getDateDetailById(int datedetailId);
 }

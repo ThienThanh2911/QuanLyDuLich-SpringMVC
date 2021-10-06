@@ -35,15 +35,15 @@ public class BlogController {
     
     @RequestMapping("/blog")
     public String blog(Model model, @RequestParam(required = false) Map<String, String> params) {
-        model.addAttribute("blogs", this.blogService.getBlogs(params.get("kw")));
+        model.addAttribute("blogs", this.blogService.getBlogs(params.get("kw"), Integer.parseInt(params.getOrDefault("page", "1"))));
         return "blogLayout";
     }
     
     @RequestMapping("/blog-details/{blogId}")
     public String blogDetails(Model model, @PathVariable("blogId") String blogId, Principal principal) {
         if(principal != null){
-            model.addAttribute("rate", this.rateBlogService.getRateBlog(this.userDetailsService.getUsers(principal.getName()).get(0).getId(), Integer.parseInt(blogId)));
-            model.addAttribute("user", this.userDetailsService.getUsers(principal.getName()).get(0));
+            model.addAttribute("rate", this.rateBlogService.getRateBlog(this.userDetailsService.getUsers(principal.getName(), 1).get(0).getId(), Integer.parseInt(blogId)));
+            model.addAttribute("user", this.userDetailsService.getUsers(principal.getName(), 1).get(0));
         }
         model.addAttribute("blog", this.blogService.getBlogById(Integer.parseInt(blogId)));
         model.addAttribute("comments", this.commentBlogService.getListCommentsBlogById(Integer.parseInt(blogId)));
