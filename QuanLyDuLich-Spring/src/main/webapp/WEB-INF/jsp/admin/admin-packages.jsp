@@ -111,7 +111,7 @@
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
-                        <h4 class="card-title">Striped Table with Hover</h4>
+                        <h4 class="card-title">Striped Table with Hover<a href="<c:url value="/admin/packages/add" />" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="position:absolute; right:10px"><i class="fa fa-plus" style="text-align: center"></i>Add Tour</a></h4>
                         <p class="card-category">Here is a subtitle for this table</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
@@ -147,7 +147,8 @@
                                             </c:if>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                            <c:url value="/admin/packages"  var="url"/>
+                                            <button onclick="window.location.href=`${url}/${p.id}/edit`" type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                         </td>

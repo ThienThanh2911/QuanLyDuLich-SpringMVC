@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="sidebar" data-color="blue" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
     <div class="sidebar-wrapper">
@@ -16,50 +17,49 @@
         </div>
         <ul class="nav">
             <li>
-                <c:url value="/admin/dashboard" var="url" />
-                <a class="nav-link" href="${url}">
+                <a class="nav-link" href="<c:url value="/admin" />">
                     <i class="nc-icon nc-chart-pie-35"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="./user.html">
+            <li class="nav-item active">
+                <a class="nav-link" href="<c:url value="/admin/users" />">
                     <i class="nc-icon nc-circle-09"></i>
                     <p>QUẢN LÝ TÀI KHOẢN</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./table.html">
+                <a class="nav-link" href="<c:url value="/admin/packages" />">
                     <i class="nc-icon nc-notes"></i>
                     <p>QUẢN LÝ DU LỊCH</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./typography.html">
+                <a class="nav-link" href="<c:url value="/admin/blogs" />">
                     <i class="nc-icon nc-notes"></i>
                     <p>QUẢN LÝ BÀI VIẾT</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./icons.html">
+                <a class="nav-link" href="<c:url value="/admin/commenttours" />">
                     <i class="nc-icon nc-paper-2"></i>
                     <p>BÌNH LUẬN DU LỊCH</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./maps.html">
+                <a class="nav-link" href="<c:url value="/admin/commentblogs" />">
                     <i class="nc-icon nc-paper-2"></i>
                     <p>BÌNH LUẬN BÀI VIẾT</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./notifications.html">
+                <a class="nav-link" href="<c:url value="/admin/payments" />">
                     <i class="nc-icon nc-bank"></i>
                     <p>QUẢN LÝ HÓA ĐƠN</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./maps.html">
+                <a class="nav-link" href="<c:url value="/admin/map" />">
                     <i class="nc-icon nc-pin-3"></i>
                     <p>BẢN ĐỒ</p>
                 </a>
@@ -110,107 +110,165 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Edit Profile</h4>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <c:url value="/admin/users/${user.id}/edit" var="action"/>
+                            <form:form method="post" action="${action}" modelAttribute="user" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-md-5 pr-1">
-                                        <div class="form-group">
-                                            <label>Company (disabled)</label>
-                                            <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                                        </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <h6 class="mb-3 text-primary">Personal Details</h6>
                                     </div>
-                                    <div class="col-md-3 px-1">
-                                        <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="text" class="form-control" placeholder="Username" value="michael23">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 pl-1">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" class="form-control" placeholder="Email">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 pr-1">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input type="text" class="form-control" placeholder="Company" value="Mike">
+                                            <form:input path="firstName" class="form-control" id="firstName" placeholder="Enter your first name"/>
+                                            <form:errors path="firstName" element="div" cssClass="alert alert-danger" />
                                         </div>
                                     </div>
-                                    <div class="col-md-6 pl-1">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                            <form:input path="lastName" class="form-control" id="lastName" placeholder="Enter your last name"/>
+                                            <form:errors path="lastName" element="div" cssClass="alert alert-danger" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email address</label>
+                                            <form:input path="email" class="form-control" id="email" placeholder="Enter your email"/>
+                                            <form:errors path="email" element="div" cssClass="alert alert-danger" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Phone</label>
+                                            <form:input path="phone" class="form-control" id="phone" placeholder="Enter your phone"/>
+                                            <form:errors path="phone" element="div" cssClass="alert alert-danger" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                            <label>About You</label>
+                                            <form:input path="about" class="form-control" id="about" placeholder="Enter your infomation"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Date Of Birth</label>
+                                            <form:input type="date" path="birth" class="form-control" id="birth" placeholder="Enter your birth day"/>
+                                            <form:errors path="birth" element="div" cssClass="alert alert-danger" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4 pr-1">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label>City</label>
-                                            <input type="text" class="form-control" placeholder="City" value="Mike">
+                                            <label>Gender</label>
+                                            <div>
+                                                <form:select path="gender" class="form-select" style="width: 100%" aria-label="Default select example">
+                                                    <form:option value="">What is your gender?</form:option>
+                                                    <form:option value="male">Male</form:option>
+                                                    <form:option value="female">Female</form:option>
+                                                </form:select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 px-1">
-                                        <div class="form-group">
-                                            <label>Country</label>
-                                            <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                        </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <label>Role</label>
+                                        <form:select path="role" class="form-select" style="width: 100%" aria-label="Default select example">
+                                            <form:option value="">What is your role?</form:option>
+                                            <form:option value="ROLE_ADMIN">ADMIN</form:option>
+                                            <form:option value="ROLE_BUSINESS">BUSINESS</form:option>
+                                            <form:option value="ROLE_SALESMAN">SALESMAN</form:option>
+                                            <form:option value="ROLE_MANAGER">MANAGER</form:option>
+                                            <form:option value="ROLE_USER">USER</form:option>
+                                        </form:select>
                                     </div>
-                                    <div class="col-md-4 pl-1">
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="form-group">
-                                            <label>Postal Code</label>
-                                            <input type="number" class="form-control" placeholder="ZIP Code">
+                                            <label>Image</label>
+                                            <div>
+                                                <form:input type="file" id="file" path="file" cssClass="form-control"/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <h6 class="mb-3 text-primary">Address</h6>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label>About Me</label>
-                                            <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                            <label>Street</label>
+                                            <form:input path="street" class="form-control" id="street" placeholder="Enter your street"/>
+                                            <form:errors path="street" element="div" cssClass="alert alert-danger" />
+                                        </div>
+                                    </div>  
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group" >
+                                            <label for="province">Province</label>
+                                            <div>
+                                                <form:select path="province" class="form-select" style="width: 100%" aria-label="Default select example">
+                                                    <c:forEach items="${provinces}" var="p">
+                                                            <c:choose>
+                                                                <c:when test="${provinceId == p.id}">
+                                                                  <form:option value="${p.id}" selected="true">${p.name}</form:option>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                  <form:option value="${p.id}">${p.name}</form:option>
+                                                                </c:otherwise>
+                                                            </c:choose>  
+                                                    </c:forEach>
+                                                </form:select>
+                                                <form:hidden path="active"/>
+                                                <form:hidden path="avatar"/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                <button onclick="notifi()" type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
                                 <div class="clearfix"></div>
-                            </form>
+                            </form:form>
+                            <script>
+                                function notifi(){
+                                    demo.showNotification("fa fa-edit", `Bạn đã chỉnh sửa UserID ${user.id} thành công`, 2)
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                     <div class="card card-user">
                         <div class="card-image" style="background-color: gray;">
                         </div>
                         <div class="card-body">
                             <div class="author">
                                 <a href="#">
-                                    <img class="avatar border-gray" src="../resources/assets/img/faces/face-3.jpg" alt="...">
-                                    <h5 class="title">Mike Andrew</h5>
+                                    <c:if test="${user.avatar == null || user.avatar.isEmpty()}">
+                                        <img class="avatar border-gray" src="https://res.cloudinary.com/tourapp/image/upload/v1633664216/avatar_paedp9.jpg" alt="...">
+                                    </c:if>
+                                    <c:if test="${user.avatar != null && !user.avatar.isEmpty()}">
+                                        <img class="avatar border-gray" src="${user.avatar}" alt="...">
+                                    </c:if>
+                                    <h5 class="title">${user.firstName} ${user.lastName}</h5>
                                 </a>
                                 <p class="description">
-                                    michael24
+                                    ${user.username}
                                 </p>
                             </div>
                             <p class="description text-center">
-                                "Lamborghini Mercy
-                                <br> Your chick she so thirsty
-                                <br> I'm in that two seat Lambo"
+                                ${user.about}
                             </p>
                         </div>
                         <hr>

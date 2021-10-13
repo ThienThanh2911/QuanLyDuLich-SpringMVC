@@ -15,6 +15,7 @@ import java.util.List;
 public interface BlogService {
     boolean addOrUpdateBlog(Blog blog);
     List<Blog> getBlogs(String kw, int page);
+    List<Blog> getBlogsNew();
     Blog getBlogById(int id);
     void removeBlog(Blog blog);
     long countBlogs();

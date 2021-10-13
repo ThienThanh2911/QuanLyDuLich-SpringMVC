@@ -47,6 +47,21 @@ public class PaymentServiceImpl implements PaymentService {
     public Payments getPaymentById(int id) {
         return this.paymentRepository.getPaymentById(id);
     }
+
+    @Override
+    public List<Payments> getPayments(int i) {
+        return this.paymentRepository.getPayments(i);
+    }
+
+    @Override
+    public void removePayment(Payments pmnts) {
+        this.paymentRepository.removePayment(pmnts);
+    }
+
+    @Override
+    public long countPayments() {
+        return this.paymentRepository.countPayments();
+    }
     
     
 }

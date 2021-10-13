@@ -5,9 +5,13 @@
  */
 package com.ctt.pojos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,8 +29,9 @@ public class Tags implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @ManyToMany(mappedBy = "tags")
-    private Set<Tours> tour;
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
+    @JsonBackReference
+    private Set<Tours> tour = new HashSet<>();
 
     /**
      * @return the id

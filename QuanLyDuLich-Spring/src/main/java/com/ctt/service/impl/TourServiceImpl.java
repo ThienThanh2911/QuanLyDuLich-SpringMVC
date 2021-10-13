@@ -53,9 +53,16 @@ public class TourServiceImpl implements TourService {
     @Override
     @Transactional
     public boolean addOrUpdate(Tours tours) {
+        boolean a = tours.isActive();
         MultipartFile img = tours.getFile();
-        if(!this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).isEmpty())
-            tours.setId(this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).get(0).getId());
+        if(!this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).isEmpty()){
+            Tours rootTour = this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).get(0);
+            tours.setId(rootTour.getId());
+            if(tours.getTags().isEmpty())
+                tours.setTags(rootTour.getTags());
+        }else{
+            a = true;
+        }
         try {
             if (img != null && !img.isEmpty()) {
                 Map r = this.cloudinary.uploader().upload(tours.getFile().getBytes(), 
@@ -65,6 +72,7 @@ public class TourServiceImpl implements TourService {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+        tours.setActive(a);
         if(this.tourRepository.addOrUpdate(tours)){
             if(tours.getStartDate() != null && tours.getFinishDate() != null){
                 Tours t = this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).get(0);
@@ -84,7 +92,10 @@ public class TourServiceImpl implements TourService {
         this.tourRepository.removeTour(tours);
     }
 
-    
+    @Override
+    public List<Tours> getToursFeatured() {
+        return this.tourRepository.getToursFeatured();
+    }
     
     @Override
     public long countTours() {

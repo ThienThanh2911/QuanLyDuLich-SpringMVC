@@ -16,50 +16,49 @@
         </div>
         <ul class="nav">
             <li>
-                <c:url value="/admin/dashboard" var="url" />
-                <a class="nav-link" href="${url}">
+                <a class="nav-link" href="<c:url value="/admin" />">
                     <i class="nc-icon nc-chart-pie-35"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./user.html">
+                <a class="nav-link" href="<c:url value="/admin/users" />">
                     <i class="nc-icon nc-circle-09"></i>
                     <p>QUẢN LÝ TÀI KHOẢN</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./table.html">
+                <a class="nav-link" href="<c:url value="/admin/packages" />">
                     <i class="nc-icon nc-notes"></i>
                     <p>QUẢN LÝ DU LỊCH</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./typography.html">
+                <a class="nav-link" href="<c:url value="/admin/blogs" />">
                     <i class="nc-icon nc-notes"></i>
                     <p>QUẢN LÝ BÀI VIẾT</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./icons.html">
+                <a class="nav-link" href="<c:url value="/admin/commenttours" />">
                     <i class="nc-icon nc-paper-2"></i>
                     <p>BÌNH LUẬN DU LỊCH</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./maps.html">
+                <a class="nav-link" href="<c:url value="/admin/commentblogs" />">
                     <i class="nc-icon nc-paper-2"></i>
                     <p>BÌNH LUẬN BÀI VIẾT</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./notifications.html">
+                <a class="nav-link" href="<c:url value="/admin/payments" />">
                     <i class="nc-icon nc-bank"></i>
                     <p>QUẢN LÝ HÓA ĐƠN</p>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="./maps.html">
+            <li class="nav-item active">
+                <a class="nav-link" href="<c:url value="/admin/map" />">
                     <i class="nc-icon nc-pin-3"></i>
                     <p>BẢN ĐỒ</p>
                 </a>

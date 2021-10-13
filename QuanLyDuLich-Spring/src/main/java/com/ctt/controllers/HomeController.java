@@ -5,11 +5,14 @@
  */
 package com.ctt.controllers;
 
+import com.ctt.pojos.Tours;
 import com.ctt.service.CategoryService;
 import com.ctt.service.ProvinceService;
 import com.ctt.service.TourService;
+import com.ctt.service.BlogService;
 import com.ctt.service.UserService;
 import java.security.Principal;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +34,8 @@ public class HomeController {
     @Autowired
     private TourService tourService;
     @Autowired
+    private BlogService blogService;
+    @Autowired
     private UserService userDetailsService;
     @ModelAttribute
     public void commonAttr(Model model) {
@@ -43,6 +48,8 @@ public class HomeController {
         if(principal != null)
             model.addAttribute("user", this.userDetailsService.getUsers(principal.getName(), 1).get(0));
         model.addAttribute("toursNew", this.tourService.getToursNew());
+        model.addAttribute("toursFeatured", this.tourService.getToursFeatured());
+        model.addAttribute("blogsNew", this.blogService.getBlogsNew());
         return "homeLayout";
     }
     

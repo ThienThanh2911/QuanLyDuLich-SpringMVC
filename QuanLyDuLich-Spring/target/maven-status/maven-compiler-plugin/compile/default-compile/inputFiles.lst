@@ -5,6 +5,7 @@ C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\pojos\CommentTour.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\DateDetailService.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\validator\UserName.java
+C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\admin\ApiAdmimCategoriesController.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\impl\ProvinceServiceImpl.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\formatter\CategoryFormatter.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\pojos\Vehicle.java
@@ -22,6 +23,7 @@ C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\admin\AdminCommentToursController.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\validator\WebAppValidator.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\repository\ProvinceRepository.java
+C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\admin\ApiAdminDateDetailsController.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\repository\CategoryRepository.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\validator\UserEmail.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\impl\TourServiceImpl.java
@@ -42,14 +44,18 @@ C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\repository\TourRepository.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\admin\AdminBlogsController.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\repository\impl\ProvinceRepositoryImpl.java
+C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\admin\ApiAdmimTagsController.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\configs\SpringSecurityConfig.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\impl\BlogServiceImpl.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\impl\RateTourServiceImpl.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\ToursController.java
+C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\impl\TagServiceImpl.java
+C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\TagService.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\pojos\Status.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\admin\AdminProfileController.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\ApiRateTourController.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\impl\CategoryServiceImpl.java
+C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\formatter\TagFormatter.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\ApiPaymentController.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\RateTourService.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\repository\impl\TourRepositoryImpl.java
@@ -61,6 +67,7 @@ C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\pojos\Tags.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\pojos\Payments.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\impl\CommentTourServiceImpl.java
+C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\repository\TagRepository.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\HomeController.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\repository\impl\UserRepositoryImpl.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\admin\ApiAdminUsersController.java
@@ -89,10 +96,13 @@ C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\pojos\RateTour.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\pojos\Role.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\impl\UserServiceImpl.java
+C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\repository\impl\TagRepositoryImpl.java
+C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\converter\StringToTagConverter.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\formatter\ProvinceFormatter.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\CategoryService.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\pojos\Province.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\pojos\User.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\repository\impl\RateBlogRepositoryImpl.java
+C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\controllers\admin\AdminPaymentsController.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\pojos\Tours.java
 C:\Users\ADMIN\Desktop\QuanLyDuLich-SpringMVC\QuanLyDuLich-Spring\src\main\java\com\ctt\service\BlogService.java

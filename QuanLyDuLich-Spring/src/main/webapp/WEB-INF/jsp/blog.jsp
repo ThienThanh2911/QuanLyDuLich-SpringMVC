@@ -33,18 +33,18 @@
                     <section class='tabs-content'>
                         <c:forEach var="blog" items="${blogs}">
                             <article>
-                            <img src="images/blog-image-1-940x460.jpg" alt="">
-                            <h4>${blog.title}</h4>
+                                <img src="${blog.photos}" alt="">
+                                <h4>${blog.title}</h4>
 
-                            <p><i class="fa fa-user"></i> ${blog.user.username} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> <fmt:formatDate pattern = "dd/MM/yyyy HH:mm:ss" value = "${blog.createdDate}" /> &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
+                                <p><i class="fa fa-user"></i> ${blog.user.username} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> <fmt:formatDate pattern = "dd/MM/yyyy HH:mm:ss" value = "${blog.createdDate}" /> &nbsp;|&nbsp; <i class="fa fa-comments"></i>  ${blog.commentblog.size()} comments</p>
 
-                            <div class="main-button">
-                                <a href="blog-details/${blog.id}">Continue Reading</a>
-                            </div>
-                          </article>
+                                <div class="main-button">
+                                    <a href="blog-details/${blog.id}">Continue Reading</a>
+                                </div>
+                            </article>
 
-                          <br>
-                          <br>
+                            <br>
+                            <br>
                         </c:forEach>
                     </section>
                 </div>

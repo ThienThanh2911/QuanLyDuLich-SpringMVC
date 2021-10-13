@@ -24,4 +24,21 @@ public class CategoryServiceImpl implements CategoryService{
     public List<Category> getCategories() {
         return this.categoryRepository.getCategories();
     }
+
+    @Override
+    public Category getCategoryById(int id) {
+        return this.categoryRepository.getCategoryById(id);
+    }
+
+    @Override
+    public Category addCategory(Category cate) {
+        return this.categoryRepository.addCategory(cate);
+    }
+
+    @Override
+    public void removeCategory(Category cate) {
+        this.categoryRepository.removeCategory(cate);
+    }
+    
+    
 }

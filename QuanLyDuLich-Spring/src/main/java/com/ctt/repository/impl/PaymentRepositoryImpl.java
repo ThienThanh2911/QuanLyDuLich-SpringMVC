@@ -7,6 +7,7 @@ package com.ctt.repository.impl;
 
 import com.ctt.pojos.Payments;
 import com.ctt.repository.PaymentRepository;
+import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -55,5 +56,42 @@ public class PaymentRepositoryImpl implements PaymentRepository{
 
         return (Payments) q.getSingleResult();
     }
+
+    @Override
+    @Transactional
+    public List<Payments> getPayments(int page) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Payments> query = builder.createQuery(Payments.class);
+        Root root = query.from(Payments.class);
+        query = query.select(root).orderBy(builder.desc(root.get("id")));
+        
+        Query q = session.createQuery(query);
+        int max = 9;
+        q.setMaxResults(max);
+        q.setFirstResult((page - 1) * max);
+        return q.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void removePayment(Payments payment) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.delete(payment);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    @Transactional
+    public long countPayments() {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        Query q = s.createQuery("Select Count(*) From Payments");
+        
+        return Long.parseLong(q.getSingleResult().toString());
+    }
+    
     
 }

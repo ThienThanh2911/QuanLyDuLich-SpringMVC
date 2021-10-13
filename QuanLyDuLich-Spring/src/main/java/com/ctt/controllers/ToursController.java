@@ -64,6 +64,7 @@ public class ToursController {
         model.addAttribute("tours", this.tourService.getTours(params.get("kw"), params.get("cate"), params.get("date"), params.get("priceMin"), params.get("priceMax"), page));
         model.addAttribute("count", this.tourService.countTours());
         model.addAttribute("countPage", (int)Math.ceil((double)this.tourService.countTours()/9));
+        model.addAttribute("toursNew", this.tourService.getToursNew());
         /*if(!params.isEmpty()){
             if(params.get("page").equals("1"))
                 model.addAttribute("pageLink", "1");

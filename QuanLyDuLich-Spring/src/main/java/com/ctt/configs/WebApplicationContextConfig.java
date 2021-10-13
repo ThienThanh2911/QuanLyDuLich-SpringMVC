@@ -5,10 +5,10 @@
  */
 package com.ctt.configs;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
+import com.ctt.converter.StringToTagConverter;
 import com.ctt.formatter.CategoryFormatter;
 import com.ctt.formatter.ProvinceFormatter;
+import com.ctt.formatter.TagFormatter;
 import com.ctt.formatter.TourFormatter;
 import com.ctt.formatter.UserFormatter;
 import com.ctt.validator.TourNameValidator;
@@ -72,9 +72,14 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         registry.addFormatter(new CategoryFormatter());
         registry.addFormatter(new UserFormatter());
         registry.addFormatter(new ProvinceFormatter());
+        registry.addFormatter(new TagFormatter());
         registry.addFormatter(new TourFormatter());
+        registry.addConverter(stringToTagConverter());
     }
-    
+    @Bean 
+    public StringToTagConverter stringToTagConverter(){
+        return new StringToTagConverter();
+    }
     @Bean
     public WebAppValidator tourValidator(){
         Set<Validator> springValidators = new HashSet<>();

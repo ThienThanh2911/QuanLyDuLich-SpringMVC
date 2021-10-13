@@ -5,6 +5,7 @@
  */
 package com.ctt.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -40,6 +41,7 @@ public class DateDetail implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date finishDate;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tour_id")
     private Tours tour;

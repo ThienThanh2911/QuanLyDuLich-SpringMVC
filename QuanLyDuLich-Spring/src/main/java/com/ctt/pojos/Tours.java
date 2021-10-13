@@ -5,10 +5,11 @@
  */
 package com.ctt.pojos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -60,11 +61,11 @@ public class Tours implements Serializable{
     
     @Transient
     @Temporal(javax.persistence.TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
     @Transient
     @Temporal(javax.persistence.TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date finishDate;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -76,7 +77,8 @@ public class Tours implements Serializable{
             @JoinColumn(name = "tag_id")
         }
     )
-    private Set<Tags> tags;
+    @JsonManagedReference
+    private Set<Tags> tags = new HashSet<>();
     @Transient
     private MultipartFile file;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")

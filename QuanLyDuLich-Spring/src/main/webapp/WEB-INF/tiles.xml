@@ -89,9 +89,13 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Dashboard" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-dashboard.jsp" />
     </definition>
-    <definition name="adminProfileLayout" extends="baseAdminLayout">
-        <put-attribute name="title" value="Thông tin nhân viên" />
-        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-profile.jsp" />
+    <definition name="adminAddUserLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Thêm User" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-add-user.jsp" />
+    </definition>
+    <definition name="adminAddTourLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Thêm Tour" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-add-tour.jsp" />
     </definition>
     <definition name="adminPackagesLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="Danh sách Tours" />
@@ -100,6 +104,18 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="adminUsersLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="Danh sách Users" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-users.jsp" />
+    </definition>
+    <definition name="adminUserProfileLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Xem chi tiết User" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-profile.jsp" />
+    </definition>
+    <definition name="adminEditTourLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Chỉnh sửa Tour" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-edit-tour.jsp" />
+    </definition>
+    <definition name="adminPaymentsLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Danh sách Payments" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-payments.jsp" />
     </definition>
     <definition name="adminBlogsLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="Danh sách Blogs" />

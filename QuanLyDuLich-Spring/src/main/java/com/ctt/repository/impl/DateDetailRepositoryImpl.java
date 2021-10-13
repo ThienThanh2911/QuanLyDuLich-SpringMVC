@@ -71,6 +71,17 @@ public class DateDetailRepositoryImpl implements DateDetailRepository{
 
         return (DateDetail) q.getSingleResult();
     }
+
+    @Override
+    @Transactional
+    public void removeDateDetail(DateDetail dd) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.delete(dd);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     
     
 }

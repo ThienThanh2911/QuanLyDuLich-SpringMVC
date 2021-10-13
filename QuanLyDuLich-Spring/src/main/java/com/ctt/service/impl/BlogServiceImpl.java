@@ -27,11 +27,17 @@ public class BlogServiceImpl implements BlogService {
     private BlogRepository blogRepository;
     @Autowired
     private Cloudinary cloudinary;
+    
     @Override
     public List<Blog> getBlogs(String kw, int page) {
         return this.blogRepository.getBlogs(kw, page);
     }
-
+    
+    @Override
+    public List<Blog> getBlogsNew() {
+        return this.blogRepository.getBlogsNew();
+    }
+    
     @Override
     public Blog getBlogById(int id) {
         return this.blogRepository.getBlogById(id);

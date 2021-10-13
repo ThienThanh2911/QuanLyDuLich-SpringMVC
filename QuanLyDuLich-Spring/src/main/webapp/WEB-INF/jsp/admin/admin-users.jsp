@@ -59,7 +59,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./maps.html">
+                <a class="nav-link" href="<c:url value="/admin/map" />">
                     <i class="nc-icon nc-pin-3"></i>
                     <p>BẢN ĐỒ</p>
                 </a>
@@ -96,8 +96,7 @@
                             <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Your Profile</a>
-                            <a class="dropdown-item" href="#">Change Password</a>
+                            <a class="dropdown-item" href="<c:url value="/admin/users" />">Your Profile</a>
                             <div class="divider"></div>
                             <a class="dropdown-item" href="#">Logout</a>
                         </div>
@@ -111,7 +110,7 @@
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
-                        <h4 class="card-title">Striped Table with Hover</h4>
+                        <h4 class="card-title">Striped Table with Hover<a href="<c:url value="/admin/users/add" />" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="position:absolute; right:10px"><i class="fa fa-plus" style="text-align: center"></i>Add User</a></h4>
                         <p class="card-category">Here is a subtitle for this table</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
@@ -147,7 +146,8 @@
                                             </c:if>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                            <c:url value="/admin/users"  var="url"/>
+                                            <button type="button" onclick="window.location.href=`${url}/${u.id}/edit`" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                         </td>

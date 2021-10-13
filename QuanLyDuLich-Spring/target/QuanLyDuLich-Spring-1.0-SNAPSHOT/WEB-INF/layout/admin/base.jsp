@@ -11,7 +11,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+<link defer rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js"></script>
 
         <title><tiles:insertAttribute name="title" /></title>
         

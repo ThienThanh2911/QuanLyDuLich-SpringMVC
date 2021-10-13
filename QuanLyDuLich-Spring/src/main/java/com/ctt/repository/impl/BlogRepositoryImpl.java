@@ -52,6 +52,20 @@ public class BlogRepositoryImpl implements BlogRepository{
     }
 
     @Override
+    public List<Blog> getBlogsNew() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Blog> query = builder.createQuery(Blog.class);
+        Root root = query.from(Blog.class);
+        query = query.select(root).orderBy(builder.desc(root.get("id")));
+        
+        Query q = session.createQuery(query);
+        q.setMaxResults(3);
+        
+        return q.getResultList();
+    }
+    
+    @Override
     public Blog getBlogById(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();

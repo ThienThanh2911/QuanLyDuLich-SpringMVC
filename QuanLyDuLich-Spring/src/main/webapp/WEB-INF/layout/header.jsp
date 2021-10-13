@@ -21,16 +21,16 @@
                         <ul class="nav">
                             <c:url value="/" var="home" />
                             <li><a href="${home}" class="active">Trang chủ</a></li>
-                            <li><a href="packages">Danh sách tours</a></li>
-                            <li><a href="blog">Tin tức</a></li>
-                            <li><a href="contact">Liên hệ</a></li> 
+                            <li><a href="<c:url value="/packages" />">Danh sách tours</a></li>
+                            <li><a href="<c:url value="/blog" />">Tin tức</a></li>
+                            <li><a href="<c:url value="/contact" />">Liên hệ</a></li> 
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Giới thiệu</a>
                               
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="about">Về chúng tôi</a>
-                                    <a class="dropdown-item" href="membership">Thành viên</a>
-                                    <a class="dropdown-item" href="terms">Điều khoản</a>
+                                    <a class="dropdown-item" href="<c:url value="/about" />">Về chúng tôi</a>
+                                    <a class="dropdown-item" href="<c:url value="/membership" />">Thành viên</a>
+                                    <a class="dropdown-item" href="<c:url value="/terms" />">Điều khoản</a>
                                 </div>
                             </li>
                             <li class="dropdown">

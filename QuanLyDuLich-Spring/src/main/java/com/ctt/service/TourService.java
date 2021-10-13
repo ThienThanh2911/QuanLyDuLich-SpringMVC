@@ -18,5 +18,6 @@ public interface TourService {
     boolean addOrUpdate(Tours tours);
     Tours getTourById(int id);
     List<Tours> getToursNew();
+    List<Tours> getToursFeatured();
     void removeTour(Tours tour);
 }

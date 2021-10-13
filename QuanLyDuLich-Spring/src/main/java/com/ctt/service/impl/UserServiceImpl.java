@@ -42,11 +42,13 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional
     public boolean addOrUpdateUser(User user) {
+        boolean a = user.isActive();
         if(this.userRepository.getUsers(user.getUsername(), 1).isEmpty()){
             String password = user.getPassword();
             user.setPassword(this.passwordEncoder.encode(password));
-            user.setRole(Role.ROLE_USER);
-            user.setActive(true);
+            if(user.getRole().equals(""))
+                user.setRole(Role.ROLE_USER);
+            a = true;
         }else{
             user.setId(this.userRepository.getUsers(user.getUsername(), 1).get(0).getId());
         }
@@ -60,6 +62,7 @@ public class UserServiceImpl implements UserService{
                 System.out.println(ex.getMessage());
             }
         }
+        user.setActive(a);
         return this.userRepository.addOrUpdateUser(user);
     }
 

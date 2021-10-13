@@ -36,6 +36,11 @@ public class DateDetailServiceImpl implements DateDetailService {
     public DateDetail getDateDetailById(int i) {
         return this.dateDetailRepository.getDateDetailById(i);
     }
+
+    @Override
+    public void removeDateDetail(DateDetail dd) {
+        this.dateDetailRepository.removeDateDetail(dd);
+    }
     
     
 }

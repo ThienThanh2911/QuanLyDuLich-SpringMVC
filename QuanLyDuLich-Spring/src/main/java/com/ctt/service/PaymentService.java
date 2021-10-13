@@ -10,6 +10,7 @@ import com.ctt.pojos.Payments;
 import com.ctt.pojos.Tours;
 import com.ctt.pojos.User;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 /**
@@ -19,4 +20,7 @@ import java.math.BigDecimal;
 public interface PaymentService {
     Payments addPayment(User user, Tours tour, BigDecimal price, int adult, int children, int method, DateDetail datedetail);
     Payments getPaymentById(int id);
+    List<Payments> getPayments(int page);
+    void removePayment(Payments payment);
+    long countPayments();
 }

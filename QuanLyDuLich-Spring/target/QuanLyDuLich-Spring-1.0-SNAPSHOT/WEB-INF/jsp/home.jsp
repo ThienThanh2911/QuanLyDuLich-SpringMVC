@@ -31,9 +31,9 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="section-heading">
-                        <h2>Featured <em>Packages</em></h2>
+                        <h2>New <em>Packages</em></h2>
                         <img src="images/line-dec.png" alt="">
-                        <p>Danh sách các chuyến đi nổi bật nhất</p>
+                        <p>Danh sách các chuyến đi mới nhất</p>
                     </div>
                 </div>
             </div>
@@ -41,6 +41,9 @@
                 <c:forEach var="t" items="${toursNew}">
                 <div class="col-lg-4">
                     <div class="trainer-item">
+                        <div class="ribbon-wrapper">
+                            <div class="ribbon">NEW</div>
+                        </div>
                         <div class="image-thumb">
                             <img src="<c:url value="${t.photos}" />" alt="${t.name}">
                         </div>
@@ -69,7 +72,48 @@
                             </p>
 
                             <ul class="social-icons">
-                                <li><a href="package-details/${t.id}">+ View Package</a></li>
+                                <li><a href="<c:url value="package-details/${t.id}" />">+ View Package</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-heading">
+                        <h2>Featured <em>Packages</em></h2>
+                        <img src="images/line-dec.png" alt="">
+                        <p>Danh sách các chuyến đi nổi bật nhất</p>
+                    </div>
+                </div>
+                <c:forEach var="t" items="${toursFeatured}">
+                <div class="col-lg-4">
+                    <div class="trainer-item">
+                        <div class="ribbon-wrapper">
+                            <div class="ribbon">HOT</div>
+                        </div>
+                        <div class="image-thumb">
+                            <img src="<c:url value="${t[2]}" />" alt="${t[1]}">
+                        </div>
+                        <div class="down-content">
+                            <div>
+                                <span>${t[4]}<sup>đ</sup></span>
+                                
+                                <span style="float:right">Lượt xem: 100</span>
+                            </div>
+                            <h4>${t[1]}</h4>
+                                
+                            <p>
+                                <i class="fa fa-cube"></i> 20 nights &nbsp;&nbsp;&nbsp;
+
+                                <i class="fa fa-plane"></i> ${t[3].toString()} &nbsp;&nbsp;&nbsp;
+                                
+                                <span class="badge badge-pill badge-success" style="color:white"><i class="fa fa-star"></i> Đánh giá cao</span></span>
+                            </p>
+
+                            <ul class="social-icons">
+                                <li><a href="<c:url value="package-details/${t[0]}" />">+ View Package</a></li>
                             </ul>
                         </div>
                     </div>
@@ -124,43 +168,26 @@
             <div class="row" id="tabs">
               <div class="col-lg-4">
                 <ul>
-                  <li><a href='#tabs-1'>Blog số 1</a></li>
-                  <li><a href='#tabs-2'>Blog số 2</a></li>
-                  <li><a href='#tabs-3'>SBlog số 3</a></li>
-                  <div class="main-rounded-button"><a href="blog.html">Read More</a></div>
+                    <c:forEach var="b" items="${blogsNew}">
+                        <li><a href='#${b.id}'>${b.title}</a></li>
+                    </c:forEach>
+                  <div class="main-rounded-button"><a href="<c:url value="blog" />">Read More</a></div>
                 </ul>
               </div>
               <div class="col-lg-8">
                 <section class='tabs-content'>
-                  <article id='tabs-1'>
-                    <img src="images/blog-image-1-940x460.jpg" alt="">
-                    <h4>Blog số 1</h4>
+                    <c:forEach var="b" items="${blogsNew}">
+                        <article id='${b.id}'>
+                            <img src="${b.photos}" alt="">
+                            <h4>${b.title}</h4>
 
-                    <p><i class="fa fa-user"></i> Thành &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 15.08.2021 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
+                            <p><i class="fa fa-user"></i> ${b.user.username} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> ${b.createdDate} &nbsp;|&nbsp; <i class="fa fa-comments"></i>  ${b.commentblog.size()} comments</p>
 
-                    <p>Nội dung Blog</p>
-                    <div class="main-button">
-                        <a href="blog-details">Continue Reading</a>
-                    </div>
-                  </article>
-                  <article id='tabs-2'>
-                    <img src="images/blog-image-2-940x460.jpg" alt="">
-                    <h4>Blog số 2</h4>
-                    <p><i class="fa fa-user"></i> Thành &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 15.08.2021 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
-                    <p>Nội dung Blog</p>
-                    <div class="main-button">
-                        <a href="blog-details">Continue Reading</a>
-                    </div>
-                  </article>
-                  <article id='tabs-3'>
-                    <img src="images/blog-image-3-940x460.jpg" alt="">
-                    <h4>Blog số 3</h4>
-                    <p><i class="fa fa-user"></i> Thành &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 15.08.2021 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
-                    <p>Nội dung Blog</p>
-                    <div class="main-button">
-                        <a href="blog-details">Continue Reading</a>
-                    </div>
-                  </article>
+                            <div class="main-button">
+                                <a href="<c:url value="blog-details/${b.id}" />">Continue Reading</a>
+                            </div>
+                        </article>
+                    </c:forEach>
                 </section>
               </div>
             </div>

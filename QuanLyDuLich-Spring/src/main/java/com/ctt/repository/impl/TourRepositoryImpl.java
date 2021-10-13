@@ -78,6 +78,16 @@ public class TourRepositoryImpl implements TourRepository {
     }
     
     @Override
+    public List<Tours> getToursFeatured() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q  = session.createQuery("SELECT t.id, t.name, t.photos, t.vehicle, t.price, COUNT(r.id) AS RateCount FROM Tours t INNER JOIN RateTour r ON t.id = tour_id GROUP BY t.id ORDER BY RateCount");
+
+        q.setMaxResults(3);
+
+        return q.getResultList();
+    }
+    
+    @Override
     public List<Tours> getToursNew() {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();

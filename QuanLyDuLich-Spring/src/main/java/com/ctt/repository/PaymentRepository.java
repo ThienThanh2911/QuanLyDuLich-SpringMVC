@@ -6,6 +6,7 @@
 package com.ctt.repository;
 
 import com.ctt.pojos.Payments;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,7 @@ import com.ctt.pojos.Payments;
 public interface PaymentRepository {
     Payments addPayment(Payments c);
     Payments getPaymentById(int id);
+    List<Payments> getPayments(int page);
+    void removePayment(Payments payment);
+    long countPayments();
 }

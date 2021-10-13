@@ -59,7 +59,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./maps.html">
+                <a class="nav-link" href="<c:url value="/admin/map" />">
                     <i class="nc-icon nc-pin-3"></i>
                     <p>BẢN ĐỒ</p>
                 </a>

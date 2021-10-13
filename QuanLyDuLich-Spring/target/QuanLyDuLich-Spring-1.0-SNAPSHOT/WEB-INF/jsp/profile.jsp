@@ -17,7 +17,12 @@
 				<div class="account-settings">
 					<div class="user-profile">
 						<div class="user-avatar">
-                                                    <img src="${user.avatar}" alt="User Avatar">
+                                                    <c:if test="${user.avatar == null}">
+                                                        <img src="https://res.cloudinary.com/tourapp/image/upload/v1633664216/avatar_paedp9.jpg" alt="User Avatar">
+                                                    </c:if>
+                                                    <c:if test="${user.avatar != null}">
+                                                        <img src="${user.avatar}" alt="User Avatar">
+                                                    </c:if>
 						</div>
 						<h5 class="user-name">${user.firstName} ${user.lastName}</h5>
 						<h6 class="user-email">${user.email}</h6>
@@ -115,14 +120,14 @@
                                                     <label for="province">Province</label>
                                                     <form:select path="province" name="province" class="custom-select" style="background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
                                                         <c:forEach items="${provinces}" var="p">
-                                                                <c:choose>
-                                                                    <c:when test="${provinceId == p.id}">
-                                                                      <form:option value="${p.id}" selected="true">${p.name}</form:option>
-                                                                    </c:when>
-                                                                    <c:otherwise>
-                                                                      <form:option value="${p.id}">${p.name}</form:option>
-                                                                    </c:otherwise>
-                                                                </c:choose>  
+                                                            <c:choose>
+                                                                <c:when test="${provinceId == p.id}">
+                                                                  <form:option value="${p.id}" selected="true">${p.name}</form:option>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                  <form:option value="${p.id}">${p.name}</form:option>
+                                                                </c:otherwise>
+                                                            </c:choose>  
                                                         </c:forEach>
                                                     </form:select>
                                             </div>
