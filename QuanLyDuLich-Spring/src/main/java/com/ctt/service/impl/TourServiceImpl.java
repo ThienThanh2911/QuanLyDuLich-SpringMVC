@@ -41,8 +41,8 @@ public class TourServiceImpl implements TourService {
     }
     
     @Override
-    public List<Tours> getTours(String kw, String cate, String date, String priceMin, String priceMax, int page) {
-        return this.tourRepository.getTours(kw, cate, date, priceMin, priceMax, page);
+    public List<Tours> getTours(String kw, String cate, String date, String priceMin, String priceMax, boolean isActive, int page) {
+        return this.tourRepository.getTours(kw, cate, date, priceMin, priceMax, isActive, page);
     }
 
     @Override
@@ -55,8 +55,8 @@ public class TourServiceImpl implements TourService {
     public boolean addOrUpdate(Tours tours) {
         boolean a = tours.isActive();
         MultipartFile img = tours.getFile();
-        if(!this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).isEmpty()){
-            Tours rootTour = this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).get(0);
+        if(!this.tourRepository.getTours(tours.getName(), null, null, null, null, false, 1).isEmpty()){
+            Tours rootTour = this.tourRepository.getTours(tours.getName(), null, null, null, null, false, 1).get(0);
             tours.setId(rootTour.getId());
             if(tours.getTags().isEmpty())
                 tours.setTags(rootTour.getTags());
@@ -75,7 +75,7 @@ public class TourServiceImpl implements TourService {
         tours.setActive(a);
         if(this.tourRepository.addOrUpdate(tours)){
             if(tours.getStartDate() != null && tours.getFinishDate() != null){
-                Tours t = this.tourRepository.getTours(tours.getName(), null, null, null, null, 1).get(0);
+                Tours t = this.tourRepository.getTours(tours.getName(), null, null, null, null, false, 1).get(0);
                 DateDetail d = new DateDetail();
                 d.setStartDate(tours.getStartDate());
                 d.setFinishDate(tours.getFinishDate());

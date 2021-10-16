@@ -97,6 +97,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Thêm Tour" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-add-tour.jsp" />
     </definition>
+    <definition name="adminAddBlogLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Thêm Tour" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-add-blog.jsp" />
+    </definition>
     <definition name="adminPackagesLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="Danh sách Tours" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-packages.jsp" />
@@ -112,6 +116,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="adminEditTourLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="Chỉnh sửa Tour" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-edit-tour.jsp" />
+    </definition>
+    <definition name="adminEditBlogLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Chỉnh sửa Blog" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-edit-blog.jsp" />
     </definition>
     <definition name="adminPaymentsLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="Danh sách Payments" />

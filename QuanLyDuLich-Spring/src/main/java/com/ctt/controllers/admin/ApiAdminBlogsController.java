@@ -37,7 +37,7 @@ public class ApiAdminBlogsController {
     public ResponseEntity<Blog> setActiveBlog(@RequestBody Map<String, String> params){
         Blog c = this.blogService.getBlogById(Integer.parseInt(params.get("blogId")));
         c.setActive(!c.isActive());
-        if(!this.blogService.addOrUpdateBlog(c))
+        if(!this.blogService.addOrUpdateBlog(c, null))
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -38,9 +38,11 @@ public class HomeController {
     @Autowired
     private UserService userDetailsService;
     @ModelAttribute
-    public void commonAttr(Model model) {
+    public void commonAttr(Model model, Principal principal) {
         model.addAttribute("categories", this.categoryService.getCategories());
         model.addAttribute("provinces", this.provinceService.getProvinces());
+        if(principal != null)
+            model.addAttribute("adminProfileId", this.userDetailsService.getUsers(principal.getName(), 1).get(0).getId());
     }
     
     @RequestMapping("/")

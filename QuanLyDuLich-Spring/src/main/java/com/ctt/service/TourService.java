@@ -13,7 +13,7 @@ import java.util.List;
  * @author Windows-1909
  */
 public interface TourService {
-    List<Tours> getTours(String kw, String cate, String date, String priceMin, String priceMax, int page);
+    List<Tours> getTours(String kw, String cate, String date, String priceMin, String priceMax, boolean isActive, int page);
     long countTours();
     boolean addOrUpdate(Tours tours);
     Tours getTourById(int id);

@@ -45,7 +45,7 @@ public class TourRepositoryImpl implements TourRepository {
     }
     
     @Override
-    public List<Tours> getTours(String kw, String cate, String date, String priceMin, String priceMax, int page) {
+    public List<Tours> getTours(String kw, String cate, String date, String priceMin, String priceMax, boolean isActive, int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Tours> query = builder.createQuery(Tours.class);
@@ -65,7 +65,8 @@ public class TourRepositoryImpl implements TourRepository {
         Predicate pmi = builder.ge(root.get("price"), Integer.parseInt(priceMin));
         Predicate pma = builder.le(root.get("price"), Integer.parseInt(priceMax));
         ps.add(builder.and(pmi, pma));
-
+        if(isActive)
+            ps.add(builder.equal(root.get("active"), true));
         query = query.where(builder.and(ps.toArray(new Predicate[ps.size()])));
 
         Query q = session.createQuery(query);

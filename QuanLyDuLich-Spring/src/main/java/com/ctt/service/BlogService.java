@@ -6,6 +6,7 @@
 package com.ctt.service;
 
 import com.ctt.pojos.Blog;
+import com.ctt.pojos.User;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  * @author ADMIN
  */
 public interface BlogService {
-    boolean addOrUpdateBlog(Blog blog);
+    boolean addOrUpdateBlog(Blog blog, User user);
     List<Blog> getBlogs(String kw, int page);
     List<Blog> getBlogsNew();
     Blog getBlogById(int id);

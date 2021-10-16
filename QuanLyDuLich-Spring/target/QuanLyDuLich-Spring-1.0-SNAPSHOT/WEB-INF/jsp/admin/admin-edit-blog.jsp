@@ -1,13 +1,13 @@
 <%-- 
-    Document   : admin-tours
-    Created on : Aug 17, 2021, 12:15:53 PM
+    Document   : change-password
+    Created on : Aug 12, 2021, 10:04:06 PM
     Author     : Windows-1909
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apipayment.js"></script>
-=======
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <div class="sidebar" data-color="blue" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">
@@ -34,7 +34,7 @@
                     <p>QUẢN LÝ DU LỊCH</p>
                 </a>
             </li>
-            <li>
+            <li class="nav-item active">
                 <a class="nav-link" href="<c:url value="/admin/blogs" />">
                     <i class="nc-icon nc-notes"></i>
                     <p>QUẢN LÝ BÀI VIẾT</p>
@@ -52,14 +52,14 @@
                     <p>BÌNH LUẬN BÀI VIẾT</p>
                 </a>
             </li>
-            <li class="nav-item active">
+            <li>
                 <a class="nav-link" href="<c:url value="/admin/payments" />">
                     <i class="nc-icon nc-bank"></i>
                     <p>QUẢN LÝ HÓA ĐƠN</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="./maps.html">
+                <a class="nav-link" href="<c:url value="/admin/map" />">
                     <i class="nc-icon nc-pin-3"></i>
                     <p>BẢN ĐỒ</p>
                 </a>
@@ -78,7 +78,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class="container-fluid">
-            <a class="navbar-brand" style="margin-top: 0" href="#pablo"> Payments <i class="nc-icon nc-palette"></i></a>
+            <a class="navbar-brand" style="margin-top: 0" href="#pablo"> Edit Blog <i class="nc-icon nc-palette"></i></a>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
@@ -105,58 +105,52 @@
             </div>
         </div>
     </nav>
+    <!-- End Navbar -->
     <div class="content">
-        <div class="container-fluid">
-            <div class="col-md-12">
-                <div class="card strpied-tabled-with-hover">
-                    <div class="card-header ">
-                        <h4 class="card-title">Striped Table with Hover</h4>
-                        <p class="card-category">Here is a subtitle for this table</p>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Edit Blog</h4>
+            </div>
+            <div class="card-body">
+                <c:url value="/admin/blogs/${blogId}/edit" var="action"/>
+                <form:form method="post" action="${action}" modelAttribute="blog" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <form:input path="title" class="form-control" id="title" placeholder="Enter your blog title"/>
+                                <form:errors path="title" element="div" cssClass="alert alert-danger" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body table-full-width table-responsive">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                <th>ID</th>
-                                <th>Username</th>
-                                <th>Tour ID</th>
-                                <th>Method</th>
-                                <th>Price</th>
-                                <th>Created Date</th>
-                                <th>Status</th>
-                                <th style="text-align: center!important">Edit</th>
-                                <th>Remove</th>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${payments}" var="p">
-                                    <tr id="payment${p.id}">
-                                        <td>${p.id}</td>
-                                        <td>${p.user.username}</td>
-                                        <td>${p.tour.id}</td>
-                                        <td>${p.method.name()}</td>
-                                        <td>${p.price}</td>
-                                        <td>${p.createdDate}</td>
-                                        <td>${p.status}</td>
-                                        <td class="text-center">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <button onclick="removePayment(${p.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                <i class="fa fa-remove"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                        <ul class="pagination justify-content-center">
-                            <c:forEach begin="1" end="${countPage}" var="i">
-                                <li class="page-item"><a class="page-link" href="<c:url value="/admin/payments" />?page=${i}">${i}</a></li>
-                            </c:forEach>
-                        </ul>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <form:textarea rows="8" cols="80" type="text" id="description" placeholder="Mô tả blog..." path="description" cssClass="form-control"/>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="form-group">
+                                <label>Image</label>
+                                <div>
+                                    <form:input type="file" id="file" path="file" cssClass="form-control"/>
+                                    <form:hidden path="active"/>
+                                    <form:hidden path="photos"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="notifi()" type="submit" class="btn btn-info btn-fill pull-right">Update Blog</button>
+                    <div class="clearfix"></div>
+                </form:form>
+                <script>
+                    function notifi(){
+                        demo.showNotification("fa fa-plus", `Bạn đã chỉnh sửa Blog thành công`, 2)
+                    }
+                </script>
             </div>
         </div>
     </div>

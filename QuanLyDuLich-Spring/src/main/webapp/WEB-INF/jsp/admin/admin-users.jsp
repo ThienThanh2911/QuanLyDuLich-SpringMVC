@@ -96,9 +96,9 @@
                             <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="<c:url value="/admin/users" />">Your Profile</a>
+                            <a class="dropdown-item" href="<c:url value="/admin/users/${adminProfileId}/edit" />">Your Profile</a>
                             <div class="divider"></div>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="<c:url value="/logout" />">Logout</a>
                         </div>
                     </li>
                 </ul>

@@ -63,7 +63,7 @@ public class AdminPackagesController {
     public String adminPackagesView(Model model, @RequestParam(required = false) Map<String, String> params) throws ParseException{
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("countPage", (int)Math.ceil((double)this.tourService.countTours()/9));        
-        model.addAttribute("packages", this.tourService.getTours(null, null, null, null, null, page));
+        model.addAttribute("packages", this.tourService.getTours(null, null, null, null, null, false, page));
         
         return "adminPackagesLayout";
     }

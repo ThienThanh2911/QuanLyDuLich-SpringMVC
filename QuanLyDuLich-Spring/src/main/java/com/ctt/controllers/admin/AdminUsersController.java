@@ -56,11 +56,14 @@ public class AdminUsersController {
         return "adminUserProfileLayout";
     }
     @PostMapping("/admin/users/{userId}/edit")
-    public String adminUserEdit(Model model, @ModelAttribute(value = "user") User user, @PathVariable("userId") String userId) throws ParseException{
-        User userRoot = this.userDetailsService.getUserById(Integer.parseInt(userId));
-        user.setUsername(userRoot.getUsername());
-        user.setPassword(userRoot.getPassword());
-        this.userDetailsService.addOrUpdateUser(user);
+    public String adminUserEdit(Model model, @ModelAttribute(value = "user") User user, @PathVariable("userId") String userId, BindingResult result) throws ParseException{
+        if(!result.hasErrors()){
+            User userRoot = this.userDetailsService.getUserById(Integer.parseInt(userId));
+            user.setUsername(userRoot.getUsername());
+            user.setPassword(userRoot.getPassword());
+            this.userDetailsService.addOrUpdateUser(user);
+            return "redirect:/admin/users/"+userId+"/edit";
+        }
         return "adminUserProfileLayout";
     }
     @GetMapping("/admin/users/add")

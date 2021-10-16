@@ -96,10 +96,9 @@
                             <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Your Profile</a>
-                            <a class="dropdown-item" href="#">Change Password</a>
+                            <a class="dropdown-item" href="<c:url value="/admin/users/${adminProfileId}/edit" />">Your Profile</a>
                             <div class="divider"></div>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="<c:url value="/logout" />">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -111,7 +110,7 @@
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
-                        <h4 class="card-title">Striped Table with Hover</h4>
+                        <h4 class="card-title">Striped Table with Hover<a href="<c:url value="/admin/blogs/add" />" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="position:absolute; right:10px"><i class="fa fa-plus" style="text-align: center"></i>Add Blog</a></h4>
                         <p class="card-category">Here is a subtitle for this table</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
@@ -145,7 +144,8 @@
                                             </c:if>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                            <c:url value="/admin/blogs"  var="url"/>
+                                            <button onclick="window.location.href=`${url}/${b.id}/edit`" type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                         </td>

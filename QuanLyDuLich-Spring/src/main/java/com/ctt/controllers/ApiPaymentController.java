@@ -42,7 +42,7 @@ public class ApiPaymentController {
     })
     public ResponseEntity<Payments> addPayment(@RequestBody Map<String, String> params){
         Payments c = this.paymentService.addPayment(this.userService.getUsers(params.get("user"), 1).get(0),
-                                                    this.tourService.getTours(params.get("tour"), null, null, null, null, 0).get(0),
+                                                    this.tourService.getTours(params.get("tour"), null, null, null, null, true, 0).get(0),
                                                     BigDecimal.valueOf(Double.valueOf(params.get("price"))),
                                                     Integer.valueOf(params.get("adult")),
                                                     Integer.valueOf(params.get("children")),

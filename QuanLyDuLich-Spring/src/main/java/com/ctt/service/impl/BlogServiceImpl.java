@@ -8,9 +8,11 @@ package com.ctt.service.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.ctt.pojos.Blog;
+import com.ctt.pojos.User;
 import com.ctt.repository.BlogRepository;
 import com.ctt.service.BlogService;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +46,24 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public boolean addOrUpdateBlog(Blog blog) {
+    public boolean addOrUpdateBlog(Blog blog, User user) {
+        boolean a = blog.isActive();
         MultipartFile img = blog.getFile();
-        if(!this.blogRepository.getBlogs(blog.getTitle(), 1).isEmpty())
-            blog.setId(this.blogRepository.getBlogs(blog.getTitle(), 1).get(0).getId());
+        if(!this.blogRepository.getBlogs(blog.getTitle(), 1).isEmpty()){
+            Blog rootBlog = this.blogRepository.getBlogs(blog.getTitle(), 1).get(0);
+            blog.setId(rootBlog.getId());
+            blog.setUser(rootBlog.getUser());
+            blog.setCreatedDate(rootBlog.getCreatedDate());
+        }else{
+            a = true;
+            if(this.blogRepository.getBlogById(blog.getId()) != null){
+                blog.setUser(this.blogRepository.getBlogById(blog.getId()).getUser());
+                blog.setCreatedDate(this.blogRepository.getBlogById(blog.getId()).getCreatedDate());
+            }else{
+                blog.setUser(user);
+                blog.setCreatedDate(new Date());
+            }
+        }
         try {
             if (img != null && !img.isEmpty()) {
                 Map r = this.cloudinary.uploader().upload(blog.getFile().getBytes(), 
@@ -57,6 +73,7 @@ public class BlogServiceImpl implements BlogService {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+        blog.setActive(a);
         if(this.blogRepository.addOrUpdateBlog(blog))
             return true;
         return false;
