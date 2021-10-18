@@ -32,7 +32,7 @@ public class BlogRepositoryImpl implements BlogRepository{
     
     @Override
     @Transactional
-    public List<Blog> getBlogs(String kw, int page) {
+    public List<Blog> getBlogs(String kw, int page, boolean isActive) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Blog> query = builder.createQuery(Blog.class);
@@ -42,7 +42,10 @@ public class BlogRepositoryImpl implements BlogRepository{
             Predicate p = builder.like(root.get("title").as(String.class), String.format("%%%s%%", kw));
             query = query.where(p);
         }
-        
+        if(isActive){
+            Predicate p1 = builder.equal(root.get("active"), true);
+            query = query.where(p1);
+        }
         query = query.select(root); 
         Query q = session.createQuery(query);
         int max = 9;

@@ -96,9 +96,10 @@
                             <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="<c:url value="/admin/users/${adminProfileId}/edit" />">Your Profile</a>
+                            <a class="dropdown-item" href="#">Your Profile</a>
+                            <a class="dropdown-item" href="#">Change Password</a>
                             <div class="divider"></div>
-                            <a class="dropdown-item" href="<c:url value="/logout" />">Logout</a>
+                            <a class="dropdown-item" href="#">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -259,42 +260,15 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="notifi()" type="submit" class="btn btn-info btn-fill pull-right">Add User</button>
+                    <button type="submit" class="btn btn-info btn-fill pull-right">Add User</button>
                     <div class="clearfix"></div>
                 </form:form>
-                <script>
-                    function notifi(){
-                        demo.showNotification("fa fa-plus", `Bạn đã thêm User thành công`, 2)
-                    }
-                </script>
             </div>
         </div>
     </div>
     <footer class="footer">
         <div class="container-fluid">
             <nav>
-                <ul class="footer-menu">
-                    <li>
-                        <a href="#">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Company
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Portfolio
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Blog
-                        </a>
-                    </li>
-                </ul>
                 <p class="copyright text-center">
                     ©
                     <script>

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface BlogRepository {
     boolean addOrUpdateBlog(Blog blog);
-    List<Blog> getBlogs(String kw, int page);
+    List<Blog> getBlogs(String kw, int page, boolean isActive);
     List<Blog> getBlogsNew();
     Blog getBlogById(int id);
     void removeBlog(Blog blog);

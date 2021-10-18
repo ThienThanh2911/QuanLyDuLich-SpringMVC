@@ -96,9 +96,10 @@
                             <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="<c:url value="/admin/users/${adminProfileId}/edit" />">Your Profile</a>
+                            <a class="dropdown-item" href="#">Your Profile</a>
+                            <a class="dropdown-item" href="#">Change Password</a>
                             <div class="divider"></div>
-                            <a class="dropdown-item" href="<c:url value="/logout" />">Logout</a>
+                            <a class="dropdown-item" href="#">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -174,9 +175,9 @@
                                             <label>Gender</label>
                                             <div>
                                                 <form:select path="gender" class="form-select" style="width: 100%" aria-label="Default select example">
-                                                    <form:option value="">What is your gender?</form:option>
-                                                    <form:option value="male">Male</form:option>
-                                                    <form:option value="female">Female</form:option>
+                                                    <form:option value="">Giới tính của bạn là?</form:option>
+                                                    <form:option value="male">Nam</form:option>
+                                                    <form:option value="female">Nữ</form:option>
                                                 </form:select>
                                             </div>
                                         </div>
@@ -184,12 +185,11 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <label>Role</label>
                                         <form:select path="role" class="form-select" style="width: 100%" aria-label="Default select example">
-                                            <form:option value="">What is your role?</form:option>
-                                            <form:option value="ROLE_ADMIN">ADMIN</form:option>
-                                            <form:option value="ROLE_BUSINESS">BUSINESS</form:option>
-                                            <form:option value="ROLE_SALESMAN">SALESMAN</form:option>
-                                            <form:option value="ROLE_MANAGER">MANAGER</form:option>
-                                            <form:option value="ROLE_USER">USER</form:option>
+                                            <form:option value="">Chức vụ của bạn là</form:option>
+                                            <form:option value="ROLE_ADMIN">Quản lý</form:option>
+                                            <form:option value="ROLE_BUSINESS">Nhân viên Bán hàng</form:option>
+                                            <form:option value="ROLE_SALESMAN">Nhân viên Kinh doanh</form:option>
+                                            <form:option value="ROLE_USER">Khách hàng</form:option>
                                         </form:select>
                                     </div>
                                 </div>
@@ -236,20 +236,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button onclick="notifi()" type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
                                 <div class="clearfix"></div>
                             </form:form>
-                            <script>
-                                function notifi(){
-                                    demo.showNotification("fa fa-edit", `Bạn đã chỉnh sửa UserID ${user.id} thành công`, 2)
-                                }
-                            </script>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                     <div class="card card-user">
-                        <div class="card-image" style="background-color: gray;">
+                        <div class="card-image">
+                            <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
                         </div>
                         <div class="card-body">
                             <div class="author">
@@ -260,7 +256,7 @@
                                     <c:if test="${user.avatar != null && !user.avatar.isEmpty()}">
                                         <img class="avatar border-gray" src="${user.avatar}" alt="...">
                                     </c:if>
-                                    <h5 class="title">${user.firstName} ${user.lastName}</h5>
+                                    <h5 class="title">${user.lastName} ${user.firstName}</h5>
                                 </a>
                                 <p class="description">
                                     ${user.username}
@@ -290,28 +286,6 @@
     <footer class="footer">
         <div class="container-fluid">
             <nav>
-                <ul class="footer-menu">
-                    <li>
-                        <a href="#">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Company
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Portfolio
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Blog
-                        </a>
-                    </li>
-                </ul>
                 <p class="copyright text-center">
                     ©
                     <script>

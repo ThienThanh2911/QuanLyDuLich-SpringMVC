@@ -175,6 +175,7 @@
                 border-radius: 50%;
                 background-color: #ed563b;
                 display: none;
+                z-index: 1000;
             }
         </style>
         

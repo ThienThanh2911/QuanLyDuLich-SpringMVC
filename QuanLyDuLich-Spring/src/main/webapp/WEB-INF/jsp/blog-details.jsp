@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <section class="section section-bg" id="call-to-action" style="background-image: url(${pageContext.request.contextPath}/images/banner-image-1-1920x500.jpg)">
         <div class="container">
@@ -31,9 +32,9 @@
               <article>
                 <h4>${blog.title}</h4>
 
-                <p><i class="fa fa-user"></i> ${blog.user.username} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> ${blog.createdDate} &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
+                <p><i class="fa fa-user"></i> ${blog.user.username} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> <fmt:formatDate pattern = "dd-MM-yyyy HH:mm:ss" value = "${blog.createdDate}" /> &nbsp;|&nbsp; <i class="fa fa-comments"></i>  ${blog.commentblog.size()} comments</p>
 
-                <div><img src="images/blog-image-fullscren-1-1920x700.jpg" alt=""></div>
+                <div><img src=${blog.photos} alt=""></div>
 
                 <br>
 
@@ -105,7 +106,7 @@
                                             <img src="${comment.user.avatar}" alt="First One" style="width:100px">
                                         </div>
                                         <div class="right-content">
-                                            <h4>${comment.user.username}</h4>
+                                            <h4>${comment.user.lastName} ${comment.user.firstName}</h4>
                                             <p><em style="color: var(--text-color)">${comment.comment}</em></p>
                                             <p><a href="#"><i class="fa fa-thumbs-up"></i> Thích</a> | <a href="#"><i class="fa fa-comment"></i> Trả lời </a><c:if test="${pageContext.request.userPrincipal.name == comment.user.username}"> | <a href="javascript:void(0);" onClick="removeCommentBlog(${comment.id})"><i class="fa fa-remove"></i> Xóa </a></c:if>. <em class="date-comment-blog">${comment.created_date}</em></p>
                                         </div>

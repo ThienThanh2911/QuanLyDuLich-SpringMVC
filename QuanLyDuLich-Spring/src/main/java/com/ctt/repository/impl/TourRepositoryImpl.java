@@ -70,7 +70,7 @@ public class TourRepositoryImpl implements TourRepository {
         query = query.where(builder.and(ps.toArray(new Predicate[ps.size()])));
 
         Query q = session.createQuery(query);
-        if(ps.size() <= 1){
+        if(ps.size() <= 2){
             int max = 9;
             q.setMaxResults(max);
             q.setFirstResult((page - 1) * max);

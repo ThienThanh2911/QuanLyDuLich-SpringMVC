@@ -96,9 +96,9 @@
                             <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="<c:url value="/admin/users/${adminProfileId}/edit" />">Your Profile</a>
+                            <a class="dropdown-item" href="<c:url value="/admin/users" />">Your Profile</a>
                             <div class="divider"></div>
-                            <a class="dropdown-item" href="<c:url value="/logout" />">Logout</a>
+                            <a class="dropdown-item" href="#">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -110,8 +110,8 @@
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
-                        <h4 class="card-title">Striped Table with Hover<a href="<c:url value="/admin/users/add" />" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="position:absolute; right:10px"><i class="fa fa-plus" style="text-align: center"></i>Add User</a></h4>
-                        <p class="card-category">Here is a subtitle for this table</p>
+                        <h4 class="card-title">Account Management Panel<a href="<c:url value="/admin/users/add" />" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="position:absolute; right:10px"><i class="fa fa-plus" style="text-align: center"></i>Add User</a></h4>
+                        <p class="card-category">Bảng quản lý tài khoản người dùng</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
                         <table class="table table-hover table-striped">
@@ -131,8 +131,24 @@
                                         <td>${u.id}</td>
                                         <td>${u.username}</td>
                                         <td>${u.email}</td>
-                                        <td>${u.role.name()}</td>
-                                        <td>${u.gender}</td>
+                                        <c:if test="${u.role.name() == 'ROLE_ADMIN'}">
+                                            <td>Quản lý</td>
+                                        </c:if>
+                                        <c:if test="${u.role.name() == 'ROLE_BUSINESS'}">
+                                            <td>Nhân viên Bán hàng</td>
+                                        </c:if>
+                                        <c:if test="${u.role.name() == 'ROLE_SALESMAN'}">
+                                            <td>Nhân viên Kinh doanh</td>
+                                        </c:if>
+                                        <c:if test="${u.role.name() == 'ROLE_USER'}">
+                                            <td>Khách hàng</td>
+                                        </c:if>
+                                        <c:if test="${u.gender == 'male'}">
+                                            <td>Nam</td>
+                                        </c:if>
+                                        <c:if test="${u.gender == 'female'}">
+                                            <td>Nữ</td>
+                                        </c:if>
                                         <td class="text-center">
                                             <c:if test="${u.active == true}">
                                                 <button id="buttonuser${u.id}" onclick="setActiveUser(${u.id})" type="button" rel="tooltip" title="Deactive User" class="btn btn-info btn-simple btn-link">
@@ -173,28 +189,6 @@
     <footer class="footer">
         <div class="container-fluid">
             <nav>
-                <ul class="footer-menu">
-                    <li>
-                        <a href="#">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Company
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Portfolio
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Blog
-                        </a>
-                    </li>
-                </ul>
                 <p class="copyright text-center">
                     ©
                     <script>

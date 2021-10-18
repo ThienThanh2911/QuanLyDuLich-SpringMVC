@@ -98,9 +98,10 @@
                             <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="<c:url value="/admin/users/${adminProfileId}/edit" />">Your Profile</a>
+                            <a class="dropdown-item" href="#">Your Profile</a>
+                            <a class="dropdown-item" href="#">Change Password</a>
                             <div class="divider"></div>
-                            <a class="dropdown-item" href="<c:url value="/logout" />">Logout</a>
+                            <a class="dropdown-item" href="#">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -164,7 +165,7 @@
                                             <label>Vehicle</label>
                                             <div>
                                                 <form:select aria-label="Default select example" style="width: 100%" path="vehicle" name="vehicle" class="form-select">
-                                                    <form:option value="">What is your vehicle?</form:option>
+                                                    <form:option value="">Phương tiện di chuyển?</form:option>
                                                     <form:option value="OTO">Ô tô</form:option>
                                                     <form:option value="PLANE">Máy bay</form:option>
                                                     <form:option value="YACHT">Du thuyền</form:option>
@@ -174,24 +175,19 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
                                         <div class="form-group">
                                             <label>Tags</label>
-                                            <form:select path="tags" id="dropdownTag" title="Chọn Tag" data-max-options="5"  multiple="true" class="form-Control selectpicker">
-                                                <c:forEach items="${listTags}" var="t">
-                                                    <form:option value="${t.id}">${t.name}</form:option>
-                                                </c:forEach>
-                                            </form:select>
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <c:forEach items="${tour.tags}" var="t">
-                                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">${t.name}</div>
+                                            <div>
+                                                <form:select path="tags" id="dropdownTag" title="Chọn Tag" data-max-options="5"  multiple="true" class="form-control selectpicker">
+                                                    <c:forEach items="${listTags}" var="t">
+                                                        <form:option value="${t.id}">${t.name}</form:option>
                                                     </c:forEach>
-                                                </div>
+                                                </form:select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12">
                                         <div class="form-group">
                                             <label>Image</label>
                                             <div>
@@ -204,20 +200,15 @@
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <form:textarea rows="4" cols="80" type="text" id="description" placeholder="Mô tả tour..." path="description" cssClass="form-control"/>
+                                            <form:textarea rows="20" cols="80" type="text" id="description" placeholder="Mô tả tour..." path="description" style="height:9em" class="form-control"/>
                                             <form:hidden path="active"/>
                                             <form:hidden path="photos"/>
                                         </div>
                                     </div>
                                 </div>
-                                <button onclick="notifi()" type="submit" class="btn btn-info btn-fill pull-right">Update Tour</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Tour</button>
                                 <div class="clearfix"></div>
                             </form:form>
-                            <script>
-                                function notifi(){
-                                    demo.showNotification("fa fa-edit", `Bạn đã chỉnh sửa TourID ${tour.id} thành công`, 2)
-                                }
-                            </script>
                         </div>
                     </div>
                 </div>
@@ -229,7 +220,19 @@
                                 <span style="font-size: 20px; "><strong>${tour.name}</strong></span>
                                 <br>Giá vé: ${tour.price}VNĐ
                                 <br>Danh mục: ${tour.category.name}
-                                <br>Phương tiện di chuyển: ${tour.vehicle}
+                                <c:if test="${tour.vehicle == 'YACHT'}">
+                                    <br>Phương tiện di chuyển: Du thuyền
+                                </c:if>
+                                <c:if test="${tour.vehicle == 'OTO'}">
+                                    <br>Phương tiện di chuyển: Ô tô
+                                </c:if>
+                                <c:if test="${tour.vehicle == 'PLANE'}">
+                                    <br>Phương tiện di chuyển: Máy bay
+                                </c:if>
+                                <br>
+                                <c:forEach items="${tour.tags}" var="t">
+                                    <span class="badge badge-pill badge-secondary" style="font-size:15px">${t.name}</span>
+                                </c:forEach>
                             </p>
                         </div>
                         <hr>
@@ -240,7 +243,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Edit Date Details</h4>
@@ -260,9 +263,21 @@
                                                 <tr id="datedetail${d.id}">
                                                     <td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${d.startDate}" /></td>
                                                     <td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${d.finishDate}" /></td>
-                                                    <td class="text-center">
-                                                        ${d.status}
-                                                    </td>
+                                                    <c:if test="${d.status == 'ACTIVE'}">
+                                                        <td>
+                                                            <span class="badge badge-pill badge-success" style="font-size:13px">Hoạt động</span>
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${d.status == 'ARCHIVED'}">
+                                                        <td>
+                                                            <span class="badge badge-pill badge-warning" style="font-size:13px">Đang diễn ra</span>
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${d.status == 'CANCELLED'}">
+                                                        <td>
+                                                            <span class="badge badge-pill badge-danger" style="font-size:13px">Đã kết thúc</span>
+                                                        </td>
+                                                    </c:if>
                                                     <td class="text-center">
                                                         <button onclick="removeDateDetail(${d.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
                                                             <i class="fa fa-remove"></i>
@@ -278,13 +293,17 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Start Date</label>
-                                        <input type="date" id="startDate" name="startDate" cssClass="form-control"/>
+                                        <div>
+                                            <input type="date" id="startDate" name="startDate" class="form-control"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Finish Date</label>
-                                        <input type="date" id="finishDate" name="finishDate" cssClass="form-control"/>
+                                        <div>
+                                            <input type="date" id="finishDate" name="finishDate" class="form-control"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -293,53 +312,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">List Tags</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="card strpied-tabled-with-hover">
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Tag Name</th>
-                                            <th>Remove</th>
-                                        </thead>
-                                        <tbody id="tagList">
-                                            <c:forEach items="${listTags}" var="t">
-                                                <tr id="tags${t.id}">
-                                                    <td>${t.id}</td>
-                                                    <td>${t.name}</td>
-                                                    
-                                                    <td class="text-center">
-                                                        <button onclick="removeTag(${t.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                            <i class="fa fa-remove"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
-                                    <div class="form-group">
-                                        <label>Tag Name</label>
-                                        <input type="text" id="tagName" name="tagName" cssClass="form-control"/>
-                                    </div>
-                                </div>
-                            </div>
-                           <button onclick="addTag()" type="button" class="btn btn-info btn-fill pull-right">Add Tag</button>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="row">
-                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">List Categories</h4>
@@ -371,14 +346,62 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Category Name</label>
-                                        <input type="text" id="cateName" name="cateName" cssClass="form-control"/>
+                                        <div>
+                                            <input type="text" id="cateName" name="cateName" class="form-control"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                            <button onclick="addCate()" type="button" class="btn btn-info btn-fill pull-right">Add Category</button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">List Tags</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card strpied-tabled-with-hover">
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>Tag Name</th>
+                                            <th>Remove</th>
+                                        </thead>
+                                        <tbody id="tagList">
+                                            <c:forEach items="${listTags}" var="t">
+                                                <tr id="tags${t.id}">
+                                                    <td>${t.id}</td>
+                                                    <td>${t.name}</td>
+                                                    
+                                                    <td class="text-center">
+                                                        <button onclick="removeTag(${t.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
+                                                            <i class="fa fa-remove"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Tag Name</label>
+                                        <div>
+                                            <input type="text" id="tagName" name="tagName" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           <button onclick="addTag()" type="button" class="btn btn-info btn-fill pull-right">Add Tag</button>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -389,28 +412,6 @@
     <footer class="footer">
         <div class="container-fluid">
             <nav>
-                <ul class="footer-menu">
-                    <li>
-                        <a href="#">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Company
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Portfolio
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Blog
-                        </a>
-                    </li>
-                </ul>
                 <p class="copyright text-center">
                     ©
                     <script>

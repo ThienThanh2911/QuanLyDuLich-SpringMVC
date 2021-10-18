@@ -13,6 +13,5 @@ public enum Role {
     ROLE_ADMIN,
     ROLE_BUSINESS,
     ROLE_SALESMAN,
-    ROLE_MANAGER,
     ROLE_USER;
 }

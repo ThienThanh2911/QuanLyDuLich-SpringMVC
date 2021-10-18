@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     <!-- ***** Main Banner Area Start ***** -->
     <div class="main-banner" id="top">
@@ -41,15 +42,13 @@
                 <c:forEach var="t" items="${toursNew}">
                 <div class="col-lg-4">
                     <div class="trainer-item">
-                        <div class="ribbon-wrapper">
-                            <div class="ribbon">NEW</div>
-                        </div>
+                        <div class="ribbon red">Tour mới nhất</div>
                         <div class="image-thumb">
                             <img src="<c:url value="${t.photos}" />" alt="${t.name}">
                         </div>
                         <div class="down-content">
                             <div>
-                                <span>${t.price}<sup>đ</sup></span>
+                                <span><fmt:formatNumber value="${t.price}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></span>
                                 
                                 <span style="float:right">Lượt xem: 100</span>
                             </div>
@@ -90,15 +89,13 @@
                 <c:forEach var="t" items="${toursFeatured}">
                 <div class="col-lg-4">
                     <div class="trainer-item">
-                        <div class="ribbon-wrapper">
-                            <div class="ribbon">HOT</div>
-                        </div>
+                        <div class="ribbon red">Tour được yêu thích</div>
                         <div class="image-thumb">
                             <img src="<c:url value="${t[2]}" />" alt="${t[1]}">
                         </div>
                         <div class="down-content">
                             <div>
-                                <span>${t[4]}<sup>đ</sup></span>
+                                <span><fmt:formatNumber value="${t[4]}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></span>
                                 
                                 <span style="float:right">Lượt xem: 100</span>
                             </div>
@@ -178,11 +175,13 @@
                 <section class='tabs-content'>
                     <c:forEach var="b" items="${blogsNew}">
                         <article id='${b.id}'>
-                            <img src="${b.photos}" alt="">
+                            <img src="${b.photos}" alt="" width="100%" height="400px">
                             <h4>${b.title}</h4>
 
-                            <p><i class="fa fa-user"></i> ${b.user.username} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> ${b.createdDate} &nbsp;|&nbsp; <i class="fa fa-comments"></i>  ${b.commentblog.size()} comments</p>
-
+                            <p><i class="fa fa-user"></i> ${b.user.lastName} ${b.user.firstName} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> <fmt:formatDate pattern = "dd-MM-yyyy HH:mm:ss" value = "${b.createdDate}" /> &nbsp;|&nbsp; <i class="fa fa-comments"></i>  ${b.commentblog.size()} comments</p>
+                            
+                            <p class="truncated" style="width: 700px">${b.description}</p>
+                            
                             <div class="main-button">
                                 <a href="<c:url value="blog-details/${b.id}" />">Continue Reading</a>
                             </div>

@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<User> users = this.getUsers(username, 1);
-        if(users.isEmpty())
+        if(users.isEmpty() || !users.get(0).isActive())
             throw new UsernameNotFoundException("User khong ton tai!!!");
         User u = users.get(0);
         Set<GrantedAuthority> authorities = new HashSet<>();

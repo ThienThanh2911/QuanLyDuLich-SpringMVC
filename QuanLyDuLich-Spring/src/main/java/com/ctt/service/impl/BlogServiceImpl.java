@@ -31,8 +31,8 @@ public class BlogServiceImpl implements BlogService {
     private Cloudinary cloudinary;
     
     @Override
-    public List<Blog> getBlogs(String kw, int page) {
-        return this.blogRepository.getBlogs(kw, page);
+    public List<Blog> getBlogs(String kw, int page, boolean isActive) {
+        return this.blogRepository.getBlogs(kw, page, isActive);
     }
     
     @Override
@@ -49,8 +49,8 @@ public class BlogServiceImpl implements BlogService {
     public boolean addOrUpdateBlog(Blog blog, User user) {
         boolean a = blog.isActive();
         MultipartFile img = blog.getFile();
-        if(!this.blogRepository.getBlogs(blog.getTitle(), 1).isEmpty()){
-            Blog rootBlog = this.blogRepository.getBlogs(blog.getTitle(), 1).get(0);
+        if(!this.blogRepository.getBlogs(blog.getTitle(), 1, false).isEmpty()){
+            Blog rootBlog = this.blogRepository.getBlogs(blog.getTitle(), 1, false).get(0);
             blog.setId(rootBlog.getId());
             blog.setUser(rootBlog.getUser());
             blog.setCreatedDate(rootBlog.getCreatedDate());

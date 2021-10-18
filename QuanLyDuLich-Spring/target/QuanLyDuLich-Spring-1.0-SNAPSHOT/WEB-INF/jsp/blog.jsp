@@ -36,8 +36,10 @@
                                 <img src="${blog.photos}" alt="">
                                 <h4>${blog.title}</h4>
 
-                                <p><i class="fa fa-user"></i> ${blog.user.username} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> <fmt:formatDate pattern = "dd/MM/yyyy HH:mm:ss" value = "${blog.createdDate}" /> &nbsp;|&nbsp; <i class="fa fa-comments"></i>  ${blog.commentblog.size()} comments</p>
+                                <p><i class="fa fa-user"></i> ${blog.user.lastName} ${blog.user.firstName} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> <fmt:formatDate pattern = "dd-MM-yyyy HH:mm:ss" value = "${blog.createdDate}" /> &nbsp;|&nbsp; <i class="fa fa-comments"></i>  ${blog.commentblog.size()} comments</p>
 
+                                <p class="truncated" style="width: 700px">${blog.description}</p>
+                                
                                 <div class="main-button">
                                     <a href="blog-details/${blog.id}">Continue Reading</a>
                                 </div>
@@ -61,25 +63,12 @@
                     <h5 class="h5" style="color: var(--text-color)">Recent posts</h5>
 
                     <ul>
-                        <li>
-                            <p><a href="blog-details">Blog số 1</a></p>
-                            <small style="color: var(--text-color)"><i class="fa fa-user"></i> Thành &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 15.08.2021 10:10</small>
-                        </li>
-
-                        <li><br></li>
-
-                        <li>
-                            <p><a href="blog-details">Blog số 2</a></p>
-                            <small style="color: var(--text-color)"><i class="fa fa-user"></i> Thành &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 15.08.2021 10:10</small>
-                        </li>
-
-                        <li><br></li>
-
-                        <li>
-                          <p><a href="blog-details">Blog số 3</a></p>
-
-                          <small style="color: var(--text-color)"><i class="fa fa-user"></i> Thành &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 15.08.2021 10:10</small>
-                        </li>
+                        <c:forEach var="b" items="${blogsNew}">
+                            <li>
+                                <p><a href="blog-details/${b.id}">${b.title}</a></p>
+                                <small style="color: var(--text-color)"><i class="fa fa-user"></i> ${b.user.lastName} ${b.user.firstName} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> <fmt:formatDate pattern = "dd-MM-yyyy HH:mm:ss" value = "${b.createdDate}" /></small>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>

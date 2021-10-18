@@ -95,9 +95,10 @@
                             <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="<c:url value="/admin/users/${adminProfileId}/edit" />">Your Profile</a>
+                            <a class="dropdown-item" href="#">Your Profile</a>
+                            <a class="dropdown-item" href="#">Change Password</a>
                             <div class="divider"></div>
-                            <a class="dropdown-item" href="<c:url value="/logout" />">Logout</a>
+                            <a class="dropdown-item" href="#">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -131,21 +132,20 @@
                 <div class="col-md-8">
                     <div class="card ">
                         <div class="card-header ">
-                            <h4 class="card-title">Users Behavior</h4>
-                            <p class="card-category">24 Hours performance</p>
+                            <h4 class="card-title">Revenue Statistics</h4>
+                            <p class="card-category">Biểu đồ thống kê doanh thu trong năm 2021</p>
                         </div>
                         <div class="card-body ">
-                            <div id="chartHours" class="ct-chart"></div>
+                            <div id="chartActivity" class="ct-chart"></div>
                         </div>
                         <div class="card-footer ">
                             <div class="legend">
-                                <i class="fa fa-circle text-info"></i> Open
-                                <i class="fa fa-circle text-danger"></i> Click
-                                <i class="fa fa-circle text-warning"></i> Click Second Time
+                                <i class="fa fa-circle text-info"></i> Vé người lớn
+                                <i class="fa fa-circle text-danger"></i> Vé trẻ em
                             </div>
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-history"></i> Updated 3 minutes ago
+                                <i class="fa fa-check"></i> Data information certified
                             </div>
                         </div>
                     </div>
@@ -155,11 +155,11 @@
                 <div class="col-md-6">
                     <div class="card ">
                         <div class="card-header ">
-                            <h4 class="card-title">Revenue Statistics</h4>
-                            <p class="card-category">Biểu đồ thống kê doanh thu</p>
+                            <h4 class="card-title">Revenue statistics for all years</h4>
+                            <p class="card-category">Biểu đồ thống kê doanh thu của tất cả các năm</p>
                         </div>
                         <div class="card-body ">
-                            <div id="chartActivity" class="ct-chart"></div>
+                            <div id="chartActivity2" class="ct-chart"></div>
                         </div>
                         <div class="card-footer ">
                             <div class="legend">
@@ -180,20 +180,26 @@
                             <p class="card-category">Chi tiết thống kê doanh thu theo thời gian</p>
                         </div>
                         <div class="card-body ">
+                            <p><strong>Nhập năm mà bạn muốn xem thống kê chi tiết:</strong> 
+                                <span>
+                                    <select class="form-select" aria-label="Default select example" style="border: 0; border-bottom: 1px solid black">
+                                        <option selected>Chọn năm</option>
+                                        <option value="1">Năm 2020</option>
+                                        <option value="2">Năm 2021</option>
+                                    </select>
+                                </span>
+                            </p>
                             <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">Theo tháng</a>
+                                    <a class="nav-link active" href="#month" role="tab" aria-controls="description" aria-selected="true">Theo tháng</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">Theo quý</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#deals" role="tab" aria-controls="deals" aria-selected="false">Theo năm</a>
+                                    <a class="nav-link" href="#year" role="tab" aria-controls="deals" aria-selected="false">Theo năm</a>
                                 </li>
                              </ul>
                             <div class="card-body">
                             <div class="tab-content">
-                                <div class="tab-pane active" id="description" role="tabpanel">
+                                <div class="tab-pane active" id="month" role="tabpanel">
                                     <p style="font-size: 20px"><strong>Số liệu thống kê tháng 9</strong></p>
                                     <p class="card-text"><strong>Tổng số vé:</strong> <em>100</em></p>
                                     <p class="card-text"><strong>Tổng doanh thu:</strong> <em>100.000.000VNĐ</em></p>
@@ -217,37 +223,11 @@
                                         </span>
                                     </p>
                                 </div>
-                                
-                                <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="history-tab">  
-                                    <p style="font-size: 20px"><strong>Số liệu thống kê quý 4</strong></p>
-                                    <p class="card-text"><strong>Tổng số vé:</strong> <em>200</em></p>
-                                    <p class="card-text"><strong>Tổng doanh thu:</strong> <em>200.000.000VNĐ</em></p>
-                                    <p class="card-text"><strong>Chọn quý mà bạn muốn xem thống kê chi tiết:</strong> 
-                                        <span>
-                                            <select class="form-select" aria-label="Default select example" style="border: 0; border-bottom: 1px solid black">
-                                                <option selected>Chọn quý</option>
-                                                <option value="1">Quý 1</option>
-                                                <option value="2">Quý 2</option>
-                                                <option value="3">Quý 3</option>
-                                                <option value="1">Quý 4</option>
-                                            </select>
-                                        </span>
-                                    </p>
-                                </div>
 
-                                <div class="tab-pane" id="deals" role="tabpanel" aria-labelledby="deals-tab">
+                                <div class="tab-pane" id="year" role="tabpanel" aria-labelledby="deals-tab">
                                     <p style="font-size: 20px"><strong>Số liệu thống kê năm 2021</strong></p>
                                     <p class="card-text"><strong>Tổng số vé:</strong> <em>1000</em></p>
                                     <p class="card-text"><strong>Tổng doanh thu:</strong> <em>999.000.000VNĐ</em></p>
-                                    <p class="card-text"><strong>Nhập năm mà bạn muốn xem thống kê chi tiết:</strong> 
-                                        <span>
-                                            <select class="form-select" aria-label="Default select example" style="border: 0; border-bottom: 1px solid black">
-                                                <option selected>Chọn năm</option>
-                                                <option value="1">Năm 2020</option>
-                                                <option value="2">Năm 2021</option>
-                                            </select>
-                                        </span>
-                                    </p>
                                 </div>
                             </div>
                             </div>
@@ -266,28 +246,6 @@
     <footer class="footer">
         <div class="container-fluid">
             <nav>
-                <ul class="footer-menu">
-                    <li>
-                        <a href="#">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Company
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Portfolio
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Blog
-                        </a>
-                    </li>
-                </ul>
                 <p class="copyright text-center">
                     ©
                     <script>

@@ -937,6 +937,7 @@ trainers
 
 #trainers .trainer-item img {
   width: 100%;
+  height: 230px;
   border-radius: 5px;
 }
 
@@ -952,9 +953,9 @@ trainers
 #trainers .trainer-item h4 {
   font-size: 19px;
   font-weight: 600;
+  height: 84px;
   color: var(--text-color);
   letter-spacing: 0.5px;
-  margin-bottom: 18px;
 }
 
 #trainers .trainer-item p {
@@ -1336,50 +1337,56 @@ a:hover {
     background-color: var(--card-color);
 }
 
-.headline {
-    margin-bottom: 30px;
-    padding: 8px;
-    border-bottom: 3px solid #ed563b;
-    
-}
-
-.headline > span {
-    color: #ed563b;
-}
-
-.readmore {
-    font-size: 20px;
-    position: relative;
-    top: 10px;
-}
-
-.clearfix-headline {
-    display: flex;
-    justify-content: space-between;
-}
-
-.ribbon-wrapper {
-  width: 85px;
-  height: 88px;
-  overflow: hidden;
-  position: absolute;
-  top: -3px;
-  left: -3px;
-}
-
 .ribbon {
-    font: bold 15px sans-serif;
-    color: #333;
-    text-align: center;
-    -webkit-transform: rotate(-45deg);
-    -moz-transform:    rotate(-45deg);
-    -ms-transform:     rotate(-45deg);
-    -o-transform:      rotate(-45deg);
-    position: relative;
-    padding: 7px 0;
-    top: 15px;
-    left: -30px;
-    width: 120px;
-    background-color: #E52822;
-    color: #fff;
+  position: absolute;
+  z-index: 10;
+  padding: 0px 7px;
+  /* margin-left: 62.5%; */
+    /* margin-right: 12.0%; */
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  font-size: 15px;
+  line-height: 32px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  zoom: 1;
+  top: 7%;
+  /* top: 8%; */
+  right: -3%;
+
+  /* left: 61%; */
+  min-width: 40%;
+  max-width: 50%;
+  height: 32px;
+}
+
+.red {
+  background: #E52822;
+}
+
+.ribbon:after {
+  content: "";
+  position: absolute;
+  z-index: -20;
+  top: 100%;
+  left: auto;
+  border-style: solid;
+  border-width: 0 0 10px 10px;
+  right: 0;
+}
+
+.red:after {
+  border-color: transparent #9C0000;
+}
+
+.truncated {
+  line-height: 1.5em;
+  height: 4.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
