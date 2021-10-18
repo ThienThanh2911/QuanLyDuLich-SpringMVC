@@ -26,7 +26,7 @@ public class AdminPaymentsController {
     @GetMapping("/admin/payments")
     public String adminPaymentsView(Model model, @RequestParam(required = false) Map<String, String> params) throws ParseException{
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
-        model.addAttribute("payments", this.paymentService.getPayments(page));
+        model.addAttribute("payments", this.paymentService.getPayments(page, params.getOrDefault("username", null)));
         model.addAttribute("countPage", (int)Math.ceil((double)this.paymentService.countPayments()/9));        
         return "adminPaymentsLayout";
     }

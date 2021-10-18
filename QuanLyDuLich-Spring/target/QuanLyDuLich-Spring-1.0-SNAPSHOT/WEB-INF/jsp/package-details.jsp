@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- ***** Call to Action Start ***** -->
     <section class="section section-bg" id="call-to-action" style="background-image: url(${pageContext.request.contextPath}/images/banner-image-1-1920x500.jpg)">
@@ -330,7 +331,7 @@
                         <c:if test="${pageContext.request.userPrincipal.name == null}">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div>Bạn cần phải đăng nhập để bình luận về Tour này</div>
+                                    <div style="color: var(--text-color)">Bạn cần phải đăng nhập để bình luận về Tour này</div>
                                 </div>
                             </div>
                         </c:if>
@@ -372,7 +373,7 @@
                                 <select id="datedetail" name="datedetail" class="custom-select" style="text-align-last: center; width: 75%; background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
                                         <option value="">Chọn ngày khởi hành</option>
                                         <c:forEach items="${dates}" var="date">
-                                            <option value="${date.id}">${date.startDate}</option>
+                                            <option value="${date.id}"><fmt:formatDate pattern = "dd/MM/yyyy" value = "${date.startDate}" /></option>
                                         </c:forEach>
                                 </select>
                              </div>
@@ -483,31 +484,35 @@
         function addPayment(user, tour){
             let method = document.getElementById("method").value
             let datedetail = document.getElementById("datedetail").value
-            let totalP = p * a.value + p * c.value
+            let totalP = p * a.value + (p * c.value)*70/100
             let close = document.getElementById("close")
-            if(method !== "" && datedetail !== ""){
-                fetch("/QuanLyDuLich-Spring/api/add-payment",{
-                    method: 'post',
-                    body: JSON.stringify({
-                        "user": user,
-                        "tour": tour,
-                        "price": totalP,
-                        "adult": a.value,
-                        "children": c.value,
-                        "method": method,
-                        "datedetail": datedetail
-                    }),
-                    headers:{
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function(res){
-                    return res.json();
-                }).then(function(data){
-                    window.location.href = '/QuanLyDuLich-Spring';
-                }).catch(function(err){
-                    console.error(err);
-                });
-            }else
-                alert("Bạn cần phải chọn phương thức thanh toán và ngày muốn khởi hành!");
+            if(user === "")
+                alert("Bạn cần phải đăng nhập để có thể đặt vé!");
+            else{
+                if(method !== "" && datedetail !== ""){
+                    fetch("/QuanLyDuLich-Spring/api/add-payment",{
+                        method: 'post',
+                        body: JSON.stringify({
+                            "user": user,
+                            "tour": tour,
+                            "price": totalP,
+                            "adult": a.value,
+                            "children": c.value,
+                            "method": method,
+                            "datedetail": datedetail
+                        }),
+                        headers:{
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function(res){
+                        return res;
+                    }).then(function(data){
+                        window.location.href = '/QuanLyDuLich-Spring';
+                    }).catch(function(err){
+                        console.error(err);
+                    });
+                }else
+                    alert("Bạn cần phải chọn phương thức thanh toán và ngày muốn khởi hành!");
+            }
         }
     </script>

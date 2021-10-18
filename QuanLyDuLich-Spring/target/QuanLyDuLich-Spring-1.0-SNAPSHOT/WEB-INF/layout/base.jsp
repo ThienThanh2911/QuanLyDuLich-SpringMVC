@@ -182,7 +182,7 @@
         <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.0.min.js"></script>
 
         <!-- Bootstrap -->
-        <script src="${pageContext.request.contextPath}/resources/js/popper.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/popper.js"></script>
         <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/commenttour.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/commentblog.js"></script>

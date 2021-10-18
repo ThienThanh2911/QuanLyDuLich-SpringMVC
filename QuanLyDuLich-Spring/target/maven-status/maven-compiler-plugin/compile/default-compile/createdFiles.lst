@@ -34,6 +34,7 @@ com\ctt\pojos\CommentTour.class
 com\ctt\controllers\ApiCommentBlogController.class
 com\ctt\configs\TilesConfig.class
 com\ctt\service\UserService.class
+com\ctt\controllers\PaymentsController.class
 com\ctt\repository\impl\BlogRepositoryImpl.class
 com\ctt\pojos\Category.class
 com\ctt\repository\UserRepository.class

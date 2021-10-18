@@ -5,14 +5,12 @@
  */
 package com.ctt.controllers;
 
-import com.ctt.pojos.Tours;
 import com.ctt.service.CategoryService;
 import com.ctt.service.ProvinceService;
 import com.ctt.service.TourService;
 import com.ctt.service.BlogService;
 import com.ctt.service.UserService;
 import java.security.Principal;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,13 +73,4 @@ public class HomeController {
         return "termsLayout";
     }
     
-    @RequestMapping("/payment-history")
-    public String paymentHistory(Model model) {
-        return "paymentHistoryLayout";
-    }
-    
-    @RequestMapping("/invoice-details")
-    public String invoiceDetails(Model model) {
-        return "invoiceDetailsLayout";
-    }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 public interface PaymentService {
     Payments addPayment(User user, Tours tour, BigDecimal price, int adult, int children, int method, DateDetail datedetail);
     Payments getPaymentById(int id);
-    List<Payments> getPayments(int page);
+    List<Payments> getPayments(int page, String username);
     void removePayment(Payments payment);
     long countPayments();
 }

@@ -50,7 +50,7 @@ public class ApiPaymentController {
                                                     this.dateDetailService.getDateDetailById(Integer.valueOf(params.get("datedetail"))));
         if(c == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(c, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
     @DeleteMapping(path = "/admin/api/payments/remove-payment/{paymentId}")

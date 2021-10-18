@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <section class="section section-bg" id="call-to-action" style="background-image: url(images/banner-image-1-1920x500.jpg)">
         <div class="container">
@@ -31,21 +32,19 @@
             <div class="card shadow" style="background-color: var(--card-color);">
             <div class="card-header">
                 <h4 class="card-title" style="color: var(--text-color);">
-                    <strong>TWIN<span> TOUR</span></strong>
-                    <span class="float-right">Invoice #123</span>
+                    <strong>${payment.tour.name}</strong>
+                    <span class="float-right">Invoice #${payment.id}</span>
                 </h4>
             </div>
             <div class="card-body">
                 <h5 style="color: var(--text-color);">Client Information<span class="float-right">Payment Details</span></h5>
-                <p class="card-text">CHÂU THIÊN THÀNH<span class="float-right">CustomerID: 1234</span></p>
-                <p class="card-text">0901 310 332<span class="float-right">Invoice date: 4/10/2021</span></p>
-                <p class="card-text">119 Bình Long, phường Bình Hưng Hòa A, quận Bình Tân<span class="float-right">Payment method: Chuyển khoản</span></p>
+                <p class="card-text">${payment.user.lastName} ${payment.user.firstName}<span class="float-right">CustomerID: ${payment.user.id}</span></p>
+                <p class="card-text">${payment.user.phone}<span class="float-right">Invoice date: <fmt:formatDate pattern = "dd/MM/yyyy HH:mm:ss" value = "${payment.createdDate}" /></span></p>
+                <p class="card-text">${payment.user.street} ${payment.user.province.name}<span class="float-right">Payment method: ${payment.method}</span></p>
                 <h4 style="border-bottom: 2px solid var(--text-color); margin: 20px 200px 40px 200px"></h4>
                 <table class="table" style="border: none">
                     <thead class="theme-dark" style="background-color: var(--table-color); color: var(--tabletext-color)">
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Description</th>
                             <th scope="col" class="text-center">Type</th>
                             <th scope="col" class="text-center">Quantity</th>
                             <th scope="col" class="text-right">Price</th>
@@ -53,25 +52,21 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row" style="color: #7a7a7a">1</th>
-                            <td style="color: #7a7a7a">Tour miền Nam</td>
                             <td class="text-center" style="color: #7a7a7a">Người lớn</td>
-                            <td class="text-center" style="color: #7a7a7a">2</td>
-                            <td class="text-right" style="color: #7a7a7a">2.000.000VNĐ</td>
+                            <td class="text-center" style="color: #7a7a7a">${payment.adult}</td>
+                            <td class="text-right" style="color: #7a7a7a">${payment.tour.price * payment.adult}VNĐ</td>
                         </tr>
                         <tr>
-                            <th scope="row" style="color: #7a7a7a">2</th>
-                            <td style="color: #7a7a7a">Tour miền Nam</td>
                             <td class="text-center" style="color: #7a7a7a">Trẻ em</td>
-                            <td class="text-center" style="color: #7a7a7a">2</td>
-                            <td class="text-right" style="color: #7a7a7a">1.500.000VNĐ</td>
+                            <td class="text-center" style="color: #7a7a7a">${payment.children}</td>
+                            <td class="text-right" style="color: #7a7a7a">${(payment.tour.price * payment.children)*70/100}VNĐ</td>
                         </tr>
                         <tr>
                             <th scope="row"></th>
                             <td></td>
                             <td></td>
                             <td class="text-center" style="background-color: var(--table-color); color: var(--tabletext-color); font-size: 20px">TOTAL</td>
-                            <td class="text-right" style="background-color: var(--tabletotal-color); color: var(--tabletext-color); font-size: 20px">3.500.000VNĐ</td>
+                            <td class="text-right" style="background-color: var(--tabletotal-color); color: var(--tabletext-color); font-size: 20px">${payment.price}VNĐ</td>
                         </tr>
                     </tbody>
                 </table>

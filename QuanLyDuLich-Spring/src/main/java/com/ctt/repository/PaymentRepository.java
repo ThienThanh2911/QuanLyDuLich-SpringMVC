@@ -15,7 +15,7 @@ import java.util.List;
 public interface PaymentRepository {
     Payments addPayment(Payments c);
     Payments getPaymentById(int id);
-    List<Payments> getPayments(int page);
+    List<Payments> getPayments(int page, String username);
     void removePayment(Payments payment);
     long countPayments();
 }

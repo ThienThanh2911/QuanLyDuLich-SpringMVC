@@ -49,8 +49,8 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public List<Payments> getPayments(int i) {
-        return this.paymentRepository.getPayments(i);
+    public List<Payments> getPayments(int i, String username) {
+        return this.paymentRepository.getPayments(i, username);
     }
 
     @Override

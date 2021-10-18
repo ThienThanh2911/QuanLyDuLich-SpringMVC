@@ -33,6 +33,14 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Package Details" />
         <put-attribute name="content" value="/WEB-INF/jsp/package-details.jsp" />
     </definition>
+    <definition name="paymentHistoryLayout" extends="baseLayout">
+        <put-attribute name="title" value="Payment History" />
+        <put-attribute name="content" value="/WEB-INF/jsp/payment-history.jsp" />
+    </definition>
+    <definition name="paymentDetailsLayout" extends="baseLayout">
+        <put-attribute name="title" value="Payment Details" />
+        <put-attribute name="content" value="/WEB-INF/jsp/invoice-details.jsp" />
+    </definition>
     <definition name="profileLayout" extends="baseLayout">
         <put-attribute name="title" value="Your profile" />
         <put-attribute name="content" value="/WEB-INF/jsp/profile.jsp" />
@@ -76,14 +84,6 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="termsLayout" extends="baseLayout">
         <put-attribute name="title" value="Terms" />
         <put-attribute name="content" value="/WEB-INF/jsp/terms.jsp" />
-    </definition>
-    <definition name="paymentHistoryLayout" extends="baseLayout">
-        <put-attribute name="title" value="Payment History" />
-        <put-attribute name="content" value="/WEB-INF/jsp/payment-history.jsp" />
-    </definition>
-    <definition name="invoiceDetailsLayout" extends="baseLayout">
-        <put-attribute name="title" value="Invoice Details" />
-        <put-attribute name="content" value="/WEB-INF/jsp/invoice-details.jsp" />
     </definition>
     <definition name="adminDashboardLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="Dashboard" />

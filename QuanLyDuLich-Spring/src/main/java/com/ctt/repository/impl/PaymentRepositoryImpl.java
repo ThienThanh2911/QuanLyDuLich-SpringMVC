@@ -59,13 +59,16 @@ public class PaymentRepositoryImpl implements PaymentRepository{
 
     @Override
     @Transactional
-    public List<Payments> getPayments(int page) {
+    public List<Payments> getPayments(int page, String username) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Payments> query = builder.createQuery(Payments.class);
         Root root = query.from(Payments.class);
         query = query.select(root).orderBy(builder.desc(root.get("id")));
-        
+        if(username != null){
+            Predicate p = builder.equal(root.join("user").get("username").as(String.class), username);
+            query = query.where(p);
+        }
         Query q = session.createQuery(query);
         int max = 9;
         q.setMaxResults(max);
