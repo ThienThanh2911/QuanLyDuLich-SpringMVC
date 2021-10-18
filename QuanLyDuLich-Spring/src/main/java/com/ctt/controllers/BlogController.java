@@ -36,6 +36,7 @@ public class BlogController {
     @RequestMapping("/blog")
     public String blog(Model model, @RequestParam(required = false) Map<String, String> params) {
         model.addAttribute("blogs", this.blogService.getBlogs(params.get("kw"), Integer.parseInt(params.getOrDefault("page", "1")), true));
+        model.addAttribute("blogsNew", this.blogService.getBlogsNew());
         return "blogLayout";
     }
     
