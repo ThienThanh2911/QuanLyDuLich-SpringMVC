@@ -117,6 +117,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Chỉnh sửa Tour" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-edit-tour.jsp" />
     </definition>
+    <definition name="adminEditPaymentLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Chỉnh sửa Payment" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-edit-payment.jsp" />
+    </definition>
     <definition name="adminEditBlogLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="Chỉnh sửa Blog" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-edit-blog.jsp" />

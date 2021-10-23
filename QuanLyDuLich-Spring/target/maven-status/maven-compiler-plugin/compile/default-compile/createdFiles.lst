@@ -76,6 +76,7 @@ com\ctt\pojos\Tags.class
 com\ctt\repository\impl\CommentBlogRepositoryImpl.class
 com\ctt\repository\RateBlogRepository.class
 com\ctt\controllers\admin\ApiAdminUsersController.class
+com\ctt\pojos\StatusPayment.class
 com\ctt\repository\impl\TagRepositoryImpl.class
 com\ctt\pojos\Status.class
 com\ctt\pojos\Vehicle$1.class

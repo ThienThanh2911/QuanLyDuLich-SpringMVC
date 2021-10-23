@@ -50,7 +50,7 @@ public class UserRepositoryImpl implements UserRepository{
         Root root = query.from(User.class);
         
         if(username != null && !username.equals("")){
-            Predicate p = builder.equal(root.get("username"), username.trim());
+            Predicate p = builder.like(root.get("username").as(String.class), String.format("%%%s%%", username));
             query = query.where(p);
         }
         

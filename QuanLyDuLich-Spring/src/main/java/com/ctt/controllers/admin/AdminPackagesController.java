@@ -5,7 +5,6 @@
  */
 package com.ctt.controllers.admin;
 
-import com.ctt.pojos.Category;
 import com.ctt.pojos.DateDetail;
 import com.ctt.pojos.Tours;
 import com.ctt.service.CategoryService;
@@ -16,8 +15,6 @@ import com.ctt.validator.WebAppValidator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +60,7 @@ public class AdminPackagesController {
     public String adminPackagesView(Model model, @RequestParam(required = false) Map<String, String> params) throws ParseException{
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("countPage", (int)Math.ceil((double)this.tourService.countTours()/9));        
-        model.addAttribute("packages", this.tourService.getTours(null, null, null, null, null, false, page));
+        model.addAttribute("packages", this.tourService.getTours(params.getOrDefault("tourname", null), null, null, null, null, false, page));
         
         return "adminPackagesLayout";
     }

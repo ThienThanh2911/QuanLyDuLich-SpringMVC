@@ -8,6 +8,7 @@ package com.ctt.service.impl;
 import com.ctt.pojos.DateDetail;
 import com.ctt.pojos.Methods;
 import com.ctt.pojos.Payments;
+import com.ctt.pojos.StatusPayment;
 import com.ctt.pojos.Tours;
 import com.ctt.pojos.User;
 import com.ctt.repository.PaymentRepository;
@@ -28,18 +29,7 @@ public class PaymentServiceImpl implements PaymentService {
     private PaymentRepository paymentRepository;
 
     @Override
-    public Payments addPayment(User user, Tours tour, BigDecimal price, int adult, int children, int method, DateDetail datedetail) {
-        Payments p = new Payments();
-        p.setUser(user);
-        p.setTour(tour);
-        p.setPrice(price);
-        p.setAdult(adult);
-        p.setChildren(children);
-        p.setCreatedDate(new Date());
-        p.setMethod(Methods.values()[0]);
-        p.setDatedetail(datedetail);
-        p.setStatus("Đã thanh toán");
-        p.setDescription("Bạn đã chọn thanh toán qua Momo");
+    public Payments addPayment(Payments p) {
         return this.paymentRepository.addPayment(p);
     }
 
@@ -61,6 +51,11 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public long countPayments() {
         return this.paymentRepository.countPayments();
+    }
+
+    @Override
+    public List<Payments> getUnpaidPayments() {
+        return this.paymentRepository.getUnpaidPayments();
     }
     
     

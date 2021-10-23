@@ -82,14 +82,21 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
-                        <input class="nav-link" style="border: 0;" placeholder="Search..."/>
+                        <input id="inputSearch" class="nav-link" style="border: 0;" placeholder="Search..."/>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a id="search" href="" onclick="Search()" class="nav-link">
                             <i class="nc-icon nc-zoom-split"></i>
                         </a>
                     </li>
                 </ul>
+                <script>
+                    function Search() {
+                        var input = document.getElementById("inputSearch")
+                        console.log(input.value)
+                        document.getElementById("search").href = '/QuanLyDuLich-Spring/admin/payments?username='+input.value
+                    }
+                </script>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

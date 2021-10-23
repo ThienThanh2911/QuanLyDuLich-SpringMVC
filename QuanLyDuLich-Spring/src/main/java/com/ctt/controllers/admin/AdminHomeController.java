@@ -5,11 +5,11 @@
  */
 package com.ctt.controllers.admin;
 
+import com.ctt.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
@@ -17,12 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class AdminHomeController {
-
     @Autowired
-    private LocalSessionFactoryBean sessionFactory;
-    
-    @RequestMapping("/admin")
+    private PaymentService paymentService;
+    @GetMapping("/admin")
     public String adminHome(Model model) {
+        model.addAttribute("unpaidpayments", this.paymentService.getUnpaidPayments());
         return "adminDashboardLayout";
     }
 }

@@ -505,9 +505,9 @@
                             'Content-Type': 'application/json'
                         }
                     }).then(function(res){
-                        return res;
+                        return res.json();
                     }).then(function(data){
-                        window.location.href = '/QuanLyDuLich-Spring';
+                        window.location.href = '/QuanLyDuLich-Spring/payment-history/'+data.id;
                     }).catch(function(err){
                         console.error(err);
                     });

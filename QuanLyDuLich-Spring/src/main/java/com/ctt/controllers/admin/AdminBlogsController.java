@@ -35,7 +35,7 @@ public class AdminBlogsController {
     @GetMapping("/admin/blogs")
     public String adminBlogsView(Model model, @RequestParam(required = false) Map<String, String> params) throws ParseException{
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
-        model.addAttribute("blogs", this.blogService.getBlogs(null, page, false));
+        model.addAttribute("blogs", this.blogService.getBlogs(params.getOrDefault("titlename", null), page, false));
         model.addAttribute("countBlogs", (int)Math.ceil((double)this.blogService.countBlogs()/9));        
         return "adminBlogsLayout";
     }

@@ -38,7 +38,7 @@ public class BlogRepositoryImpl implements BlogRepository{
         CriteriaQuery<Blog> query = builder.createQuery(Blog.class);
         Root root = query.from(Blog.class);
         query = query.select(root).orderBy(builder.desc(root.get("id")));
-        if(kw != null && !kw.equals("")){
+        if(kw != null){
             Predicate p = builder.like(root.get("title").as(String.class), String.format("%%%s%%", kw));
             query = query.where(p);
         }

@@ -18,4 +18,5 @@ public interface PaymentRepository {
     List<Payments> getPayments(int page, String username);
     void removePayment(Payments payment);
     long countPayments();
+    List<Payments> getUnpaidPayments();
 }

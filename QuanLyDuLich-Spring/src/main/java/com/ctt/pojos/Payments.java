@@ -57,7 +57,7 @@ public class Payments implements Serializable{
     @ManyToOne
     @JoinColumn(name = "date_id")
     private DateDetail datedetail;
-    private String status;
+    private StatusPayment status;
     /**
      * @return the id
      */
@@ -187,14 +187,14 @@ public class Payments implements Serializable{
     /**
      * @return the status
      */
-    public String getStatus() {
+    public StatusPayment getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(String status) {
+    public void setStatus(StatusPayment status) {
         this.status = status;
     }
 

@@ -79,17 +79,19 @@
         <div class="container-fluid">
             <a class="navbar-brand" style="margin-top: 0" href="#pablo"> Dashboard <i class="nc-icon nc-palette"></i></a>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <input class="nav-link" style="border: 0;" placeholder="Search..."/>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nc-icon nc-zoom-split"></i>
-                        </a>
-                    </li>
-                </ul>
                 <ul class="navbar-nav ml-auto">
+                    <li class="dropdown nav-item">
+                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            <i class="nc-icon nc-planet"></i>
+                            <span class="notification">!</span>
+                            <span class="d-lg-none">Notification</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <c:forEach items="${unpaidpayments}" var="unpaid">
+                                <a class="dropdown-item" href="#">${unpaid.user.username} ${unpaid.price}</a>
+                            </c:forEach>
+                        </ul>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="no-icon">Account</span>

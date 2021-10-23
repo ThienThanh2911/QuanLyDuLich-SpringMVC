@@ -82,16 +82,6 @@
         <div class="container-fluid">
             <a class="navbar-brand" style="margin-top: 0" href="#pablo"> Edit Tour <i class="nc-icon nc-palette"></i></a>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <input class="nav-link" style="border: 0;" placeholder="Search..."/>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nc-icon nc-zoom-split"></i>
-                        </a>
-                    </li>
-                </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

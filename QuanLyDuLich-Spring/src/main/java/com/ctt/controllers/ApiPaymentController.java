@@ -5,12 +5,15 @@
  */
 package com.ctt.controllers;
 
+import com.ctt.pojos.Methods;
 import com.ctt.pojos.Payments;
+import com.ctt.pojos.StatusPayment;
 import com.ctt.service.DateDetailService;
 import com.ctt.service.PaymentService;
 import com.ctt.service.TourService;
 import com.ctt.service.UserService;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,16 +44,21 @@ public class ApiPaymentController {
         MediaType.APPLICATION_JSON_VALUE
     })
     public ResponseEntity<Payments> addPayment(@RequestBody Map<String, String> params){
-        Payments c = this.paymentService.addPayment(this.userService.getUsers(params.get("user"), 1).get(0),
-                                                    this.tourService.getTours(params.get("tour"), null, null, null, null, true, 0).get(0),
-                                                    BigDecimal.valueOf(Double.valueOf(params.get("price"))),
-                                                    Integer.valueOf(params.get("adult")),
-                                                    Integer.valueOf(params.get("children")),
-                                                    Integer.valueOf(params.get("method")),
-                                                    this.dateDetailService.getDateDetailById(Integer.valueOf(params.get("datedetail"))));
+        Payments p = new Payments();
+        p.setUser(this.userService.getUsers(params.get("user"), 1).get(0));
+        p.setTour(this.tourService.getTours(params.get("tour"), null, null, null, null, true, 0).get(0));
+        p.setPrice(BigDecimal.valueOf(Double.valueOf(params.get("price"))));
+        p.setAdult(Integer.valueOf(params.get("adult")));
+        p.setChildren(Integer.valueOf(params.get("children")));
+        p.setCreatedDate(new Date());
+        p.setMethod(Methods.values()[Integer.valueOf(params.get("method"))]);
+        p.setDatedetail(this.dateDetailService.getDateDetailById(Integer.valueOf(params.get("datedetail"))));
+        p.setStatus(StatusPayment.values()[1]);
+        p.setDescription("Bạn có 7 ngày d? thanh toán hóa don này! Sau khi thanh toán don s? du?c nhân viên ki?m tra và xác nh?n!");
+        Payments c = this.paymentService.addPayment(p);
         if(c == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(c, HttpStatus.CREATED);
     }
     
     @DeleteMapping(path = "/admin/api/payments/remove-payment/{paymentId}")

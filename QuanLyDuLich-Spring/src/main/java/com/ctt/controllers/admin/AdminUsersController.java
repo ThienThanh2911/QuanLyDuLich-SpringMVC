@@ -46,7 +46,7 @@ public class AdminUsersController {
     @GetMapping("/admin/users")
     public String adminUsersView(Model model, @RequestParam(required = false) Map<String, String> params) throws ParseException{
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
-        model.addAttribute("users", this.userDetailsService.getUsers(null, page));
+        model.addAttribute("users", this.userDetailsService.getUsers(params.getOrDefault("username", null), page));
         model.addAttribute("countPage", (int)Math.ceil((double)this.userDetailsService.countUsers()/9));        
         return "adminUsersLayout";
     }

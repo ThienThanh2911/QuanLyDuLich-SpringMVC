@@ -30,7 +30,7 @@
                     <p>QUẢN LÝ TÀI KHOẢN</p>
                 </a>
             </li>
-            <li class="nav-item active">
+            <li>
                 <a class="nav-link" href="<c:url value="/admin/packages" />">
                     <i class="nc-icon nc-notes"></i>
                     <p>QUẢN LÝ DU LỊCH</p>
@@ -54,7 +54,7 @@
                     <p>BÌNH LUẬN BÀI VIẾT</p>
                 </a>
             </li>
-            <li>
+            <li class="nav-item active">
                 <a class="nav-link" href="<c:url value="/admin/payments" />">
                     <i class="nc-icon nc-bank"></i>
                     <p>QUẢN LÝ HÓA ĐƠN</p>
@@ -80,7 +80,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class="container-fluid">
-            <a class="navbar-brand" style="margin-top: 0" href="#pablo"> Edit Tour <i class="nc-icon nc-palette"></i></a>
+            <a class="navbar-brand" style="margin-top: 0" href="#pablo"> Edit Payment <i class="nc-icon nc-palette"></i></a>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
@@ -104,27 +104,27 @@
                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Tour Information</h4>
+                            <h4 class="card-title">Edit Payment Information</h4>
                         </div>
                         <div class="card-body">
                             <c:if test="${errMsg} != null">
                                 <div class="alert alert-danger">${errMsg}</div>
                             </c:if>
-                            <c:url value="/admin/packages/${tourId}/edit" var="action"/>
-                            <form:form method="post" action="${action}" modelAttribute="tour" enctype="multipart/form-data">
+                            <c:url value="/admin/payments/${paymentId}/edit" var="action"/>
+                            <form:form method="post" action="${action}" modelAttribute="payment" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
                                         <div class="form-group">
-                                            <label>Tour Name</label>
-                                            <form:input type="text" id="name" path="name" cssClass="form-control" placeholder="Tên tour..."/>
-                                            <form:errors path="name" cssClass="alert alert-danger" element="div"/>
+                                            <label>User Name</label>
+                                            <form:input type="text" id="name" path="user" cssClass="form-control" placeholder="Tên tour..."/>
+                                            <form:errors path="user" cssClass="alert alert-danger" element="div"/>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
                                         <div class="form-group">
-                                            <label>Destination</label>
-                                            <form:input type="text" id="destination" path="destination" placeholder="Điểm đến..." cssClass="form-control"/>
-                                            <form:errors path="destination" cssClass="alert alert-danger" element="div"/>
+                                            <label>Tour Name</label>
+                                            <form:input type="text" id="destination" path="tour" placeholder="Điểm đến..." cssClass="form-control"/>
+                                            <form:errors path="tour" cssClass="alert alert-danger" element="div"/>
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
@@ -136,62 +136,11 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <label>Category</label>
-                                            <div>
-                                                <form:select id="cate" path="category" style="width: 100%" aria-label="Default select example" cssClass="form-select">
-                                                    <c:forEach items="${categories}" var="cat">
-                                                        <form:option value="${cat}">${cat.name}</form:option>
-                                                    </c:forEach>
-                                                </form:select>
-                                                <form:errors path="category" cssClass="alert alert-danger" element="div"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <label>Vehicle</label>
-                                            <div>
-                                                <form:select aria-label="Default select example" style="width: 100%" path="vehicle" name="vehicle" class="form-select">
-                                                    <form:option value="">Phương tiện di chuyển?</form:option>
-                                                    <form:option value="OTO">Ô tô</form:option>
-                                                    <form:option value="PLANE">Máy bay</form:option>
-                                                    <form:option value="YACHT">Du thuyền</form:option>
-                                                </form:select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
-                                        <div class="form-group">
-                                            <label>Tags</label>
-                                            <div>
-                                                <form:select path="tags" id="dropdownTag" title="Chọn Tag" data-max-options="5"  multiple="true" class="form-control selectpicker">
-                                                    <c:forEach items="${listTags}" var="t">
-                                                        <form:option value="${t.id}">${t.name}</form:option>
-                                                    </c:forEach>
-                                                </form:select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12">
-                                        <div class="form-group">
-                                            <label>Image</label>
-                                            <div>
-                                                <form:input type="file" id="file" path="file" cssClass="form-control"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="form-group">
                                             <label>Description</label>
                                             <form:textarea rows="20" cols="80" type="text" id="description" placeholder="Mô tả tour..." path="description" style="height:9em" class="form-control"/>
-                                            <form:hidden path="active"/>
-                                            <form:hidden path="photos"/>
+                                            
                                         </div>
                                     </div>
                                 </div>

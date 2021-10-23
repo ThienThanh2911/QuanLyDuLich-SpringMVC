@@ -95,6 +95,20 @@ public class PaymentRepositoryImpl implements PaymentRepository{
         
         return Long.parseLong(q.getSingleResult().toString());
     }
+
+    @Override
+    @Transactional
+    public List<Payments> getUnpaidPayments() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Payments> query = builder.createQuery(Payments.class);
+        Root root = query.from(Payments.class);
+        query = query.select(root).orderBy(builder.desc(root.get("id")));
+        Predicate p = builder.like(root.get("status").as(String.class), "1");
+        query = query.where(p);
+        Query q = session.createQuery(query);
+        return q.getResultList();
+    }
     
     
 }

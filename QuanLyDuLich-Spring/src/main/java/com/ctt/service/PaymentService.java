@@ -5,11 +5,7 @@
  */
 package com.ctt.service;
 
-import com.ctt.pojos.DateDetail;
 import com.ctt.pojos.Payments;
-import com.ctt.pojos.Tours;
-import com.ctt.pojos.User;
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -18,9 +14,10 @@ import java.util.List;
  * @author ADMIN
  */
 public interface PaymentService {
-    Payments addPayment(User user, Tours tour, BigDecimal price, int adult, int children, int method, DateDetail datedetail);
+    Payments addPayment(Payments payment);
     Payments getPaymentById(int id);
     List<Payments> getPayments(int page, String username);
     void removePayment(Payments payment);
     long countPayments();
+    List<Payments> getUnpaidPayments();
 }
