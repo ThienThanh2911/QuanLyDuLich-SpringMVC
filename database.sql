@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: localhost    Database: toursdb-spring
+-- Host: 127.0.0.1    Database: toursdb-spring
 -- ------------------------------------------------------
--- Server version	8.0.26
+-- Server version	8.0.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -58,7 +58,7 @@ CREATE TABLE `category` (
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `datedetail` (
   PRIMARY KEY (`id`),
   KEY `fk_date_tour_idx` (`tour_id`),
   CONSTRAINT `fk_date_tour` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,6 +156,7 @@ CREATE TABLE `datedetail` (
 
 LOCK TABLES `datedetail` WRITE;
 /*!40000 ALTER TABLE `datedetail` DISABLE KEYS */;
+INSERT INTO `datedetail` VALUES (1,'2021-09-20','2021-09-28',18,'0'),(2,'2021-09-25','2021-10-03',18,'0'),(3,'2021-09-22','2021-09-25',17,'0'),(4,'2021-09-23','2021-09-26',17,'0'),(5,'2021-09-21','2021-09-30',16,'0'),(6,'2021-09-24','2021-10-03',16,'0'),(7,'2021-09-20','2021-09-28',16,'0'),(8,'2021-09-25','2021-10-03',15,'0'),(9,'2021-09-22','2021-09-25',15,'0'),(10,'2021-09-23','2021-09-26',14,'0'),(11,'2021-09-21','2021-09-30',14,'0'),(12,'2021-09-24','2021-10-03',13,'0'),(13,'2021-09-25','2021-10-03',13,'0'),(14,'2021-09-22','2021-09-25',12,'0'),(15,'2021-09-23','2021-09-26',12,'0'),(16,'2021-09-21','2021-09-30',11,'0'),(17,'2021-09-24','2021-10-03',11,'0'),(18,'2021-09-24','2021-10-03',10,'0'),(19,'2021-09-25','2021-10-03',10,'0'),(20,'2021-09-22','2021-09-25',9,'0'),(21,'2021-09-23','2021-09-26',9,'0'),(22,'2021-09-21','2021-09-30',8,'0'),(23,'2021-09-24','2021-10-03',8,'0'),(24,'2021-09-22','2021-09-25',8,'0'),(25,'2021-09-23','2021-09-26',7,'0'),(26,'2021-09-21','2021-09-30',7,'0'),(27,'2021-09-24','2021-10-03',6,'0'),(28,'2021-09-24','2021-10-03',6,'0'),(29,'2021-09-25','2021-10-03',5,'0'),(30,'2021-09-22','2021-09-25',5,'0'),(31,'2021-09-23','2021-09-26',4,'0'),(32,'2021-09-21','2021-09-30',4,'0'),(33,'2021-09-24','2021-10-03',3,'0'),(34,'2021-09-24','2021-10-03',3,'0'),(35,'2021-09-25','2021-10-03',3,'0'),(36,'2021-09-22','2021-09-25',2,'0'),(37,'2021-09-23','2021-09-26',2,'0'),(38,'2021-09-21','2021-09-30',1,'0'),(39,'2021-09-24','2021-10-03',1,'0');
 /*!40000 ALTER TABLE `datedetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +186,7 @@ CREATE TABLE `payments` (
   CONSTRAINT `pk_payment_date_id` FOREIGN KEY (`date_id`) REFERENCES `datedetail` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `pk_payment_tour_id` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`),
   CONSTRAINT `pk_payment_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,6 +195,7 @@ CREATE TABLE `payments` (
 
 LOCK TABLES `payments` WRITE;
 /*!40000 ALTER TABLE `payments` DISABLE KEYS */;
+INSERT INTO `payments` VALUES (13,'2021-10-20 19:54:34',6988000,'Bạn có 7 ngày d? thanh toán hóa don này! Sau khi thanh toán don s? du?c nhân viên ki?m tra và xác nh?n!',14,18,'0',1,0,'0',1),(14,'2021-10-20 20:00:24',6988000,'Bạn có 7 ngày d? thanh toán hóa don này! Sau khi thanh toán don s? du?c nhân viên ki?m tra và xác nh?n!',14,18,'0',1,0,'1',1),(15,'2021-10-20 20:02:07',6988000,'Bạn có 7 ngày d? thanh toán hóa don này! Sau khi thanh toán don s? du?c nhân viên ki?m tra và xác nh?n!',14,18,'0',1,0,'1',1),(16,'2021-10-20 20:09:46',6988000,'Bạn có 7 ngày d? thanh toán hóa don này! Sau khi thanh toán don s? du?c nhân viên ki?m tra và xác nh?n!',10,18,'0',1,0,'1',1),(17,'2021-10-20 20:18:06',6988000,'Bạn có 7 ngày d? thanh toán hóa don này! Sau khi thanh toán don s? du?c nhân viên ki?m tra và xác nh?n!',10,18,'0',1,0,'1',1);
 /*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -430,7 +432,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,'adase','fdfs','thienthanh@gmail.com','thienthanh','$2a$10$CMI.OoNakibClV8XI47p7u5WhpZf3uO.Jj8EfS/VtaZ/H.pF5qug.','ewrjiowefw','https://res.cloudinary.com/tourapp/image/upload/v1633888973/istvnzufpf5ji7zfuqhv.png','2000-11-29','0901310332','0','male','asd',1,1),(14,'Chauads','Tuu','thientuu2911@gmail.com','thientuu2911','$2a$10$CMI.OoNakibClV8XI47p7u5WhpZf3uO.Jj8EfS/VtaZ/H.pF5qug.','ewrjiowefw',NULL,'2000-11-29','0901310332','3','male','eqwqw',1,1),(21,'Chau','Tuu','thientuu2000@gmail.com','admin','$2a$10$rRgAYlnWouw7643X4paxtuPTssfqXBA4a7qwVk4m8JuYu2F1DbEAC','ewrjiowefw',NULL,'2000-09-02','0901310332','3','male','ftyasd',1,1),(22,'Chau','Tuu','thientsve@gmail.com','adminfefe','$2a$10$rRgAYlnWouw7643X4paxtuPTssfqXBA4a7qwVk4m8JuYu2F1DbEAC','ewrjiowefw',NULL,'2000-09-02','0901310332','3','male','ftyasd',1,1),(25,'Chau','Tuu','vdvd1@gmail.com','vdvd','$2a$10$T2XA4W3Y8picjaE6JN.b6uWt.DiXhGyRcrR3MuRi9NFu.TjDmGA3O','ewrjiowefw',NULL,'2222-02-22','0901310332','3','male','wdwde',1,1),(30,'Chau','Tuu','fasfw@gmail.com','fasfsaf','$2a$10$a3bz1Z3yA5pG1v27Wb.kvungZYDFn4MAW0.oNG5bxW3LZoxegSkwm','ewrjiowefw','','2000-11-29','0901310332','0','male','ftydth',1,1),(31,'Chau','Tuu','ewf33f@gmail.com','fewfwe','$2a$10$pybGpGO2jgmLj.1n2croJ.UvvAz9pVEDx0lLza0IFm2CsDEYLVO5q','ewrjiowefw','https://res.cloudinary.com/tourapp/image/upload/v1634087143/hlnveoyp5wryntiysz7g.png','2000-11-29','0901310332','0','male','ftydthfew',1,1),(32,'Chau','Tuu','sdwwwef@gmail.com','fewfwefew','$2a$10$RkmU4wxyNu0gkD8tQ1djKOOGXg/4hylqzp4wFG9AT2UXAJIxeVYqi','ewrjiowefw','','2021-10-15','0901310332','0','male','èwefew',1,1);
+INSERT INTO `users` VALUES (10,'adase','fdfs','thienthanh@gmail.com','thienthanh','$2a$10$CMI.OoNakibClV8XI47p7u5WhpZf3uO.Jj8EfS/VtaZ/H.pF5qug.','ewrjiowefw','https://res.cloudinary.com/tourapp/image/upload/v1633888973/istvnzufpf5ji7zfuqhv.png','2000-11-29','0901310332','0','male','asd',1,1),(14,'Chauads','Tuu','thientuu2911@gmail.com','thientuu2911','$2a$10$CMI.OoNakibClV8XI47p7u5WhpZf3uO.Jj8EfS/VtaZ/H.pF5qug.','ewrjiowefw',NULL,'2000-11-29','0901310332','3','male','eqwqw',1,1),(21,'Chau','Tuu','thientuu2000@gmail.com','admin','$2a$10$rRgAYlnWouw7643X4paxtuPTssfqXBA4a7qwVk4m8JuYu2F1DbEAC','ewrjiowefw',NULL,'2000-09-02','0901310332','3','male','ftyasd',1,1),(25,'Chau','Tuu','vdvd1@gmail.com','vdvd','$2a$10$T2XA4W3Y8picjaE6JN.b6uWt.DiXhGyRcrR3MuRi9NFu.TjDmGA3O','ewrjiowefw',NULL,'2222-02-22','0901310332','3','male','wdwde',1,1),(30,'Chau','Tuu','fasfw@gmail.com','fasfsaf','$2a$10$a3bz1Z3yA5pG1v27Wb.kvungZYDFn4MAW0.oNG5bxW3LZoxegSkwm','ewrjiowefw','','2000-11-29','0901310332','0','male','ftydth',1,1),(31,'Chau','Tuu','ewf33f@gmail.com','fewfwe','$2a$10$pybGpGO2jgmLj.1n2croJ.UvvAz9pVEDx0lLza0IFm2CsDEYLVO5q','ewrjiowefw','https://res.cloudinary.com/tourapp/image/upload/v1634087143/hlnveoyp5wryntiysz7g.png','2000-11-29','0901310332','0','male','ftydthfew',1,1),(32,'Chau','Tuu','sdwwwef@gmail.com','fewfwefew','$2a$10$RkmU4wxyNu0gkD8tQ1djKOOGXg/4hylqzp4wFG9AT2UXAJIxeVYqi','ewrjiowefw','','2021-10-15','0901310332','0','male','èwefew',1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -443,4 +445,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-19  0:26:29
+-- Dump completed on 2021-10-23 22:03:10
