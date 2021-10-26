@@ -113,6 +113,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Xem chi tiết User" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-profile.jsp" />
     </definition>
+    <definition name="adminEditUserLayout" extends="baseAdminLayout">
+        <put-attribute name="title" value="Xem chi tiết User" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-edit-user.jsp" />
+    </definition>
     <definition name="adminEditTourLayout" extends="baseAdminLayout">
         <put-attribute name="title" value="Chỉnh sửa Tour" />
         <put-attribute name="content" value="/WEB-INF/jsp/admin/admin-edit-tour.jsp" />

@@ -63,8 +63,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers("/")
       .permitAll()
 
-      .antMatchers("/admin/**").access("hasRole('" + Role.ROLE_ADMIN.name() + "')")
-
+      //.antMatchers("/admin").access("hasRole('" + Role.ROLE_ADMIN.name() + "')")
+      .antMatchers("/admin/profile").access("hasAnyRole('" + Role.ROLE_ADMIN.name() + "','" + Role.ROLE_BUSINESS.name() + Role.ROLE_SALESMAN.name() + "')")
+      .antMatchers("/admin/map").access("hasAnyRole('" + Role.ROLE_ADMIN.name() + "','" + Role.ROLE_BUSINESS.name() + Role.ROLE_SALESMAN.name() + "')")
+      .antMatchers("/admin/payments/**").access("hasAnyRole('" + Role.ROLE_ADMIN.name() + "','" + Role.ROLE_SALESMAN.name() + "')")
+      .antMatchers("/admin/users/**").access("hasAnyRole('" + Role.ROLE_ADMIN.name() + "','" + Role.ROLE_BUSINESS.name() + "')")
+      .antMatchers("/admin/packages/**").access("hasAnyRole('" + Role.ROLE_ADMIN.name() + "','" + Role.ROLE_BUSINESS.name() + "')")
+      .antMatchers("/admin/blogs/**").access("hasAnyRole('" + Role.ROLE_ADMIN.name() + "','" + Role.ROLE_BUSINESS.name() + "')")
+      .antMatchers("/admin/commenttours/**").access("hasAnyRole('" + Role.ROLE_ADMIN.name() + "','" + Role.ROLE_BUSINESS.name() + "')")
+      .antMatchers("/admin/commentblogs/**").access("hasAnyRole('" + Role.ROLE_ADMIN.name() + "','" + Role.ROLE_BUSINESS.name() + "')")
+            
       .and()
       .formLogin()
       .loginPage("/signin")

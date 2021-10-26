@@ -46,7 +46,7 @@ public class DateDetail implements Serializable {
     @JoinColumn(name = "tour_id")
     private Tours tour;
     private Status status;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "datedetail", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "datedetail", cascade = CascadeType.ALL)
     private Set<Payments> payments;
     /**
      * @return the id

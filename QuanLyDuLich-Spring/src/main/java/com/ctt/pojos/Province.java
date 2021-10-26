@@ -26,7 +26,7 @@ public class Province {
     private int id;
     
     private String name;
-    @OneToMany(mappedBy = "province", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "province")
     private List<User> user;
 
     /**

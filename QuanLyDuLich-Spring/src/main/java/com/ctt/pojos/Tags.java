@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,7 +28,7 @@ public class Tags implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "tags")
     @JsonBackReference
     private Set<Tours> tour = new HashSet<>();
 

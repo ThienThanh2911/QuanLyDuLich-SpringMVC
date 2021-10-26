@@ -74,7 +74,7 @@ public class UsersController {
     
     @PostMapping("/change-password")
     @Transactional
-    public String changepassword(Model model , Principal principal,
+    public String changepassword(Model model, Principal principal,
             @RequestParam(required = false) Map<String, String> params) {
         User user = this.userDetailsService.getUsers(principal.getName(), 1).get(0);
         String msgError = "";

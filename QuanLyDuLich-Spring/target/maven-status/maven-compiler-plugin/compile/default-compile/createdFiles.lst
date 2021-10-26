@@ -49,7 +49,6 @@ com\ctt\configs\WebApplicationContextConfig.class
 com\ctt\repository\CommentTourRepository.class
 com\ctt\configs\HibernateConfig.class
 com\ctt\validator\UserEmailValidator.class
-com\ctt\controllers\admin\AdminProfileController.class
 com\ctt\service\impl\CommentBlogServiceImpl.class
 com\ctt\formatter\UserFormatter.class
 com\ctt\service\CommentTourService.class

@@ -67,7 +67,7 @@ public class User implements Serializable {
     private String gender;
     private String about;
     private boolean active;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "province_id")
     //@NotNull(message = "{tour.category.nullError}")
     private Province province;
@@ -83,9 +83,14 @@ public class User implements Serializable {
     private Set<Payments> payments;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<RateTour> ratetour;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<RateTour> rateblog;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @OrderBy("id")
     private Set<CommentTour> commenttour;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OrderBy("id")
+    private Set<CommentBlog> commentblog;
 
     /**
      * @return the file
@@ -378,6 +383,34 @@ public class User implements Serializable {
      */
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    /**
+     * @return the commentblog
+     */
+    public Set<CommentBlog> getCommentblog() {
+        return commentblog;
+    }
+
+    /**
+     * @param commentblog the commentblog to set
+     */
+    public void setCommentblog(Set<CommentBlog> commentblog) {
+        this.commentblog = commentblog;
+    }
+
+    /**
+     * @return the rateblog
+     */
+    public Set<RateTour> getRateblog() {
+        return rateblog;
+    }
+
+    /**
+     * @param rateblog the rateblog to set
+     */
+    public void setRateblog(Set<RateTour> rateblog) {
+        this.rateblog = rateblog;
     }
 
     /**

@@ -16,48 +16,62 @@
             </a>
         </div>
         <ul class="nav">
-            <li>
-                <a class="nav-link" href="<c:url value="/admin" />">
-                    <i class="nc-icon nc-chart-pie-35"></i>
-                    <p>Dashboard</p>
-                </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="<c:url value="/admin/users" />">
-                    <i class="nc-icon nc-circle-09"></i>
-                    <p>QUẢN LÝ TÀI KHOẢN</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/packages" />">
-                    <i class="nc-icon nc-notes"></i>
-                    <p>QUẢN LÝ DU LỊCH</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/blogs" />">
-                    <i class="nc-icon nc-notes"></i>
-                    <p>QUẢN LÝ BÀI VIẾT</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/commenttours" />">
-                    <i class="nc-icon nc-paper-2"></i>
-                    <p>BÌNH LUẬN DU LỊCH</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/commentblogs" />">
-                    <i class="nc-icon nc-paper-2"></i>
-                    <p>BÌNH LUẬN BÀI VIẾT</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/payments" />">
-                    <i class="nc-icon nc-bank"></i>
-                    <p>QUẢN LÝ HÓA ĐƠN</p>
-                </a>
-            </li>
+            <c:if test="${adminUser.role.name() == 'ROLE_ADMIN'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin" />">
+                        <i class="nc-icon nc-chart-pie-35"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_SALESMAN'}">
+                <li class="nav-item active">
+                    <a class="nav-link" href="<c:url value="/admin/users" />">
+                        <i class="nc-icon nc-circle-09"></i>
+                        <p>QUẢN LÝ TÀI KHOẢN</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_SALESMAN'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/packages" />">
+                        <i class="nc-icon nc-notes"></i>
+                        <p>QUẢN LÝ DU LỊCH</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_SALESMAN'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/blogs" />">
+                        <i class="nc-icon nc-notes"></i>
+                        <p>QUẢN LÝ BÀI VIẾT</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_SALESMAN'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/commenttours" />">
+                        <i class="nc-icon nc-paper-2"></i>
+                        <p>BÌNH LUẬN DU LỊCH</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_SALESMAN'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/commentblogs" />">
+                        <i class="nc-icon nc-paper-2"></i>
+                        <p>BÌNH LUẬN BÀI VIẾT</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_BUSINESS'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/payments" />">
+                        <i class="nc-icon nc-bank"></i>
+                        <p>QUẢN LÝ HÓA ĐƠN</p>
+                    </a>
+                </li>
+            </c:if>
             <li>
                 <a class="nav-link" href="<c:url value="/admin/map" />">
                     <i class="nc-icon nc-pin-3"></i>
@@ -86,7 +100,7 @@
                             <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="<c:url value="/admin/users/${adminProfileId}/edit" />">Your Profile</a>
+                            <a class="dropdown-item" href="<c:url value="/admin/profile" />">Your Profile</a>
                             <div class="divider"></div>
                             <a class="dropdown-item" href="<c:url value="/logout" />">Logout</a>
                         </div>
@@ -131,7 +145,7 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Email address</label>
-                                            <form:input path="email" class="form-control" id="email" placeholder="Enter your email"/>
+                                            <form:input disabled="true" path="email" class="form-control" id="email" placeholder="Enter your email"/>
                                             <form:errors path="email" element="div" cssClass="alert alert-danger" />
                                         </div>
                                     </div>
@@ -173,7 +187,7 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <label>Role</label>
-                                        <form:select path="role" class="form-select" style="width: 100%" aria-label="Default select example">
+                                        <form:select disabled="true" path="role" class="form-select" style="width: 100%" aria-label="Default select example">
                                             <form:option value="">Chức vụ của bạn là</form:option>
                                             <form:option value="ROLE_ADMIN">Quản lý</form:option>
                                             <form:option value="ROLE_BUSINESS">Nhân viên Bán hàng</form:option>

@@ -15,48 +15,62 @@
             </a>
         </div>
         <ul class="nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="<c:url value="/admin" />">
-                    <i class="nc-icon nc-chart-pie-35"></i>
-                    <p>Dashboard</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/users" />">
-                    <i class="nc-icon nc-circle-09"></i>
-                    <p>QUẢN LÝ TÀI KHOẢN</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/packages" />">
-                    <i class="nc-icon nc-notes"></i>
-                    <p>QUẢN LÝ DU LỊCH</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/blogs" />">
-                    <i class="nc-icon nc-notes"></i>
-                    <p>QUẢN LÝ BÀI VIẾT</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/commenttours" />">
-                    <i class="nc-icon nc-paper-2"></i>
-                    <p>BÌNH LUẬN DU LỊCH</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/commentblogs" />">
-                    <i class="nc-icon nc-paper-2"></i>
-                    <p>BÌNH LUẬN BÀI VIẾT</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="<c:url value="/admin/payments" />">
-                    <i class="nc-icon nc-bank"></i>
-                    <p>QUẢN LÝ HÓA ĐƠN</p>
-                </a>
-            </li>
+            <c:if test="${adminUser.role.name() == 'ROLE_ADMIN'}">
+                <li class="nav-item active">
+                    <a class="nav-link" href="<c:url value="/admin" />">
+                        <i class="nc-icon nc-chart-pie-35"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_SALESMAN'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/users" />">
+                        <i class="nc-icon nc-circle-09"></i>
+                        <p>QUẢN LÝ TÀI KHOẢN</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_SALESMAN'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/packages" />">
+                        <i class="nc-icon nc-notes"></i>
+                        <p>QUẢN LÝ DU LỊCH</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_SALESMAN'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/blogs" />">
+                        <i class="nc-icon nc-notes"></i>
+                        <p>QUẢN LÝ BÀI VIẾT</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_SALESMAN'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/commenttours" />">
+                        <i class="nc-icon nc-paper-2"></i>
+                        <p>BÌNH LUẬN DU LỊCH</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_SALESMAN'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/commentblogs" />">
+                        <i class="nc-icon nc-paper-2"></i>
+                        <p>BÌNH LUẬN BÀI VIẾT</p>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${adminUser.role.name() != 'ROLE_BUSINESS'}">
+                <li>
+                    <a class="nav-link" href="<c:url value="/admin/payments" />">
+                        <i class="nc-icon nc-bank"></i>
+                        <p>QUẢN LÝ HÓA ĐƠN</p>
+                    </a>
+                </li>
+            </c:if>
             <li>
                 <a class="nav-link" href="<c:url value="/admin/map" />">
                     <i class="nc-icon nc-pin-3"></i>
@@ -97,7 +111,7 @@
                             <span class="no-icon">Account</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="<c:url value="/admin/users/${adminProfileId}/edit" />">Your Profile</a>
+                            <a class="dropdown-item" href="<c:url value="/admin/profile" />">Your Profile</a>
                             <div class="divider"></div>
                             <a class="dropdown-item" href="<c:url value="/logout" />">Logout</a>
                         </div>

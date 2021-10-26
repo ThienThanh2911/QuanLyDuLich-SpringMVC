@@ -81,13 +81,13 @@ public class Tours implements Serializable{
     private Set<Tags> tags = new HashSet<>();
     @Transient
     private MultipartFile file;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<Payments> payments;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<DateDetail> datedetail;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<RateTour> ratetour;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<CommentTour> commenttour;
 
     /**

@@ -145,7 +145,7 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Email address</label>
-                                            <form:input disabled="true" path="email" class="form-control" id="email" placeholder="Enter your email"/>
+                                            <form:input path="email" class="form-control" id="email" placeholder="Enter your email"/>
                                             <form:errors path="email" element="div" cssClass="alert alert-danger" />
                                         </div>
                                     </div>
@@ -187,7 +187,7 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <label>Role</label>
-                                        <form:select disabled="true" path="role" class="form-select" style="width: 100%" aria-label="Default select example">
+                                        <form:select path="role" class="form-select" style="width: 100%" aria-label="Default select example">
                                             <form:option value="">Chức vụ của bạn là</form:option>
                                             <form:option value="ROLE_ADMIN">Quản lý</form:option>
                                             <form:option value="ROLE_BUSINESS">Nhân viên Bán hàng</form:option>

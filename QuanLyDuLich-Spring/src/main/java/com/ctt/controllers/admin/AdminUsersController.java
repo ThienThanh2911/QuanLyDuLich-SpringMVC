@@ -8,6 +8,7 @@ package com.ctt.controllers.admin;
 import com.ctt.pojos.User;
 import com.ctt.service.UserService;
 import com.ctt.validator.WebAppValidator;
+import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,7 +54,7 @@ public class AdminUsersController {
     @GetMapping("/admin/users/{userId}/edit")
     public String adminUserView(Model model, @PathVariable("userId") String userId) throws ParseException{
         model.addAttribute("user", this.userDetailsService.getUserById(Integer.parseInt(userId)));
-        return "adminUserProfileLayout";
+        return "adminEditUserLayout";
     }
     @PostMapping("/admin/users/{userId}/edit")
     public String adminUserEdit(Model model, @ModelAttribute(value = "user") User user, @PathVariable("userId") String userId, BindingResult result) throws ParseException{
@@ -64,7 +65,7 @@ public class AdminUsersController {
             this.userDetailsService.addOrUpdateUser(user);
             return "redirect:/admin/users/"+userId+"/edit";
         }
-        return "adminUserProfileLayout";
+        return "adminEditUserLayout";
     }
     @GetMapping("/admin/users/add")
     public String adminUserView(Model model){
@@ -78,5 +79,28 @@ public class AdminUsersController {
             return "redirect:/admin/users";
         }
         return "adminAddUserLayout";
+    }
+    
+    @GetMapping("/admin/profile")
+    public String adminProfileView(Model model, Principal principal){
+        if(principal != null){
+            model.addAttribute("user", this.userDetailsService.getUsers(principal.getName(), 1).get(0));
+            return "adminUserProfileLayout";
+        }
+        return "redirect:/signin";
+    }
+
+    @PostMapping("/admin/profile")
+    public String adminProfile(Model model, @ModelAttribute(value = "user") User user, Principal principal, BindingResult result) throws ParseException{
+        if(!result.hasErrors()){
+            user.setUsername(principal.getName());
+            User userRoot = this.userDetailsService.getUsers(principal.getName(), 1).get(0);
+            user.setEmail(userRoot.getEmail());
+            user.setRole(userRoot.getRole());
+            user.setPassword(userRoot.getPassword());
+            this.userDetailsService.addOrUpdateUser(user);
+            return "redirect:/admin/users/"+userRoot.getId()+"/edit";
+        }
+        return "adminUserProfileLayout";
     }
 }
