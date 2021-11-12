@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 @Controller
-public class ApiAdmimCategoriesController {
+public class ApiAdminCategoriesController {
     @Autowired
     private CategoryService categoryService;
     @PostMapping(path = "/admin/api/categories/add-category", produces={

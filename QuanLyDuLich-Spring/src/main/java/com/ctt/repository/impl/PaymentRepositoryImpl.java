@@ -33,7 +33,7 @@ public class PaymentRepositoryImpl implements PaymentRepository{
     public Payments addPayment(Payments c) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try{
-            session.save(c);
+            session.saveOrUpdate(c);
             return c;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -70,9 +70,11 @@ public class PaymentRepositoryImpl implements PaymentRepository{
             query = query.where(p);
         }
         Query q = session.createQuery(query);
-        int max = 9;
-        q.setMaxResults(max);
-        q.setFirstResult((page - 1) * max);
+        if(page != 0){
+            int max = 9;
+            q.setMaxResults(max);
+            q.setFirstResult((page - 1) * max);
+        }
         return q.getResultList();
     }
 

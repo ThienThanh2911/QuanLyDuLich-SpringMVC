@@ -137,7 +137,7 @@
                     <div class="card-body table-full-width table-responsive">
                         <table class="table table-hover table-striped">
                             <thead>
-                                <th>ID</th>
+                                <th>Avatar</th>
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Role</th>
@@ -149,7 +149,7 @@
                             <tbody>
                                 <c:forEach items="${users}" var="u">
                                     <tr id="user${u.id}">
-                                        <td>${u.id}</td>
+                                        <td><img src="${u.avatar}" alt="${u.username}" width="120px" style="border-radius:3px"/></td>
                                         <td>${u.username}</td>
                                         <td>${u.email}</td>
                                         <c:if test="${u.role.name() == 'ROLE_ADMIN'}">
@@ -188,7 +188,7 @@
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center" style="height:148px">
                                             <button onclick="removeUser(${u.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
                                                 <i class="fa fa-remove"></i>
                                             </button>

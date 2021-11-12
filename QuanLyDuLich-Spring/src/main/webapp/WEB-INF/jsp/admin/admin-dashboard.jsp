@@ -124,68 +124,13 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="card ">
                         <div class="card-header ">
                             <h4 class="card-title">The Most Popular Product Statistics</h4>
                             <p class="card-category">Biểu đồ thống kê sản phẩm bán chạy nhất</p>
                         </div>
-                        <div class="card-body ">
-                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-                            <div class="legend">
-                                <i class="fa fa-circle text-info"></i> Tour miền Nam
-                                <i class="fa fa-circle text-danger"></i> Tour miền Bắc
-                                <i class="fa fa-circle text-warning"></i> Tour miền Trung
-                            </div>
-                            <hr>
-                            <div class="stats">
-                                <i class="nc-icon nc-layers-3"></i> Thống kê số liệu 3 sản phẩm bán chạy nhất
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card ">
-                        <div class="card-header ">
-                            <h4 class="card-title">Revenue Statistics</h4>
-                            <p class="card-category">Biểu đồ thống kê doanh thu trong năm 2021</p>
-                        </div>
-                        <div class="card-body ">
-                            <div id="chartActivity" class="ct-chart"></div>
-                        </div>
-                        <div class="card-footer ">
-                            <div class="legend">
-                                <i class="fa fa-circle text-info"></i> Vé người lớn
-                                <i class="fa fa-circle text-danger"></i> Vé trẻ em
-                            </div>
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-check"></i> Data information certified
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card ">
-                        <div class="card-header ">
-                            <h4 class="card-title">Revenue statistics for all years</h4>
-                            <p class="card-category">Biểu đồ thống kê doanh thu của tất cả các năm</p>
-                        </div>
-                        <div class="card-body ">
-                            <div id="chartActivity2" class="ct-chart"></div>
-                        </div>
-                        <div class="card-footer ">
-                            <div class="legend">
-                                <i class="fa fa-circle text-info"></i> Vé người lớn
-                                <i class="fa fa-circle text-danger"></i> Vé trẻ em
-                            </div>
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-check"></i> Data information certified
-                            </div>
-                        </div>
+                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -197,10 +142,10 @@
                         <div class="card-body ">
                             <p><strong>Nhập năm mà bạn muốn xem thống kê chi tiết:</strong> 
                                 <span>
-                                    <select class="form-select" aria-label="Default select example" style="border: 0; border-bottom: 1px solid black">
-                                        <option selected>Chọn năm</option>
-                                        <option value="1">Năm 2020</option>
-                                        <option value="2">Năm 2021</option>
+                                    <select id="selectYear" onchange="updateChart()" class="form-select" aria-label="Default select example" style="border: 0; border-bottom: 1px solid black">
+                                        <option selected value="2021">Chọn năm</option>
+                                        <option value="2020">Năm 2020</option>
+                                        <option value="2021">Năm 2021</option>
                                     </select>
                                 </span>
                             </p>
@@ -215,34 +160,55 @@
                             <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="month" role="tabpanel">
-                                    <p style="font-size: 20px"><strong>Số liệu thống kê tháng 9</strong></p>
-                                    <p class="card-text"><strong>Tổng số vé:</strong> <em>100</em></p>
-                                    <p class="card-text"><strong>Tổng doanh thu:</strong> <em>100.000.000VNĐ</em></p>
+                                    <p style="font-size: 20px"><strong id="monthTitle">Số liệu thống kê tháng</strong></p>
+                                    <p class="card-text"><strong>Tổng số vé:</strong> <em id="monthTicket"></em></p>
+                                    <p class="card-text"><strong>Tổng doanh thu:</strong> <em id="monthPrice"></em></p>
                                     <p class="card-text"><strong>Chọn tháng mà bạn muốn xem thống kê chi tiết:</strong> 
                                         <span>
-                                            <select class="form-select" aria-label="Default select example" style="border: 0; border-bottom: 1px solid black">
-                                                <option selected>Chọn tháng</option>
+                                            <select onchange="updateMonth()" id="selectMonth" class="form-select" aria-label="Default select example" style="border: 0; border-bottom: 1px solid black">
+                                                <option selected value="11">Chọn tháng</option>
                                                 <option value="1">Tháng 1</option>
                                                 <option value="2">Tháng 2</option>
                                                 <option value="3">Tháng 3</option>
-                                                <option value="1">Tháng 4</option>
-                                                <option value="2">Tháng 5</option>
-                                                <option value="3">Tháng 6</option>
-                                                <option value="1">Tháng 7</option>
-                                                <option value="2">Tháng 8</option>
-                                                <option value="3">Tháng 9</option>
-                                                <option value="1">Tháng 10</option>
-                                                <option value="2">Tháng 11</option>
-                                                <option value="3">Tháng 12</option>
+                                                <option value="4">Tháng 4</option>
+                                                <option value="5">Tháng 5</option>
+                                                <option value="6">Tháng 6</option>
+                                                <option value="7">Tháng 7</option>
+                                                <option value="8">Tháng 8</option>
+                                                <option value="9">Tháng 9</option>
+                                                <option value="10">Tháng 10</option>
+                                                <option value="11">Tháng 11</option>
+                                                <option value="12">Tháng 12</option>
                                             </select>
                                         </span>
                                     </p>
                                 </div>
-
+                                <script>
+                                    function updateMonth(){
+                                        fetch(`/QuanLyDuLich-Spring/columnchart`,{
+                                            method: 'post',
+                                            body: JSON.stringify({
+                                                "year": document.getElementById("selectYear").value
+                                            }),
+                                            headers:{
+                                                'Content-Type': 'application/json'
+                                            }
+                                        }).then(function(res){
+                                            return res.json();
+                                        }).then(function(data){
+                                            var m = document.getElementById("selectMonth").value
+                                            document.getElementById("monthTitle").innerHTML = "Số liệu thống kê tháng " + m
+                                            document.getElementById("monthTicket").innerHTML = data[m]["totalTicket"]
+                                            document.getElementById("monthPrice").innerHTML = parseInt(data[m]["adult"]) + parseInt(data[m]["children"]) + " VNÐ"
+                                        }).catch(function(err){
+                                            console.error(err);
+                                        });
+                                    }
+                                </script>
                                 <div class="tab-pane" id="year" role="tabpanel" aria-labelledby="deals-tab">
-                                    <p style="font-size: 20px"><strong>Số liệu thống kê năm 2021</strong></p>
-                                    <p class="card-text"><strong>Tổng số vé:</strong> <em>1000</em></p>
-                                    <p class="card-text"><strong>Tổng doanh thu:</strong> <em>999.000.000VNĐ</em></p>
+                                    <p style="font-size: 20px"><strong id="yearTitle">Số liệu thống kê năm</strong></p>
+                                    <p class="card-text"><strong>Tổng số vé:</strong> <em id="yearTicket"></em></p>
+                                    <p class="card-text"><strong>Tổng doanh thu:</strong> <em id="yearPrice"></em></p>
                                 </div>
                             </div>
                             </div>
@@ -253,6 +219,17 @@
                                 <i class="fa fa-history"></i> Update data when using
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">Revenue Statistics</h4>
+                            <p class="card-category">Biểu đồ thống kê doanh thu trong năm 2021</p>
+                        </div>
+                        <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
                     </div>
                 </div>
             </div>

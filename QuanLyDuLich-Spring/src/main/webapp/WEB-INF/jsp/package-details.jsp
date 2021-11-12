@@ -41,15 +41,15 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
               </ol>
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src="images/package-image-1-1200x600.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="images/1200x600-resolution-blue-solid-color-background.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="images/package-image-1-1200x600.jpg" alt="Third slide">
-                </div>
+                  <div class="carousel-item active">
+                      <img class="d-block w-100" src="${tourimage1}" alt="slide">
+                    </div>
+                  <div class="carousel-item">
+                      <img class="d-block w-100" src="${tourimage2}" alt="slide">
+                    </div>
+                  <div class="carousel-item">
+                      <img class="d-block w-100" src="${tourimage3}" alt="slidscse">
+                    </div>
               </div>
               <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -372,8 +372,18 @@
                              <div class="col-md-10">
                                 <select id="datedetail" name="datedetail" class="custom-select" style="text-align-last: center; width: 75%; background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
                                         <option value="">Chọn ngày khởi hành</option>
+                                        <jsp:useBean id="today" class="java.util.Date" />
                                         <c:forEach items="${dates}" var="date">
-                                            <option value="${date.id}"><fmt:formatDate pattern = "dd/MM/yyyy" value = "${date.startDate}" /></option>
+                                            <fmt:formatDate var="now" pattern = "dd-MM-yyyy" value = "${today}" />
+                                            <fmt:formatDate var="day" pattern = "dd-MM-yyyy" value = "${date.startDate}" />
+                                            <fmt:parseDate value = "${now}" var = "parsedStartDate" pattern = "dd-MM-yyyy" />
+                                            <fmt:parseDate value = "${day}" var = "parsedEndDate" pattern = "dd-MM-yyyy" />
+                                            <c:if test="${parsedStartDate gt parsedEndDate}">
+                                                <option disabled="true" value="${date.id}">${day}</option>
+                                            </c:if>
+                                            <c:if test="${parsedStartDate le parsedEndDate}">
+                                                <option value="${date.id}">${day}</option>
+                                            </c:if>
                                         </c:forEach>
                                 </select>
                              </div>

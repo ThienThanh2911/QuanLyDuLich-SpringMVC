@@ -6,9 +6,11 @@
 package com.ctt.controllers;
 
 import com.ctt.pojos.DateDetail;
+import com.ctt.pojos.TourImage;
 import com.ctt.service.CommentTourService;
 import com.ctt.service.DateDetailService;
 import com.ctt.service.RateTourService;
+import com.ctt.service.TourImageService;
 import com.ctt.service.TourService;
 import com.ctt.service.UserService;
 import com.ctt.validator.WebAppValidator;
@@ -17,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -45,6 +48,8 @@ public class ToursController {
     private WebAppValidator tourValidator;
     @Autowired
     private TourService tourService;
+    @Autowired
+    private TourImageService tourImageService;
     @Autowired
     private DateDetailService dateDetailService;
     @InitBinder
@@ -82,6 +87,13 @@ public class ToursController {
             model.addAttribute("user", this.userDetailsService.getUsers(principal.getName(), 1).get(0));
         }
         model.addAttribute("tour", this.tourService.getTourById(Integer.parseInt(tourId)));
+        List<TourImage> t = this.tourImageService.getTourImageById(Integer.parseInt(tourId));
+        String a1 = t.get(0).getImage();
+        String a2 = t.get(1).getImage();
+        String a3 = t.get(2).getImage();
+        model.addAttribute("tourimage1", a1);
+        model.addAttribute("tourimage2", a2);
+        model.addAttribute("tourimage3", a3);
         model.addAttribute("dates", this.dateDetailService.getListDateDetailById(Integer.parseInt(tourId)));
         model.addAttribute("comments", this.commentTourService.getListCommentsTourById(Integer.parseInt(tourId)));
         return "packageDetailsLayout";

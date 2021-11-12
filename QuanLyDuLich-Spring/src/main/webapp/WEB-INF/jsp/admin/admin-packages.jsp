@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apitour.js"></script>
 =======
 <div class="sidebar" data-color="blue" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
@@ -137,23 +138,25 @@
                     <div class="card-body table-full-width table-responsive">
                         <table class="table table-hover table-striped">
                             <thead>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Destination</th>
+                                <th>Image</th>
+                                <th>Tour name</th>
                                 <th>Price</th>
-                                <th>Category</th>
-                                <th style="width: 60px">Active</th>
-                                <th style="text-align: center!important">Edit</th>
-                                <th>Remove</th>
+                                <th>Danh mục</th>
+                                <th>Rating</th>
+                                <th>Comments</th>
+                                <th style="width: 60px">ACTIVE</th>
+                                <th style="text-align: center!important">EDIT</th>
+                                <th>REMOVE</th>
                             </thead>
                             <tbody>
                                 <c:forEach items="${packages}" var="p">
                                     <tr id="tour${p.id}">
-                                        <td>${p.id}</td>
+                                        <td><img src="${p.photos}" alt="${p.name}" width="120px" style="border-radius:3px"/></td>
                                         <td>${p.name}</td>
-                                        <td>${p.destination}</td>
-                                        <td>${p.price}</td>
+                                        <td><fmt:formatNumber value="${p.price}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></td>
                                         <td>${p.category.name}</td>
+                                        <td>${p.ratetour.size()} đánh giá</td>
+                                        <td><a href="<c:url value="/admin/commenttours?tourId=${p.id}" />">${p.commenttour.size()} bình luận</a></td>
                                         <td class="text-center">
                                             <c:if test="${p.active == true}">
                                                 <button id="buttontour${p.id}" onclick="setActiveTour(${p.id})" type="button" rel="tooltip" title="Deactive Tour" class="btn btn-info btn-simple btn-link">
@@ -172,7 +175,7 @@
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center" style="height:105px">
                                             <button onclick="removeTour(${p.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
                                                 <i class="fa fa-remove"></i>
                                             </button>

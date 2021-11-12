@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apipayment.js"></script>
 =======
 <div class="sidebar" data-color="blue" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
@@ -137,12 +138,12 @@
                     <div class="card-body table-full-width table-responsive">
                         <table class="table table-hover table-striped">
                             <thead>
-                                <th>ID</th>
-                                <th>Username</th>
+                                <th>Image</th>
+                                <th>Customer</th>
                                 <th>Tour ID</th>
                                 <th>Method</th>
-                                <th>Price</th>
-                                <th>Created Date</th>
+                                <th>Total bill</th>
+                                <th>Created date</th>
                                 <th>Status</th>
                                 <th style="text-align: center!important">Edit</th>
                                 <th>Remove</th>
@@ -150,19 +151,28 @@
                             <tbody>
                                 <c:forEach items="${payments}" var="p">
                                     <tr id="payment${p.id}">
-                                        <td>${p.id}</td>
+                                        <td><img src="${p.tour.photos}" alt="${p.tour.name}" width="120px" style="border-radius:3px"/></td>
                                         <td>${p.user.username}</td>
                                         <td>${p.tour.id}</td>
                                         <td>${p.method.name()}</td>
-                                        <td>${p.price}</td>
+                                        <td><fmt:formatNumber value="${p.price}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></td>
                                         <td>${p.createdDate}</td>
-                                        <td>${p.status}</td>
+                                        <c:if test="${p.status == 'PAID'}">
+                                            <td><span class="badge badge-pill badge-success">Đã thanh toán</span></td>
+                                        </c:if>
+                                        <c:if test="${p.status == 'UNPAID'}">
+                                            <td><span class="badge badge-pill badge-warning">Chưa thanh toán</span></td>
+                                        </c:if>
+                                        <c:if test="${p.status == 'EXPIRED'}">
+                                            <td><span class="badge badge-pill badge-danger">Đã hết hạn</span></td>
+                                        </c:if>
                                         <td class="text-center">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                            <c:url value="/admin/payments"  var="url"/>
+                                            <button type="button" onclick="window.location.href=`${url}/${p.id}/edit`" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center" style="height:105px">
                                             <button onclick="removePayment(${p.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
                                                 <i class="fa fa-remove"></i>
                                             </button>

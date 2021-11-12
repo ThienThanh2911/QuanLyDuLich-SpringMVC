@@ -3,6 +3,7 @@ com\ctt\service\impl\PaymentServiceImpl.class
 com\ctt\controllers\admin\AdminUsersController.class
 com\ctt\configs\DispatcherServletInitializer.class
 com\ctt\repository\impl\TourRepositoryImpl.class
+com\ctt\controllers\admin\ApiAdminTagsController.class
 com\ctt\service\TagService.class
 com\ctt\repository\impl\RateBlogRepositoryImpl.class
 com\ctt\validator\UserNameValidator.class
@@ -16,6 +17,7 @@ com\ctt\validator\TourNameValidator.class
 com\ctt\pojos\Methods.class
 com\ctt\repository\CategoryRepository.class
 com\ctt\repository\impl\DateDetailRepositoryImpl.class
+com\ctt\service\impl\TourImageServiceImpl.class
 com\ctt\service\CategoryService.class
 com\ctt\service\impl\UserServiceImpl.class
 com\ctt\formatter\CategoryFormatter.class
@@ -29,6 +31,7 @@ com\ctt\service\impl\ProvinceServiceImpl.class
 com\ctt\controllers\ApiRateBlogController.class
 com\ctt\controllers\admin\AdminHomeController.class
 com\ctt\repository\impl\PaymentRepositoryImpl.class
+com\ctt\controllers\admin\ApiAdminCategoriesController.class
 com\ctt\controllers\admin\AdminPackagesController.class
 com\ctt\pojos\CommentTour.class
 com\ctt\controllers\ApiCommentBlogController.class
@@ -39,10 +42,10 @@ com\ctt\repository\impl\BlogRepositoryImpl.class
 com\ctt\pojos\Category.class
 com\ctt\repository\UserRepository.class
 com\ctt\service\RateBlogService.class
-com\ctt\controllers\admin\ApiAdmimCategoriesController.class
 com\ctt\pojos\Payments.class
 com\ctt\repository\PaymentRepository.class
 com\ctt\service\impl\CategoryServiceImpl.class
+com\ctt\pojos\TourImage.class
 com\ctt\service\impl\DateDetailServiceImpl.class
 com\ctt\service\impl\TourServiceImpl.class
 com\ctt\configs\WebApplicationContextConfig.class
@@ -50,6 +53,7 @@ com\ctt\repository\CommentTourRepository.class
 com\ctt\configs\HibernateConfig.class
 com\ctt\validator\UserEmailValidator.class
 com\ctt\service\impl\CommentBlogServiceImpl.class
+com\ctt\service\TourImageService.class
 com\ctt\formatter\UserFormatter.class
 com\ctt\service\CommentTourService.class
 com\ctt\controllers\ApiRateTourController.class
@@ -83,6 +87,7 @@ com\ctt\pojos\Tours.class
 com\ctt\validator\UserName.class
 com\ctt\service\PaymentService.class
 com\ctt\configs\SpringSecurityConfig.class
+com\ctt\repository\impl\TourImageRepositoryImpl.class
 com\ctt\service\impl\TagServiceImpl.class
 com\ctt\controllers\UsersController.class
 com\ctt\controllers\admin\AdminCommentToursController.class
@@ -98,10 +103,11 @@ com\ctt\repository\impl\ProvinceRepositoryImpl.class
 com\ctt\pojos\Reply.class
 com\ctt\controllers\admin\AdminCommentBlogsController.class
 com\ctt\service\CommentBlogService.class
-com\ctt\controllers\admin\ApiAdmimTagsController.class
 com\ctt\controllers\ApiCommentTourController.class
 com\ctt\controllers\BlogController.class
 com\ctt\validator\PassUserValidator.class
+com\ctt\repository\TourImageRepository.class
+com\ctt\controllers\admin\ApiChartController.class
 com\ctt\pojos\CommentBlog.class
 com\ctt\service\RateTourService.class
 com\ctt\service\DateDetailService.class

@@ -89,6 +89,8 @@ public class Tours implements Serializable{
     private Set<RateTour> ratetour;
     @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<CommentTour> commenttour;
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
+    private Set<TourImage> tourimage;
 
     /**
      * @return the id
@@ -326,6 +328,20 @@ public class Tours implements Serializable{
      */
     public void setFinishDate(Date finishDate) {
         this.finishDate = finishDate;
+    }
+
+    /**
+     * @return the tourimage
+     */
+    public Set<TourImage> getTourimage() {
+        return tourimage;
+    }
+
+    /**
+     * @param tourimage the tourimage to set
+     */
+    public void setTourimage(Set<TourImage> tourimage) {
+        this.tourimage = tourimage;
     }
 
 }

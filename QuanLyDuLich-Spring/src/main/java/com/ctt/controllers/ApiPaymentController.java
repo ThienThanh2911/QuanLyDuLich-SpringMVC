@@ -54,7 +54,6 @@ public class ApiPaymentController {
         p.setMethod(Methods.values()[Integer.valueOf(params.get("method"))]);
         p.setDatedetail(this.dateDetailService.getDateDetailById(Integer.valueOf(params.get("datedetail"))));
         p.setStatus(StatusPayment.values()[1]);
-        p.setDescription("Bạn có 7 ngày d? thanh toán hóa don này! Sau khi thanh toán don s? du?c nhân viên ki?m tra và xác nh?n!");
         Payments c = this.paymentService.addPayment(p);
         if(c == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

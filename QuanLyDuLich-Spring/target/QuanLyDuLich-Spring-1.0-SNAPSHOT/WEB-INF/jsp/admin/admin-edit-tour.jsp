@@ -234,7 +234,7 @@
                                 </c:if>
                                 <br>
                                 <c:forEach items="${tour.tags}" var="t">
-                                    <span class="badge badge-pill badge-secondary" style="font-size:15px">${t.name}</span>
+                                    <span class="badge badge-pill badge-secondary" style="font-size:13px">${t.name}</span>
                                 </c:forEach>
                             </p>
                         </div>

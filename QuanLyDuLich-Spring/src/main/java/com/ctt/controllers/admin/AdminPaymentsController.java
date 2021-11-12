@@ -5,7 +5,6 @@
  */
 package com.ctt.controllers.admin;
 
-import com.ctt.pojos.DateDetail;
 import com.ctt.pojos.Payments;
 import com.ctt.service.PaymentService;
 import java.text.ParseException;
@@ -45,15 +44,14 @@ public class AdminPaymentsController {
     }
     
     @PostMapping(path="/admin/payments/{paymentId}/edit")
-    public String adminPaymentsEdit(Model model, @PathVariable("paymentId") String paymentId, @ModelAttribute(value =  "payment") @Valid Payments payments,
-            BindingResult result) {
-        if(!result.hasErrors()){
-            payments.setId(Integer.parseInt(paymentId));
-            if(this.paymentService.addPayment(payments) != null)
-                return "redirect:/admin/payments/"+payments.getId()+"/edit";
-            else
-                model.addAttribute("errMsg", "Something wrong!!!");
-        }
+    public String adminPaymentsEdit(Model model, @PathVariable("paymentId") String paymentId, @ModelAttribute(value =  "payment") Payments payments) {
+        Payments payRoot = this.paymentService.getPaymentById(Integer.parseInt(paymentId));
+        payments.setId(Integer.parseInt(paymentId));
+        payments.setDatedetail(payRoot.getDatedetail());
+        if(this.paymentService.addPayment(payments) != null)
+            return "redirect:/admin/payments/"+payments.getId()+"/edit";
+        else
+            model.addAttribute("errMsg", "Something wrong!!!");
         return "adminEditPaymentLayout";
     }
 }

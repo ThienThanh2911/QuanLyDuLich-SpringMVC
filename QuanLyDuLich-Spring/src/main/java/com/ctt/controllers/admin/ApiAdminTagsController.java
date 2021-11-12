@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 @Controller
-public class ApiAdmimTagsController {
+public class ApiAdminTagsController {
     @Autowired
     private TagService tagService;
     @PostMapping(path = "/admin/api/tags/add-tag", produces={

@@ -5,16 +5,9 @@
  */
 package com.ctt.service.impl;
 
-import com.ctt.pojos.DateDetail;
-import com.ctt.pojos.Methods;
 import com.ctt.pojos.Payments;
-import com.ctt.pojos.StatusPayment;
-import com.ctt.pojos.Tours;
-import com.ctt.pojos.User;
 import com.ctt.repository.PaymentRepository;
 import com.ctt.service.PaymentService;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

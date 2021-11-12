@@ -162,44 +162,10 @@ demo = {
 
         var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
 
-        // lbd.startAnimationForLineChart(dailySalesChart);
+        lbd.startAnimationForLineChart(dailySalesChart);
     },
 
     initDashboardPageCharts: function() {
-
-        var dataPreferences = {
-            series: [
-                [25, 30, 20, 25]
-            ]
-        };
-
-        var optionsPreferences = {
-            donut: true,
-            donutWidth: 40,
-            startAngle: 0,
-            total: 100,
-            showLabel: false,
-            axisX: {
-                showGrid: false
-            }
-        };
-
-        Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
-
-        Chartist.Pie('#chartPreferences', {
-            labels: ['53%', '36%', '11%'],
-            series: [53, 36, 11]
-        });
-
-
-        var dataSales = {
-            labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
-            series: [
-                [287, 385, 490, 492, 554, 586, 698, 695, 752, 788, 846, 944],
-                [67, 152, 143, 240, 287, 335, 435, 437, 539, 542, 544, 647],
-                [23, 113, 67, 108, 190, 239, 307, 308, 439, 410, 410, 509]
-            ]
-        };
 
         // var optionsSales = {
         //   lineSmooth: false,
@@ -221,67 +187,54 @@ demo = {
         //   showPoint: true,
         //   fullWidth: true
         // };
-        var optionsSales = {
-            lineSmooth: false,
-            low: 0,
-            high: 800,
-            showArea: true,
-            height: "245px",
-            axisX: {
-                showGrid: false,
-            },
-            lineSmooth: Chartist.Interpolation.simple({
-                divisor: 3
-            }),
-            showLine: false,
-            showPoint: false,
-            fullWidth: false
-        };
-
-        var responsiveSales = [
-            ['screen and (max-width: 640px)', {
-                axisX: {
-                    labelInterpolationFnc: function(value) {
-                        return value[0];
-                    }
-                }
-            }]
-        ];
-
-        var chartHours = Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
 
         // lbd.startAnimationForLineChart(chartHours);
 
-        var data = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            series: [
-                [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-                [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
-            ]
-        };
-
-        var options = {
-            seriesBarDistance: 10,
-            axisX: {
-                showGrid: false
-            },
-            height: "245px"
-        };
-
-        var responsiveOptions = [
-            ['screen and (max-width: 640px)', {
-                seriesBarDistance: 5,
+        var dataa, options, responsiveOptions, chartActivity;
+        fetch(`/QuanLyDuLich-Spring/columnchart`,{
+            method: 'post',
+            body: JSON.stringify({
+                "year": "2021"
+            }),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(function(res){
+            return res.json();
+        }).then(function(data){
+            dataa = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                series: [
+                    [data["1"]["adult"], data["2"]["adult"], data["3"]["adult"], data["4"]["adult"], data["5"]["adult"], data["6"]["adult"], data["7"]["adult"], data["8"]["adult"], data["9"]["adult"], data["10"]["adult"], data["11"]["adult"], data["12"]["adult"]],
+                    [data["1"]["children"], data["2"]["children"], data["3"]["children"], data["4"]["children"], data["5"]["children"], data["6"]["children"], data["7"]["children"], data["8"]["children"], data["9"]["children"], data["10"]["children"], data["11"]["children"], data["12"]["children"]],
+                ]
+            };
+            options = {
+                seriesBarDistance: 10,
                 axisX: {
-                    labelInterpolationFnc: function(value) {
-                        return value[0];
+                    showGrid: false
+                },
+                height: "245px"
+            };
+
+            responsiveOptions = [
+                ['screen and (max-width: 640px)', {
+                    seriesBarDistance: 5,
+                    axisX: {
+                        labelInterpolationFnc: function(value) {
+                            return value[0];
+                        }
                     }
-                }
-            }]
-        ];
+                }]
+            ];
 
-        var chartActivity = Chartist.Bar('#chartActivity', data, options, responsiveOptions);
+            chartActivity = Chartist.Bar('#chartActivity', dataa, options, responsiveOptions);
 
-        // lbd.startAnimationForBarChart(chartActivity);
+//            lbd.startAnimationForBarChart(chartActivity);
+        }).catch(function(err){
+            console.error(err);
+        });
+        
 
         // /* ----------==========     Daily Sales Chart initialization    ==========---------- */
         //

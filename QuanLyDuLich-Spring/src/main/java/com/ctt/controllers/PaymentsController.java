@@ -33,7 +33,7 @@ public class PaymentsController {
     public String paymentHistory(Model model, @RequestParam(required = false) Map<String, String> params, Principal principal) {
         if(principal != null){
             User u = this.userDetailsService.getUsers(principal.getName(), 1).get(0);
-            model.addAttribute("payments", this.paymentService.getPayments(1, u.getUsername()));
+            model.addAttribute("payments", this.paymentService.getPayments(0, u.getUsername()));
         }else{
             return "redirect:/";
         }

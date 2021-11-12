@@ -116,6 +116,106 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
+                    <div class="card strpied-tabled-with-hover">
+                        <div class="card-header">
+                            <h4 class="card-title">Payment Information
+                                <span class="float-right">Invoice #${payment.id}</span>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <h5 style="color: var(--text-color); font-weight:700;">Client Information<span class="float-right">Payment Details</span></h5>
+                            <p class="card-text" style="">${payment.user.lastName} ${payment.user.firstName}<span class="float-right">CustomerID: ${payment.user.id}</span></p>
+                            <p class="card-text">${payment.user.phone}<span class="float-right">Invoice date: <fmt:formatDate pattern = "dd/MM/yyyy HH:mm:ss" value = "${payment.createdDate}" /></span></p>
+                            <p class="card-text">${payment.user.street} ${payment.user.province.name}<span class="float-right">Payment method: ${payment.method}</span></p>
+                            <h4 style="border-bottom: 2px solid black; margin: 20px 200px 40px 200px"></h4>
+                            <div class="card-body table-full-width table-responsive">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>Type</th>
+                                        <th style="text-align: center!important">Quantity</th>
+                                        <th class="clearfix"></th>
+                                        <th></th>
+                                        <th style="text-align: right!important; width: 120px;">Price</th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="color: #7a7a7a">Người lớn</td>
+                                            <td class="text-center" style="color: #7a7a7a">${payment.adult}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-right" style="color: #7a7a7a; width: 120px;"><fmt:formatNumber value="${payment.tour.price * payment.adult}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #7a7a7a">Trẻ em</td>
+                                            <td class="text-center" style="color: #7a7a7a">${payment.children}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-right" style="color: #7a7a7a; width: 120px;"><fmt:formatNumber value="${(payment.tour.price * payment.children)*70/100}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"></th>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-center" style="font-weight: 700; font-size: 20px;">TOTAL</td>
+                                            <td class="text-right" style="font-weight: 700;font-size: 20px;"><fmt:formatNumber value="${payment.price}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <style>
+                                .clearfix {
+                                    width: calc(1020px - 250px - 200px - 205px - 60px)
+                                }
+                            </style>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="card card-user">
+                        <div class="card-body">
+                            <img src="${payment.tour.photos}" height="100%" width="100%" alt="..." class="img-thumbnail">
+                            <p class="description text-center">
+                                <span style="font-size: 20px; "><strong>${payment.tour.name}</strong></span>
+                                <br>Giá vé: ${payment.tour.price}VNĐ
+                                <br>Danh mục: ${payment.tour.category.name}
+                                <c:if test="${payment.tour.vehicle == 'YACHT'}">
+                                    <br>Phương tiện di chuyển: Du thuyền
+                                </c:if>
+                                <c:if test="${payment.tour.vehicle == 'OTO'}">
+                                    <br>Phương tiện di chuyển: Ô tô
+                                </c:if>
+                                <c:if test="${payment.tour.vehicle == 'PLANE'}">
+                                    <br>Phương tiện di chuyển: Máy bay
+                                </c:if>
+                                <br>
+                                <c:forEach items="${payment.tour.tags}" var="t">
+                                    <span class="badge badge-pill badge-secondary" style="font-size:13px">${t.name}</span>
+                                </c:forEach>
+                                <br>
+                                <c:if test="${payment.status == 'PAID'}">
+                                    <span class="badge badge-pill badge-success" style="font-size:13px">Đã thanh toán</span>
+                                </c:if>
+                                <c:if test="${payment.status == 'UNPAID'}">
+                                    <span class="badge badge-pill badge-warning" style="font-size:13px">Chưa thanh toán</span>
+                                </c:if>
+                                <c:if test="${payment.status == 'EXPIRED'}">
+                                    <span class="badge badge-pill badge-danger" style="font-size:13px">Đã hết hạn</span>
+                                </c:if>
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="button-container mr-auto ml-auto">
+                            <span><i class="nc-icon nc-square-pin"></i> Điểm đến ${payment.tour.destination}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row"> 
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Edit Payment Information</h4>
@@ -127,234 +227,26 @@
                             <c:url value="/admin/payments/${paymentId}/edit" var="action"/>
                             <form:form method="post" action="${action}" modelAttribute="payment" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
-                                        <div class="form-group">
-                                            <label>User Name</label>
-                                            <form:input type="text" id="name" path="user" cssClass="form-control" placeholder="Tên tour..."/>
-                                            <form:errors path="user" cssClass="alert alert-danger" element="div"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
-                                        <div class="form-group">
-                                            <label>Tour Name</label>
-                                            <form:input type="text" id="destination" path="tour" placeholder="Điểm đến..." cssClass="form-control"/>
-                                            <form:errors path="tour" cssClass="alert alert-danger" element="div"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                        <div class="form-group">
-                                            <label>Price</label>
-                                            <form:input type="text" id="price" path="price" placeholder="Giá vé..." cssClass="form-control"/>
-                                            <form:errors path="price" cssClass="alert alert-danger" element="div"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="form-group">
-                                            <label>Description</label>
-                                            <form:textarea rows="20" cols="80" type="text" id="description" placeholder="Mô tả tour..." path="description" style="height:9em" class="form-control"/>
-                                            
+                                            <label>Status</label>
+                                            <form:select path="status" class="form-select" style="width: 100%" aria-label="Default select example">
+                                                <form:option value="">Trạng thái hóa đơn?</form:option>
+                                                <form:option value="PAID">Đã thanh toán</form:option>
+                                                <form:option value="UNPAID">Chưa thanh toán</form:option>
+                                                <form:option value="EXPIRED">Đã hết hạn</form:option>
+                                            </form:select>
+                                            <form:hidden path="createdDate"/>
+                                            <form:hidden path="method"/>
+                                            <form:hidden path="price"/>
+                                            <form:hidden path="tour"/>
+                                            <form:hidden path="user"/>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Tour</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Payments</button>
                                 <div class="clearfix"></div>
                             </form:form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                    <div class="card card-user">
-                        <div class="card-body">
-                            <img src="${tour.photos}" height="100%" width="100%" alt="..." class="img-thumbnail">
-                            <p class="description text-center">
-                                <span style="font-size: 20px; "><strong>${tour.name}</strong></span>
-                                <br>Giá vé: ${tour.price}VNĐ
-                                <br>Danh mục: ${tour.category.name}
-                                <c:if test="${tour.vehicle == 'YACHT'}">
-                                    <br>Phương tiện di chuyển: Du thuyền
-                                </c:if>
-                                <c:if test="${tour.vehicle == 'OTO'}">
-                                    <br>Phương tiện di chuyển: Ô tô
-                                </c:if>
-                                <c:if test="${tour.vehicle == 'PLANE'}">
-                                    <br>Phương tiện di chuyển: Máy bay
-                                </c:if>
-                                <br>
-                                <c:forEach items="${tour.tags}" var="t">
-                                    <span class="badge badge-pill badge-secondary" style="font-size:15px">${t.name}</span>
-                                </c:forEach>
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="button-container mr-auto ml-auto">
-                            <span><i class="nc-icon nc-square-pin"></i> Điểm đến ${tour.destination}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Edit Date Details</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="card strpied-tabled-with-hover">
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <th>Start Date</th>
-                                            <th>Finish Date</th>
-                                            <th>Status</th>
-                                            <th>Remove</th>
-                                        </thead>
-                                        <tbody id="dateList">
-                                            <c:forEach items="${datedetails}" var="d">
-                                                <tr id="datedetail${d.id}">
-                                                    <td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${d.startDate}" /></td>
-                                                    <td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${d.finishDate}" /></td>
-                                                    <c:if test="${d.status == 'ACTIVE'}">
-                                                        <td>
-                                                            <span class="badge badge-pill badge-success" style="font-size:13px">Hoạt động</span>
-                                                        </td>
-                                                    </c:if>
-                                                    <c:if test="${d.status == 'ARCHIVED'}">
-                                                        <td>
-                                                            <span class="badge badge-pill badge-warning" style="font-size:13px">Đang diễn ra</span>
-                                                        </td>
-                                                    </c:if>
-                                                    <c:if test="${d.status == 'CANCELLED'}">
-                                                        <td>
-                                                            <span class="badge badge-pill badge-danger" style="font-size:13px">Đã kết thúc</span>
-                                                        </td>
-                                                    </c:if>
-                                                    <td class="text-center">
-                                                        <button onclick="removeDateDetail(${d.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                            <i class="fa fa-remove"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Start Date</label>
-                                        <div>
-                                            <input type="date" id="startDate" name="startDate" class="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Finish Date</label>
-                                        <div>
-                                            <input type="date" id="finishDate" name="finishDate" class="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button onclick="addDateDetail(${tourId})" type="submit" class="btn btn-info btn-fill pull-right">Add Date Detail</button>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">List Categories</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="card strpied-tabled-with-hover">
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Category Name</th>
-                                            <th>Remove</th>
-                                        </thead>
-                                        <tbody id="cateList">
-                                            <c:forEach items="${listCates}" var="t">
-                                                <tr id="cates${t.id}">
-                                                    <td>${t.id}</td>
-                                                    <td>${t.name}</td>
-                                                    
-                                                    <td class="text-center">
-                                                        <button onclick="removeCate(${t.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                            <i class="fa fa-remove"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group">
-                                        <label>Category Name</label>
-                                        <div>
-                                            <input type="text" id="cateName" name="cateName" class="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                           <button onclick="addCate()" type="button" class="btn btn-info btn-fill pull-right">Add Category</button>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">List Tags</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="card strpied-tabled-with-hover">
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Tag Name</th>
-                                            <th>Remove</th>
-                                        </thead>
-                                        <tbody id="tagList">
-                                            <c:forEach items="${listTags}" var="t">
-                                                <tr id="tags${t.id}">
-                                                    <td>${t.id}</td>
-                                                    <td>${t.name}</td>
-                                                    
-                                                    <td class="text-center">
-                                                        <button onclick="removeTag(${t.id})" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                            <i class="fa fa-remove"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group">
-                                        <label>Tag Name</label>
-                                        <div>
-                                            <input type="text" id="tagName" name="tagName" class="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                           <button onclick="addTag()" type="button" class="btn btn-info btn-fill pull-right">Add Tag</button>
-                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>

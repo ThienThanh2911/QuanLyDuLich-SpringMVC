@@ -5,15 +5,14 @@
  */
 package com.ctt.pojos;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,15 +20,15 @@ import javax.persistence.Table;
  * @author ADMIN
  */
 @Entity
-@Table(name = "tags")
-public class Tags implements Serializable{
+@Table(name = "tourimage")
+public class TourImage implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    @ManyToMany(mappedBy = "tags")
-    @JsonBackReference
-    private Set<Tours> tour = new HashSet<>();
+    private String image;
+    @ManyToOne
+    @JoinColumn(name = "tour_id")
+    private Tours tour;
 
     /**
      * @return the id
@@ -46,30 +45,30 @@ public class Tags implements Serializable{
     }
 
     /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
      * @return the tour
      */
-    public Set<Tours> getTour() {
+    public Tours getTour() {
         return tour;
     }
 
     /**
      * @param tour the tour to set
      */
-    public void setTour(Set<Tours> tour) {
+    public void setTour(Tours tour) {
         this.tour = tour;
+    }
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
     }
 }

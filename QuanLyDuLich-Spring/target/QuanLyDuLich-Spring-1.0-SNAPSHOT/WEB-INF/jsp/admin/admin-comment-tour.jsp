@@ -112,6 +112,35 @@
     <div class="content">
         <div class="container-fluid">
             <div class="col-md-12">
+                <div class="card card-user">
+                    <div class="card-body">
+                        <img src="${tour.photos}" height="100%" width="100%" alt="..." class="img-thumbnail">
+                        <p class="description text-center">
+                            <span style="font-size: 20px; "><strong>${tour.name}</strong></span>
+                            <br>Giá vé: ${tour.price}VNĐ
+                            <br>Danh mục: ${tour.category.name}
+                            <c:if test="${tour.vehicle == 'YACHT'}">
+                                <br>Phương tiện di chuyển: Du thuyền
+                            </c:if>
+                            <c:if test="${tour.vehicle == 'OTO'}">
+                                <br>Phương tiện di chuyển: Ô tô
+                            </c:if>
+                            <c:if test="${tour.vehicle == 'PLANE'}">
+                                <br>Phương tiện di chuyển: Máy bay
+                            </c:if>
+                            <br>
+                            <c:forEach items="${tour.tags}" var="t">
+                                <span class="badge badge-pill badge-secondary" style="font-size:13px">${t.name}</span>
+                            </c:forEach>
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="button-container mr-auto ml-auto">
+                        <span><i class="nc-icon nc-square-pin"></i> Điểm đến ${tour.destination}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
                         <h4 class="card-title">Tour Comment Management Panel</h4>
@@ -120,9 +149,8 @@
                     <div class="card-body table-full-width table-responsive">
                         <table class="table table-hover table-striped">
                             <thead>
-                                <th>ID</th>
+                                <th>Avatar</th>
                                 <th>User</th>
-                                <th>Tour ID</th>
                                 <th>Comment</th>
                                 <th>Created Date</th>
                                 <th>Remove</th>
@@ -130,9 +158,8 @@
                             <tbody>
                                 <c:forEach items="${commenttours}" var="c">
                                     <tr id="comment${c.id}">
-                                        <td>${c.id}</td>
+                                        <td>${c.user.avatar}</td>
                                         <td>${c.user.username}</td>
-                                        <td>${c.tour.id}</td>
                                         <td>${c.comment}</td>
                                         <td>${c.created_date}</td>
                                         <td class="text-center">

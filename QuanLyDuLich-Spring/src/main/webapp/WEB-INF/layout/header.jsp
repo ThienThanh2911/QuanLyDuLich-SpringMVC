@@ -48,6 +48,7 @@
                                             <c:if test="${user.role.name() != 'ROLE_USER'}">
                                                 <a class="dropdown-item" href="<c:url value="/admin" />">Trang quản trị</a>
                                             </c:if>
+                                            <a class="dropdown-item" href="<c:url value="/payment-history" />">Lịch sử thanh toán</a>
                                             <a class="dropdown-item" href="<c:url value="/your-profile" />">Thông tin cá nhân</a>
                                             <a class="dropdown-item" href="<c:url value="/change-password" />">Đổi mật khẩu</a>
                                             <a class="dropdown-item" href="<c:url value="/logout" />">Đăng xuất</a>

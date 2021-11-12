@@ -85,13 +85,16 @@ public class CommentTourRepositoryImpl implements CommentTourRepository{
 
     @Override
     @Transactional
-    public List<CommentTour> getCommentTours(int page) {
+    public List<CommentTour> getCommentTours(int page, int tourId) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<CommentTour> query = builder.createQuery(CommentTour.class);
         Root root = query.from(CommentTour.class);
         query = query.select(root).orderBy(builder.desc(root.get("id")));
-        
+        if(tourId != 0){
+            Predicate p = builder.like(root.join("tour").get("id").as(String.class), String.format("%%%s%%", tourId));
+            query = query.where(p);
+        }
         Query q = session.createQuery(query);
         int max = 9;
         q.setMaxResults(max);

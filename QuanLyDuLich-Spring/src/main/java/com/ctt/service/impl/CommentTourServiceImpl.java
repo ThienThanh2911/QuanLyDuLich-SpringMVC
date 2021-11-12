@@ -54,8 +54,8 @@ public class CommentTourServiceImpl implements CommentTourService {
     }
 
     @Override
-    public List<CommentTour> getCommentTours(int i) {
-        return this.commentTourRepository.getCommentTours(i);
+    public List<CommentTour> getCommentTours(int i, int tourId) {
+        return this.commentTourRepository.getCommentTours(i, tourId);
     }
 
     @Override

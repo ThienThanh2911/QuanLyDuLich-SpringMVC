@@ -18,9 +18,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -37,13 +34,9 @@ public class Payments implements Serializable{
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private Date createdDate;
-    @NotNull(message = "{tour.price.nullError}")
-    @Min(value = 100000, message = "{tour.price.minError}")
-    @Max(value = 10000000, message = "{tour.price.maxError}")
     private BigDecimal price;
     private int adult;
     private int children;
-    private String description;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -84,20 +77,6 @@ public class Payments implements Serializable{
      */
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     /**
