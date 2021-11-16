@@ -54,7 +54,7 @@
         </form>
     </div>
 </div>
-<footer style="margin-top: 30%;">
+<footer style="margin-top: 28%;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

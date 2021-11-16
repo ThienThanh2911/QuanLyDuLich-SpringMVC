@@ -16,7 +16,7 @@
                     <div class="cta-content">
                         <br>
                         <br>
-                        <h2><em>${tour.price}</em></h2>
+                        <h2><em><fmt:formatNumber value="${tour.price}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></em></h2>
                         <p>Giá tiền của chuyến đi</p>
 
                         <div class="main-button">
@@ -77,7 +77,7 @@
               <div class="col-lg-8">
                 <section class='tabs-content' style="width: 100%;">
                   <article id='tabs-1'>
-                    <h4>Package Specs</h4>
+                    <h4>Thông tin chi tiết</h4>
 
                     <div class="row">
                        <div class="col-sm-6">
@@ -106,7 +106,7 @@
                     </div>
                   </article>
                   <article id='tabs-2'>
-                    <h4>Package Description</h4>
+                    <h4>Mô tả chuyến đi</h4>
                     
                     <p>${tour.description}</p>
                     
@@ -139,7 +139,7 @@
                     </div>
                   </article>
                   <article id='tabs-4'>
-                    <h4>Package Info</h4>
+                    <h4>Thông tin chuyến đi</h4>
 
                     <ul class="list-group list-group-no-border">
                       <li class="list-group-item" style="margin:0 0 -1px">
@@ -227,7 +227,7 @@
                     </ul>
                   </article>
                   <article id='tabs-5'>
-                    <h4>Map</h4>
+                    <h4>Bản đồ</h4>
 
                     <img src="images/map.jpg" class="img-fluid" alt="">
                   </article>
@@ -372,18 +372,8 @@
                              <div class="col-md-10">
                                 <select id="datedetail" name="datedetail" class="custom-select" style="text-align-last: center; width: 75%; background: var(--input-color); border: 1px solid  var(--border-color); font-size: .825rem; color: var(--inputtext-color)">
                                         <option value="">Chọn ngày khởi hành</option>
-                                        <jsp:useBean id="today" class="java.util.Date" />
                                         <c:forEach items="${dates}" var="date">
-                                            <fmt:formatDate var="now" pattern = "dd-MM-yyyy" value = "${today}" />
-                                            <fmt:formatDate var="day" pattern = "dd-MM-yyyy" value = "${date.startDate}" />
-                                            <fmt:parseDate value = "${now}" var = "parsedStartDate" pattern = "dd-MM-yyyy" />
-                                            <fmt:parseDate value = "${day}" var = "parsedEndDate" pattern = "dd-MM-yyyy" />
-                                            <c:if test="${parsedStartDate gt parsedEndDate}">
-                                                <option disabled="true" value="${date.id}">${day}</option>
-                                            </c:if>
-                                            <c:if test="${parsedStartDate le parsedEndDate}">
-                                                <option value="${date.id}">${day}</option>
-                                            </c:if>
+                                            <option value="${date.id}"><fmt:formatDate pattern = "dd/MM/yyyy" value = "${date.startDate}" /></option>
                                         </c:forEach>
                                 </select>
                              </div>

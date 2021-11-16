@@ -11,6 +11,7 @@ import com.ctt.pojos.DateDetail;
 import com.ctt.pojos.Status;
 import com.ctt.pojos.Tours;
 import com.ctt.repository.TourRepository;
+import com.ctt.service.CategoryService;
 import com.ctt.service.DateDetailService;
 import com.ctt.service.TourService;
 import java.io.IOException;
@@ -30,6 +31,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class TourServiceImpl implements TourService {
     @Autowired
     private TourRepository tourRepository;
+    @Autowired
+    private CategoryService categoryService;
     @Autowired
     private DateDetailService dateDetailService;
     @Autowired
@@ -82,6 +85,9 @@ public class TourServiceImpl implements TourService {
                 d.setTour(t);
                 d.setStatus(Status.ACTIVE);
                 this.dateDetailService.addDateDetail(d);
+                String cate = this.categoryService.getCategoryById(tours.getCategory().getId()).getCode();
+                t.setCode("TO" + cate + t.getId());
+                this.tourRepository.addOrUpdate(t);
             }
             return true;
         }else return false;

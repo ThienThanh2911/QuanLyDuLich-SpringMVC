@@ -36,12 +36,13 @@ public class TourRepositoryImpl implements TourRepository {
         CriteriaQuery<Tours> query = builder.createQuery(Tours.class);
         Root root = query.from(Tours.class);
 
-        Predicate p = builder.equal(root.get("id"), id);
-        query = query.where(p);
-        
+        if(id != 0){
+            Predicate p = builder.equal(root.get("id"), id);
+            query = query.where(p);
+        }
         Query q = session.createQuery(query);
 
-        return (Tours) q.getSingleResult();
+        return (Tours) q.setMaxResults(1).uniqueResult();
     }
     
     @Override

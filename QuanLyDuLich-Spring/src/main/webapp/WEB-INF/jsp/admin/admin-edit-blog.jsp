@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="sidebar" data-color="blue" data-image="${pageContext.request.contextPath}/resources/assets/img/sidebar.jpg">
     <div class="sidebar-wrapper">
@@ -20,7 +21,7 @@
                 <li>
                     <a class="nav-link" href="<c:url value="/admin" />">
                         <i class="nc-icon nc-chart-pie-35"></i>
-                        <p>Dashboard</p>
+                        <p>BẢNG ĐIỀU KHIỂN</p>
                     </a>
                 </li>
             </c:if>
@@ -111,50 +112,71 @@
     </nav>
     <!-- End Navbar -->
     <div class="content">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Edit Blog</h4>
-            </div>
-            <div class="card-body">
-                <c:url value="/admin/blogs/${blogId}/edit" var="action"/>
-                <form:form method="post" action="${action}" modelAttribute="blog" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Title</label>
-                                <form:input path="title" class="form-control" id="title" placeholder="Enter your blog title"/>
-                                <form:errors path="title" element="div" cssClass="alert alert-danger" />
-                            </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Blog</h4>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="form-group">
-                                <label>Description</label>
-                                <form:textarea rows="8" cols="80" type="text" id="description" placeholder="Mô tả blog..." path="description" cssClass="form-control"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="form-group">
-                                <label>Image</label>
-                                <div>
-                                    <form:input type="file" id="file" path="file" cssClass="form-control"/>
-                                    <form:hidden path="active"/>
-                                    <form:hidden path="photos"/>
+                        <div class="card-body">
+                            <c:url value="/admin/blogs/${blogId}/edit" var="action"/>
+                            <form:form method="post" action="${action}" modelAttribute="blog" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Title</label>
+                                            <form:input path="title" class="form-control" id="title" placeholder="Enter your blog title"/>
+                                            <form:errors path="title" element="div" cssClass="alert alert-danger" />
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <form:textarea rows="8" cols="80" type="text" id="description" placeholder="Mô tả blog..." style="height:8em" path="description" cssClass="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Image</label>
+                                            <div>
+                                                <form:input type="file" id="file" path="file" cssClass="form-control"/>
+                                                <form:hidden path="active"/>
+                                                <form:hidden path="photos"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button onclick="notifi()" type="submit" class="btn btn-info btn-fill pull-right">Update Blog</button>
+                                <div class="clearfix"></div>
+                            </form:form>
+                            <script>
+                                function notifi(){
+                                    demo.showNotification("fa fa-plus", `Bạn đã chỉnh sửa Blog thành công`, 2)
+                                }
+                            </script>
                         </div>
                     </div>
-                    <button onclick="notifi()" type="submit" class="btn btn-info btn-fill pull-right">Update Blog</button>
-                    <div class="clearfix"></div>
-                </form:form>
-                <script>
-                    function notifi(){
-                        demo.showNotification("fa fa-plus", `Bạn đã chỉnh sửa Blog thành công`, 2)
-                    }
-                </script>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="card card-user">
+                        <div class="card-body">
+                            <img src="${blog.photos}" height="100%" width="100%" alt="..." class="img-thumbnail">
+                            <p class="description text-center">
+                                <span style="font-size: 20px; "><strong>${blog.title}</strong></span>
+                                <br>Tạo bởi: ${blog.user.lastName} ${blog.user.firstName}
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="button-container mr-auto ml-auto">
+                            <span><i class="nc-icon nc-square-pin"></i> Đăng ngày <fmt:formatDate pattern = "dd-MM-yyyy HH:mm:ss" value = "${blog.createdDate}" /></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

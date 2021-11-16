@@ -21,7 +21,7 @@
                 <li>
                     <a class="nav-link" href="<c:url value="/admin" />">
                         <i class="nc-icon nc-chart-pie-35"></i>
-                        <p>Dashboard</p>
+                        <p>BẢNG ĐIỀU KHIỂN</p>
                     </a>
                 </li>
             </c:if>
@@ -107,9 +107,9 @@
                 </ul>
                 <script>
                     function Search() {
-                        var input = document.getElementById("inputSearch")
-                        console.log(input.value)
-                        document.getElementById("search").href = '/QuanLyDuLich-Spring/admin/payments?username='+input.value
+                        var input = document.getElementById("inputSearch");
+                        console.log(input.value);
+                        document.getElementById("search").href = '/QuanLyDuLich-Spring/admin/payments?username='+input.value;
                     }
                 </script>
                 <ul class="navbar-nav ml-auto">

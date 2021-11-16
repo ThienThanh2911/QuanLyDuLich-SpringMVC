@@ -42,12 +42,13 @@ public class Tours implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Size(min = 5, max = 30, message = "{tour.name.lenError}")
+    @Size(min = 5, max = 80, message = "{tour.name.lenError}")
     private String name;
     private String description;
     @NotNull(message = "{tour.destination.nullError}")
     private String destination;
     private Vehicle vehicle;
+    private String code;
     private String photos;
     @NotNull(message = "{tour.price.nullError}")
     @Min(value = 100000, message = "{tour.price.minError}")
@@ -81,16 +82,14 @@ public class Tours implements Serializable{
     private Set<Tags> tags = new HashSet<>();
     @Transient
     private MultipartFile file;
-    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<Payments> payments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<DateDetail> datedetail;
-    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<RateTour> ratetour;
-    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
     private Set<CommentTour> commenttour;
-    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tour")
-    private Set<TourImage> tourimage;
 
     /**
      * @return the id
@@ -146,6 +145,20 @@ public class Tours implements Serializable{
      */
     public void setDestination(String destination) {
         this.destination = destination;
+    }
+    
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * @param code the id to set
+     */
+    public void setCode(String code) {
+        this.code = code;
     }
 
     /**
@@ -328,20 +341,6 @@ public class Tours implements Serializable{
      */
     public void setFinishDate(Date finishDate) {
         this.finishDate = finishDate;
-    }
-
-    /**
-     * @return the tourimage
-     */
-    public Set<TourImage> getTourimage() {
-        return tourimage;
-    }
-
-    /**
-     * @param tourimage the tourimage to set
-     */
-    public void setTourimage(Set<TourImage> tourimage) {
-        this.tourimage = tourimage;
     }
 
 }

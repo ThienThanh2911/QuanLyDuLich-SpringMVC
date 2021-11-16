@@ -25,8 +25,8 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
     private String name;
+    private String code;
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Tours> tours;
     /**
@@ -69,5 +69,19 @@ public class Category implements Serializable {
      */
     public void setTours(List<Tours> tours) {
         this.tours = tours;
+    }
+
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * @param code the code to set
+     */
+    public void setCode(String code) {
+        this.code = code;
     }
 }

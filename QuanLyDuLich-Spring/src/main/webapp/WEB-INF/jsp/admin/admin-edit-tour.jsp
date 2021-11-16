@@ -22,7 +22,7 @@
                 <li>
                     <a class="nav-link" href="<c:url value="/admin" />">
                         <i class="nc-icon nc-chart-pie-35"></i>
-                        <p>Dashboard</p>
+                        <p>BẢNG ĐIỀU KHIỂN</p>
                     </a>
                 </li>
             </c:if>
@@ -206,6 +206,7 @@
                                             <form:textarea rows="20" cols="80" type="text" id="description" placeholder="Mô tả tour..." path="description" style="height:9em" class="form-control"/>
                                             <form:hidden path="active"/>
                                             <form:hidden path="photos"/>
+                                            <form:hidden path="code"/>
                                         </div>
                                     </div>
                                 </div>
@@ -236,6 +237,7 @@
                                 <c:forEach items="${tour.tags}" var="t">
                                     <span class="badge badge-pill badge-secondary" style="font-size:13px">${t.name}</span>
                                 </c:forEach>
+                                <br>${tour.code}
                             </p>
                         </div>
                         <hr>

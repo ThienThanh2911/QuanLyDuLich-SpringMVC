@@ -16,10 +16,10 @@
 
         <div class="video-overlay header-text">
             <div class="caption">
-                <h6>Welcome to our website</h6>
-                <h2><em>Explore</em> the world with us!</h2>
+                <h6>CHÀO MỪNG BẠN ĐÃ THAM GIA,</h6>
+                <h2><em>CÙNG KHÁM PHÁ</em> THẾ GIỚI NÀO!</h2>
                 <div class="main-button">
-                    <a href="contact">Contact Us</a>
+                    <a href="contact">LIÊN HỆ NGAY</a>
                 </div>
             </div>
         </div>
@@ -71,7 +71,7 @@
                             </p>
 
                             <ul class="social-icons">
-                                <li><a href="<c:url value="package-details/${t.id}" />">+ View Package</a></li>
+                                <li><a href="<c:url value="package-details/${t.id}" />">+ Xem chi tiết chuyến đi</a></li>
                             </ul>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                             </p>
 
                             <ul class="social-icons">
-                                <li><a href="<c:url value="package-details/${t[0]}" />">+ View Package</a></li>
+                                <li><a href="<c:url value="package-details/${t[0]}" />">+ Xem chi tiết chuyến đi</a></li>
                             </ul>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
             <br>
 
             <div class="main-button text-center">
-                <a href="packages">View Packages</a>
+                <a href="packages">Xem danh sách tours</a>
             </div>
         </div>
     </section>
@@ -134,7 +134,7 @@
                     <div class="section-heading dark-bg">
                         <h2>Read <em>About Us</em></h2>
                         <img src="images/line-dec.png" alt="">
-                        <p>Website quản lý du lịch IT82 - Thầy Dương Hữu Thành</p>
+                        <p>Website quản lý du lịch IT82</p>
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
                     <c:forEach var="b" items="${blogsNew}">
                         <li><a href='#${b.id}'>${b.title}</a></li>
                     </c:forEach>
-                  <div class="main-rounded-button"><a href="<c:url value="blog" />">Read More</a></div>
+                  <div class="main-rounded-button"><a href="<c:url value="blog" />">Đọc thêm bài viết</a></div>
                 </ul>
               </div>
               <div class="col-lg-8">
@@ -178,12 +178,12 @@
                             <img src="${b.photos}" alt="" width="100%" height="400px">
                             <h4>${b.title}</h4>
 
-                            <p><i class="fa fa-user"></i> ${b.user.lastName} ${b.user.firstName} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> <fmt:formatDate pattern = "dd-MM-yyyy HH:mm:ss" value = "${b.createdDate}" /> &nbsp;|&nbsp; <i class="fa fa-comments"></i>  ${b.commentblog.size()} comments</p>
+                            <p><i class="fa fa-user"></i> ${b.user.lastName} ${b.user.firstName} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> <fmt:formatDate pattern = "dd-MM-yyyy HH:mm:ss" value = "${b.createdDate}" /> &nbsp;|&nbsp; <i class="fa fa-comments"></i>  ${b.commentblog.size()} bình luận</p>
                             
                             <p class="truncated" style="width: 700px">${b.description}</p>
                             
                             <div class="main-button">
-                                <a href="<c:url value="blog-details/${b.id}" />">Continue Reading</a>
+                                <a href="<c:url value="blog-details/${b.id}" />">Đọc tiếp</a>
                             </div>
                         </article>
                     </c:forEach>
@@ -200,10 +200,10 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="cta-content">
-                        <h2>Send us a <em>message</em></h2>
+                        <h2>SEND US A <em>MESSAGE</em></h2>
                         <p>Liên hệ hỗ trợ</p>
                         <div class="main-button">
-                            <a href="contact">Contact us</a>
+                            <a href="contact">LIÊN HỆ NGAY</a>
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="section-heading">
-                        <h2>Read our <em>Membership</em></h2>
+                        <h2>READ OUR <em>MEMBERSHIP</em></h2>
                         <img src="images/line-dec.png" alt="waves">
                         <p>Danh sách thành viên</p>
                     </div>
@@ -234,28 +234,10 @@
                                 <p><em>"Mã số sinh viên: 1851050130 ---------------------------------------------------------------------------------------------------------"</em></p>
                             </div>
                         </li>
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="images/features-first-icon.png" alt="second one">
-                            </div>
-                            <div class="right-content">
-                                <h4>Tựu</h4>
-                                <p><em>"Mã số sinh viên: 1851050179 ---------------------------------------------------------------------------------------------------------"</em></p>
-                            </div>
-                        </li>
                     </ul>
                 </div>
                 <div class="col-lg-6">
                     <ul class="features-items">
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="images/features-first-icon.png" alt="fourth muscle">
-                            </div>
-                            <div class="right-content">
-                                <h4>Thành</h4>
-                                <p><em>"Mã số sinh viên: 1851050130---------------------------------------------------------------------------------------------------------"</em></p>
-                            </div>
-                        </li>
                         <li class="feature-item">
                             <div class="left-icon">
                                 <img src="images/features-first-icon.png" alt="training fifth">

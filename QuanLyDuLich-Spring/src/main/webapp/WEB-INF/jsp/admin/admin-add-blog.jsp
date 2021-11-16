@@ -20,7 +20,7 @@
                 <li>
                     <a class="nav-link" href="<c:url value="/admin" />">
                         <i class="nc-icon nc-chart-pie-35"></i>
-                        <p>Dashboard</p>
+                        <p>BẢNG ĐIỀU KHIỂN</p>
                     </a>
                 </li>
             </c:if>
@@ -119,7 +119,7 @@
                 <c:url value="/admin/blogs/add" var="action"/>
                 <form:form method="post" action="${action}" modelAttribute="blog" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
                                 <label>Title</label>
                                 <form:input path="title" class="form-control" id="title" placeholder="Enter your blog title"/>
@@ -131,7 +131,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
                                 <label>Description</label>
-                                <form:textarea rows="8" cols="80" type="text" id="description" placeholder="Mô tả blog..." path="description" cssClass="form-control"/>
+                                <form:textarea rows="8" cols="80" type="text" style="height:8em" id="description" placeholder="Mô tả blog..." path="description" cssClass="form-control"/>
                             </div>
                         </div>
                     </div>

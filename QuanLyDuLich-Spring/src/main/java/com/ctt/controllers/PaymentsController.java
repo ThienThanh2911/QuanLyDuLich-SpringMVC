@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -30,6 +31,7 @@ public class PaymentsController {
     private UserService userDetailsService;
     
     @RequestMapping("/payment-history")
+    @Transactional
     public String paymentHistory(Model model, @RequestParam(required = false) Map<String, String> params, Principal principal) {
         if(principal != null){
             User u = this.userDetailsService.getUsers(principal.getName(), 1).get(0);

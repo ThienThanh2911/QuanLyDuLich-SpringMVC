@@ -21,7 +21,7 @@
                 <li>
                     <a class="nav-link" href="<c:url value="/admin" />">
                         <i class="nc-icon nc-chart-pie-35"></i>
-                        <p>Dashboard</p>
+                        <p>BẢNG ĐIỀU KHIỂN</p>
                     </a>
                 </li>
             </c:if>
@@ -107,9 +107,9 @@
                 </ul>
                 <script>
                     function Search() {
-                        var input = document.getElementById("inputSearch")
-                        console.log(input.value)
-                        document.getElementById("search").href = '/QuanLyDuLich-Spring/admin/packages?tourname='+input.value
+                        var input = document.getElementById("inputSearch");
+                        console.log(input.value);
+                        document.getElementById("search").href = '/QuanLyDuLich-Spring/admin/packages?tourname='+input.value;
                     }
                 </script>
                 <ul class="navbar-nav ml-auto">
@@ -141,7 +141,7 @@
                                 <th>Image</th>
                                 <th>Tour name</th>
                                 <th>Price</th>
-                                <th>Danh mục</th>
+                                <th>Category</th>
                                 <th>Rating</th>
                                 <th>Comments</th>
                                 <th style="width: 60px">ACTIVE</th>
@@ -156,7 +156,7 @@
                                         <td><fmt:formatNumber value="${p.price}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></td>
                                         <td>${p.category.name}</td>
                                         <td>${p.ratetour.size()} đánh giá</td>
-                                        <td><a href="<c:url value="/admin/commenttours?tourId=${p.id}" />">${p.commenttour.size()} bình luận</a></td>
+                                        <td><a href="#">${p.commenttour.size()} bình luận</a></td>
                                         <td class="text-center">
                                             <c:if test="${p.active == true}">
                                                 <button id="buttontour${p.id}" onclick="setActiveTour(${p.id})" type="button" rel="tooltip" title="Deactive Tour" class="btn btn-info btn-simple btn-link">

@@ -42,7 +42,7 @@ public class DateDetail implements Serializable {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date finishDate;
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tour_id")
     private Tours tour;
     private Status status;

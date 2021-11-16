@@ -79,7 +79,7 @@ public class User implements Serializable {
     private String confirmPassword;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Blog> blog;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Payments> payments;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<RateTour> ratetour;

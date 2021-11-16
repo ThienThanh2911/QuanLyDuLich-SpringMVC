@@ -48,8 +48,16 @@
                             <div class="card-body">
                                 <h5 class="card-title" style="color: var(--text-color)">${p.tour.name}</h5>
                                 <p class="card-text">Ngày thanh toán: <fmt:formatDate pattern = "dd/MM/yyyy HH:mm:ss" value = "${p.createdDate}" /></p>
-                                <p class="card-text">Tổng hóa đơn: ${p.price}đ</p>
-                                <p class="card-text">Tình trạng thanh toán: <span class="badge badge-pill badge-success">${p.status}</span></p>
+                                <p class="card-text">Tổng hóa đơn: <fmt:formatNumber value="${p.price}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></p>
+                                <c:if test="${p.status == 'PAID'}">
+                                    <p class="card-text">Tình trạng thanh toán: <span class="badge badge-pill badge-success">Đã thanh toán</span></p>
+                                </c:if>
+                                <c:if test="${p.status == 'UNPAID'}">
+                                    <p class="card-text">Tình trạng thanh toán: <span class="badge badge-pill badge-warning">Chưa thanh toán</span></p>
+                                </c:if>
+                                <c:if test="${p.status == 'EXPIRED'}">
+                                    <p class="card-text">Tình trạng thanh toán: <span class="badge badge-pill badge-danger">Đã hết hạn</span></p>
+                                </c:if>
                                 <a href="<c:url value="/payment-history/" />${p.id}" class="btn btn-primary float-right">Chi tiết hóa đơn</a>
                             </div>
                         </div>

@@ -92,7 +92,7 @@ public class CommentTourRepositoryImpl implements CommentTourRepository{
         Root root = query.from(CommentTour.class);
         query = query.select(root).orderBy(builder.desc(root.get("id")));
         if(tourId != 0){
-            Predicate p = builder.like(root.join("tour").get("id").as(String.class), String.format("%%%s%%", tourId));
+            Predicate p = builder.equal(root.get("tour"), tourId);
             query = query.where(p);
         }
         Query q = session.createQuery(query);

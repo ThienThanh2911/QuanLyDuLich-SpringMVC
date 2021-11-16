@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     <!-- ***** Call to Action Start ***** -->
     <section class="section section-bg" id="call-to-action" style="background-image: url(${pageContext.request.contextPath}/images/banner-image-1-1920x500.jpg)">
@@ -36,18 +37,18 @@
                   <path d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"></path>
                 </svg>
               </div>
-                <input id="search" type="text" name="kw" placeholder="Search..." />
+                <input id="search" type="text" name="kw" placeholder="Nhập địa điểm muốn đi..." />
               <div class="result-count">
-                <span>${count} </span>results</div>
+                <span>${count} </span> kết quả</div>
             </div>
           </div>
           <div class="advance-search">
-            <span class="desc">Advanced Search</span>
+            <span class="desc">Tìm kiếm nâng cao</span>
             <div class="row">
                 <div class="input-field">
                   <div class="input-select">
                     <select name="cate" class="form-control">
-                        <option placeholder="" value="">CATEGORY</option>
+                        <option placeholder="" value="">Danh mục</option>
                         <c:forEach items="${categories}" var="cat">
                             <option value="${cat.id}">${cat.name}</option>
                         </c:forEach>
@@ -68,8 +69,8 @@
             </div>
             <div class="row third">
               <div class="input-field">
-                <button class="btn-search">Search</button>
-                <button class="btn-delete" id="delete">Delete</button>
+                <button class="btn-search">Tìm kiếm</button>
+                <button class="btn-delete" id="delete">Xóa</button>
               </div>
             </div>
           </div>
@@ -127,7 +128,7 @@
                         </div>
                         <div class="down-content">
                             <div>
-                                <span>${t.price}<sup>đ</sup></span>
+                                <span><fmt:formatNumber value="${t.price}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></span>
                                 
                                 <span style="float:right">Lượt xem: 100</span>
                             </div>
@@ -150,7 +151,7 @@
                             </p>
 
                             <ul class="social-icons">
-                                <li><a href="package-details/${t.id}">+ View Package</a></li>
+                                <li><a href="package-details/${t.id}">+ Xem chi tiết chuyến đi</a></li>
                             </ul>
                         </div>
                     </div>
