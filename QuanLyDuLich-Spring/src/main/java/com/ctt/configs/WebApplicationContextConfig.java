@@ -45,7 +45,8 @@ import org.springframework.web.servlet.view.JstlView;
     "com.ctt.controllers.admin",
     "com.ctt.repository",
     "com.ctt.service",
-    "com.ctt.validator"
+    "com.ctt.validator",
+    "com.ctt.common"
 })
 public class WebApplicationContextConfig implements WebMvcConfigurer {
     @Override

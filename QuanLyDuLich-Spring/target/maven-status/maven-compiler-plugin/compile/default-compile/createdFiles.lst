@@ -54,6 +54,7 @@ com\ctt\configs\HibernateConfig.class
 com\ctt\validator\UserEmailValidator.class
 com\ctt\service\impl\CommentBlogServiceImpl.class
 com\ctt\service\TourImageService.class
+com\ctt\common\GoogleUtils.class
 com\ctt\formatter\UserFormatter.class
 com\ctt\service\CommentTourService.class
 com\ctt\controllers\ApiRateTourController.class
@@ -72,6 +73,7 @@ com\ctt\controllers\ApiPaymentController.class
 com\ctt\repository\impl\CategoryRepositoryImpl.class
 com\ctt\repository\TourRepository.class
 com\ctt\service\impl\BlogServiceImpl.class
+com\ctt\common\GooglePojo.class
 com\ctt\controllers\admin\AdminBlogsController.class
 com\ctt\repository\impl\UserRepositoryImpl.class
 com\ctt\controllers\admin\AdminPaymentsController.class

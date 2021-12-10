@@ -5,16 +5,27 @@
  */
 package com.ctt.controllers;
 
+import com.ctt.common.GooglePojo;
+import com.ctt.common.GoogleUtils;
 import com.ctt.pojos.User;
 import com.ctt.service.UserService;
 import com.ctt.validator.WebAppValidator;
+import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -26,6 +37,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -36,9 +48,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UsersController {
     @Autowired
     private UserService userDetailsService;
+
+    @Autowired
+    private GoogleUtils googleUtils;
     
     @Autowired
     private WebAppValidator userValidator;
+    
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setValidator(userValidator);
@@ -65,6 +81,24 @@ public class UsersController {
                 return "redirect:/signin";
         }
         return "signUpLayout";
+    }
+
+    @RequestMapping("/signin-google")
+    public String loginGoogle(HttpServletResponse response, HttpServletRequest request) throws ClientProtocolException, IOException {
+        String code = request.getParameter("code");
+
+        if (code == null || code.isEmpty()) {
+            return "redirect:/signin?error=google_error";
+        }
+        String accessToken = googleUtils.getToken(code);
+        response.addCookie(new Cookie("accessToken", accessToken));
+        GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
+        UserDetails userDetail = googleUtils.buildUser(googlePojo);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
+                userDetail.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return "redirect:/";
     }
 
     @GetMapping("/change-password")

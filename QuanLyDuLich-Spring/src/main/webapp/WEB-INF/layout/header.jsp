@@ -43,10 +43,12 @@
                                         </div>
                                     </c:when>
                                     <c:when test="${pageContext.request.userPrincipal.name != null}">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Chào, ${pageContext.request.userPrincipal.name}</a>
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
                                         <div class="dropdown-menu">
-                                            <c:if test="${user.role.name() != 'ROLE_USER'}">
-                                                <a class="dropdown-item" href="<c:url value="/admin" />">Trang quản trị</a>
+                                            <c:if test="${accessToken == null}">
+                                                <c:if test="${user.role.name() != 'ROLE_USER'}">
+                                                    <a class="dropdown-item" href="<c:url value="/admin" />">Trang quản trị</a>
+                                                </c:if>
                                             </c:if>
                                             <a class="dropdown-item" href="<c:url value="/payment-history" />">Lịch sử thanh toán</a>
                                             <a class="dropdown-item" href="<c:url value="/your-profile" />">Thông tin cá nhân</a>

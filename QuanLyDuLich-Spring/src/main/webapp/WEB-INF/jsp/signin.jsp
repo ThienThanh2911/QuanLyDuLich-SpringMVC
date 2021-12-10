@@ -49,6 +49,8 @@
                                     <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Đăng Nhập"/>
                             </div>
                     </div>
+                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/QuanLyDuLich-Spring/signin-google&response_type=code
+    &client_id=282559155698-m5vjui8150iamdmm8d7dk7gdugp6in8l.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
                 </div>
             </div>
         </form>
