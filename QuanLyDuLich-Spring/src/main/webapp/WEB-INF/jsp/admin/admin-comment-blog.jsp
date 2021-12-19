@@ -111,6 +111,25 @@
     </nav>
     <div class="content">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="card card-user">
+                        <div class="card-body">
+                            <img src="${blog.photos}" height="100%" width="100%" alt="..." class="img-thumbnail">
+                            <p class="description text-center">
+                                <span style="font-size: 20px; "><strong>${blog.title}</strong></span>
+                                <br>Tạo bởi: ${blog.user.lastName} ${blog.user.firstName}
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="button-container mr-auto ml-auto">
+                            <span><i class="nc-icon nc-square-pin"></i> Đăng ngày <fmt:formatDate pattern = "dd-MM-yyyy HH:mm:ss" value = "${blog.createdDate}" /></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
@@ -130,7 +149,7 @@
                             <tbody>
                                 <c:forEach items="${commentblogs}" var="c">
                                     <tr id="comment${c.id}">
-                                        <td>${c.id}</td>
+                                        <td><img src="${c.user.avatar}" alt="${c.user.username}" width="40px" style="border-radius:3px"/></td>
                                         <td>${c.user.username}</td>
                                         <td>${c.blog.id}</td>
                                         <td>${c.comment}</td>
@@ -144,11 +163,6 @@
                                 </c:forEach>
                             </tbody>
                         </table>
-                        <ul class="pagination justify-content-center">
-                            <c:forEach begin="1" end="${countPage}" var="i">
-                                <li class="page-item"><a class="page-link" href="<c:url value="/admin/commentblogs" />?page=${i}">${i}</a></li>
-                            </c:forEach>
-                        </ul>
                     </div>
                 </div>
             </div>

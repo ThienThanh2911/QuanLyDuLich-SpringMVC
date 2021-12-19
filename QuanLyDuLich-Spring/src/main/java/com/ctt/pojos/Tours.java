@@ -59,7 +59,6 @@ public class Tours implements Serializable{
     @JoinColumn(name = "category_id")
     //@NotNull(message = "{tour.category.nullError}")
     private Category category;
-    
     @Transient
     @Temporal(javax.persistence.TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")

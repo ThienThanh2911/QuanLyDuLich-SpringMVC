@@ -100,9 +100,9 @@
                             <span class="notification">!</span>
                             <span class="d-lg-none">Notification</span>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="left: -140px!important">
                             <c:forEach items="${unpaidpayments}" var="unpaid">
-                                <a class="dropdown-item" href="#">${unpaid.user.username} ${unpaid.price}</a>
+                                <a class="dropdown-item" href="<c:url value="/admin/payments/${unpaid.id}/edit" />">${unpaid.user.username} chưa thanh toán hóa đơn #${unpaid.id}</a>
                             </c:forEach>
                         </ul>
                     </li>
@@ -127,8 +127,8 @@
                 <div class="col-md-6">
                     <div class="card ">
                         <div class="card-header ">
-                            <h4 class="card-title">The Most Popular Product Statistics</h4>
-                            <p class="card-category">Biểu đồ thống kê sản phẩm bán chạy nhất</p>
+                            <h4 class="card-title">The Most Popular Product Category Statistics</h4>
+                            <p class="card-category">Biểu đồ thống kê danh mục sản phẩm bán chạy nhất</p>
                         </div>
                         <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                     </div>
@@ -137,7 +137,7 @@
                     <div class="card  card-tasks">
                         <div class="card-header ">
                             <h4 class="card-title">Statistics</h4>
-                            <p class="card-category">Chi tiết thống kê doanh thu theo thời gian</p>
+                            <p class="card-category">Chi tiết số liệu thống kê doanh thu theo thời gian</p>
                         </div>
                         <div class="card-body ">
                             <p><strong>Nhập năm mà bạn muốn xem thống kê chi tiết:</strong> 

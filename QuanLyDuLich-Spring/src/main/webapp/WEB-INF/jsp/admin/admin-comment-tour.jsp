@@ -111,34 +111,38 @@
     </nav>
     <div class="content">
         <div class="container-fluid">
-            <div class="col-md-12">
-                <div class="card card-user">
-                    <div class="card-body">
-                        <img src="${tour.photos}" height="100%" width="100%" alt="..." class="img-thumbnail">
-                        <p class="description text-center">
-                            <span style="font-size: 20px; "><strong>${tour.name}</strong></span>
-                            <br>Giá vé: ${tour.price}VNĐ
-                            <br>Danh mục: ${tour.category.name}
-                            <c:if test="${tour.vehicle == 'YACHT'}">
-                                <br>Phương tiện di chuyển: Du thuyền
-                            </c:if>
-                            <c:if test="${tour.vehicle == 'OTO'}">
-                                <br>Phương tiện di chuyển: Ô tô
-                            </c:if>
-                            <c:if test="${tour.vehicle == 'PLANE'}">
-                                <br>Phương tiện di chuyển: Máy bay
-                            </c:if>
-                            <br>
-                            <c:forEach items="${tour.tags}" var="t">
-                                <span class="badge badge-pill badge-secondary" style="font-size:13px">${t.name}</span>
-                            </c:forEach>
-                        </p>
-                    </div>
-                    <hr>
-                    <div class="button-container mr-auto ml-auto">
-                        <span><i class="nc-icon nc-square-pin"></i> Điểm đến ${tour.destination}</span>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="card card-user">
+                        <div class="card-body">
+                            <img src="${tour.photos}" height="auto" width="100%" alt="..." class="img-thumbnail">
+                            <p class="description text-center">
+                                <span style="font-size: 20px; "><strong>${tour.name}</strong></span>
+                                <br>Giá vé: ${tour.price}VNĐ
+                                <br>Danh mục: ${tour.category.name}
+                                <c:if test="${tour.vehicle == 'YACHT'}">
+                                    <br>Phương tiện di chuyển: Du thuyền
+                                </c:if>
+                                <c:if test="${tour.vehicle == 'OTO'}">
+                                    <br>Phương tiện di chuyển: Ô tô
+                                </c:if>
+                                <c:if test="${tour.vehicle == 'PLANE'}">
+                                    <br>Phương tiện di chuyển: Máy bay
+                                </c:if>
+                                <br>
+                                <c:forEach items="${tour.tags}" var="t">
+                                    <span class="badge badge-pill badge-secondary" style="font-size:13px">${t.name}</span>
+                                </c:forEach>
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="button-container mr-auto ml-auto">
+                            <span><i class="nc-icon nc-square-pin"></i> Điểm đến ${tour.destination}</span>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-4"></div>
             </div>
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
@@ -158,7 +162,7 @@
                             <tbody>
                                 <c:forEach items="${commenttours}" var="c">
                                     <tr id="comment${c.id}">
-                                        <td>${c.user.avatar}</td>
+                                        <td><img src="${c.user.avatar}" alt="${c.user.username}" width="40px" style="border-radius:3px"/></td>
                                         <td>${c.user.username}</td>
                                         <td>${c.comment}</td>
                                         <td>${c.created_date}</td>
@@ -173,7 +177,7 @@
                         </table>
                         <ul class="pagination justify-content-center">
                             <c:forEach begin="1" end="${countPage}" var="i">
-                                <li class="page-item"><a class="page-link" href="<c:url value="/admin/commenttours" />?page=${i}">${i}</a></li>
+                                <li class="page-item"><a class="page-link" href="<c:url value="/admin/commenttours" />?tourId=${tour.id}&?page=${i}">${i}</a></li>
                             </c:forEach>
                         </ul>
                     </div>

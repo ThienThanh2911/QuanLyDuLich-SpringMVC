@@ -5,6 +5,7 @@
  */
 package com.ctt.controllers.admin;
 
+import com.ctt.service.BlogService;
 import com.ctt.service.CommentBlogService;
 import java.text.ParseException;
 import java.util.Map;
@@ -22,12 +23,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminCommentBlogsController {
     @Autowired
     private CommentBlogService commentBlogService;
+    @Autowired
+    private BlogService blogService;
     
     @GetMapping("/admin/commentblogs")
     public String adminCommentBlogsView(Model model, @RequestParam(required = false) Map<String, String> params) throws ParseException{
-        int page = Integer.parseInt(params.getOrDefault("page", "1"));
-        model.addAttribute("commentblogs", this.commentBlogService.getCommentBlogs(page));
-        model.addAttribute("countPage", (int)Math.ceil((double)this.commentBlogService.countCommentBlogs()/9));        
+        int blogId = Integer.parseInt(params.getOrDefault("blogId", "1"));
+        model.addAttribute("commentblogs", this.commentBlogService.getListCommentsBlogById(blogId));
+        model.addAttribute("blog", this.blogService.getBlogById(blogId));
         return "adminCommentBlogsLayout";
     }
 }

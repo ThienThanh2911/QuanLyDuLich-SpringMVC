@@ -156,7 +156,7 @@
                                         <td><fmt:formatNumber value="${p.price}" type="currency" currencySymbol="" minFractionDigits="0"/><sup>đ</sup></td>
                                         <td>${p.category.name}</td>
                                         <td>${p.ratetour.size()} đánh giá</td>
-                                        <td><a href="#">${p.commenttour.size()} bình luận</a></td>
+                                        <td><a href="<c:url value="/admin/commenttours" />?tourId=${p.id}">${p.commenttour.size()} bình luận</a></td>
                                         <td class="text-center">
                                             <c:if test="${p.active == true}">
                                                 <button id="buttontour${p.id}" onclick="setActiveTour(${p.id})" type="button" rel="tooltip" title="Deactive Tour" class="btn btn-info btn-simple btn-link">
@@ -184,11 +184,6 @@
                                 </c:forEach>
                             </tbody>
                         </table>
-                        <ul class="pagination justify-content-center">
-                            <c:forEach begin="1" end="${countPage}" var="i">
-                                <li class="page-item"><a class="page-link" href="<c:url value="/admin/packages" />?page=${i}">${i}</a></li>
-                            </c:forEach>
-                        </ul>
                     </div>
                 </div>
             </div>

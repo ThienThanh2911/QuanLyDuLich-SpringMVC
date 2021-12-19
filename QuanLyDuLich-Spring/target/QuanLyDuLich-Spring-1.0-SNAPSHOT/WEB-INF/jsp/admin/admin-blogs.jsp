@@ -156,7 +156,7 @@
                                         <td>${b.user.username}</td>
                                         <td><fmt:formatDate pattern = "dd-MM-yyyy HH:mm:ss" value = "${b.createdDate}" /></td>
                                         <td>${b.rateblog.size()} đánh giá</td>
-                                        <td><a href="#">${b.commentblog.size()} bình luận</a></td>
+                                        <td><a href="<c:url value="/admin/commentblogs" />?blogId=${b.id}">${b.commentblog.size()} bình luận</a></td>
                                         <td class="text-center">
                                             <c:if test="${b.active == true}">
                                                 <button id="buttonblog${b.id}" onclick="setActiveBlog(${b.id})" type="button" rel="tooltip" title="Deactive Blog" class="btn btn-info btn-simple btn-link">
